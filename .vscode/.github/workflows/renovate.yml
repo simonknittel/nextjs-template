@@ -1,0 +1,29 @@
+name: Renovate
+
+on:
+  schedule:
+    - cron: "0,15,30,45 3,4 * * *" # Every day eight chances for Renovate to create or rebase branches and create, rebase or merge PRs
+  workflow_dispatch: # Manually run the workflow
+  push: # Run the workflow on changes to the configuration
+    branches:
+      - main
+    paths:
+      - renovate.json
+      - .github/workflows/renovate.yml
+      - .github/renovate-config.js
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.7
+
+      - name: Self-hosted Renovate
+        uses: renovatebot/github-action@v40.2.7
+        with:
+          configurationFile: .github/renovate-config.js
+          token: ${{ secrets.RENOVATE_TOKEN }}
+        env:
+          LOG_LEVEL: debug

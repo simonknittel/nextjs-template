@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "clinyong.vscode-css-modules",
+    "dbaeumer.vscode-eslint",
+    "deque-systems.vscode-axe-linter",
+    "dotenv.dotenv-vscode",
+    "esbenp.prettier-vscode",
+    "ms-azuretools.vscode-docker",
+    "prisma.prisma",
+    "redhat.vscode-yaml",
+    "vitest.explorer",
+    "github.vscode-github-actions"
+  ]
+}

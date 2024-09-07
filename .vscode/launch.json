@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    // Source: https://github.com/vercel/next.js/issues/63740#issuecomment-2074742942
+    //
+    // The types `node` and `node-terminal` hide some logs from the Debug Console. Notably,
+    // this affects the `GET /my-path 200 in 100ms` logs from Next.js. This happens since
+    // these are written using `process.stdout.write()` instead of `console.log()`.
+    //
+    // The type `node` is less visibly pleasing in comparison to `node-terminal`. E.g.
+    // colors are missing.
+    {
+      "name": "Next.js: debug server-side",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "runtimeVersion": "22.8.0",
+      "skipFiles": ["<node_internals>/**"],
+      "sourceMapPathOverrides": {
+        "webpack:///./~/*": "${workspaceFolder}/node_modules/*",
+        "webpack://?:*/*": "${workspaceFolder}/*",
+        // Temporary Turbopack path
+        "/turbopack/[project]/*": "${workspaceFolder}/*",
+        // Eventual Turbopack path
+        "turbopack://[project]/*": "${workspaceFolder}/*"
+      }
+    }
+  ]
+}

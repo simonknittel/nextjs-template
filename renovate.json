@@ -1,0 +1,22 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":semanticCommits", ":dependencyDashboard"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "minimumReleaseAge": "7 days",
+      "internalChecksFilter": "strict",
+      "platformAutomerge": false,
+      "automergeStrategy": "squash",
+      "prHourlyLimit": 10,
+      "prConcurrentLimit": 5,
+      "branchConcurrentLimit": 5
+    },
+    {
+      "matchPackageNames": ["postgres"],
+      "enabled": false
+    }
+  ],
+  "configMigration": true
+}
