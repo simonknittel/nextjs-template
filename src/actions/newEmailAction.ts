@@ -1,5 +1,4 @@
 "use server";
-
 import { render } from "@react-email/components";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
