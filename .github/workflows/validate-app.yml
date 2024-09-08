@@ -32,7 +32,7 @@ jobs:
         run: npm run lint
         continue-on-error: true
         env:
-          DATABASE_URL: "postgresql://foo"
+          SKIP_VALIDATION: "1"
 
   prettier:
     runs-on: ubuntu-22.04
@@ -110,4 +110,4 @@ jobs:
       - name: Test
         run: npm run build
         env:
-          DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/postgres"
+          SKIP_VALIDATION: "1"
