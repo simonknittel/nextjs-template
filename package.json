@@ -2,9 +2,9 @@
   "name": "nextjs-template",
   "license": "MIT",
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "prisma generate && next dev --turbo",
     "dev:email": "email dev --port=3001",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "test": "vitest run --coverage",
