@@ -14,7 +14,7 @@
       "branchConcurrentLimit": 5
     },
     {
-      "matchPackageNames": ["postgres"],
+      "matchPackageNames": ["postgres", "react", "react-dom"],
       "enabled": false
     }
   ],
