@@ -3,6 +3,8 @@
   "extends": ["config:recommended", ":semanticCommits", ":dependencyDashboard"],
   "packageRules": [
     {
+      "groupName": "Patch Tuesday",
+      "groupSlug": "patch-tuesday",
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true,
       "minimumReleaseAge": "7 days",
@@ -11,12 +13,11 @@
       "automergeStrategy": "squash",
       "prHourlyLimit": 10,
       "prConcurrentLimit": 5,
-      "branchConcurrentLimit": 5
-    },
-    {
-      "matchPackageNames": ["postgres", "react", "react-dom"],
-      "enabled": false
+      "branchConcurrentLimit": 5,
+      "schedule": ["before 7am on Tuesday"],
+      "matchPackageNames": ["*", "!postgres", "!react", "!react-dom"]
     }
   ],
+  "osvVulnerabilityAlerts": true,
   "configMigration": true
 }
