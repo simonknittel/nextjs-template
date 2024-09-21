@@ -27,6 +27,16 @@
 
     "react-compiler/react-compiler": "error",
 
-    "@typescript-eslint/prefer-nullish-coalescing": "off"
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
+
+    "@typescript-eslint/ban-ts-comment": [
+      "warn",
+      {
+        "ts-expect-error": true,
+        "ts-ignore": true,
+        "ts-nocheck": true,
+        "ts-check": false
+      }
+    ]
   }
 }
