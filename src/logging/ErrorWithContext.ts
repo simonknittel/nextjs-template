@@ -1,7 +1,11 @@
-export class ErrorWithContext extends Error {
-  context: Record<string, unknown>;
+import type { Json } from "./types";
 
-  constructor(message: string, context: Record<string, unknown> = {}) {
+type Context = Json;
+
+export class ErrorWithContext extends Error {
+  context: Context;
+
+  constructor(message: string, context: Context = {}) {
     super(message);
 
     this.name = "CustomError";

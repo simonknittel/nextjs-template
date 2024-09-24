@@ -1,43 +1,41 @@
 import { env } from "../env";
 import { logToConsole } from "./console";
-import { type LogEntry } from "./types";
+import { type Json, type LogEntry } from "./types";
 
-const info = (message: string, args: Record<string, unknown> = {}) => {
+const getBaseLogEntry = () => ({
+  timestamp: new Date().toISOString(),
+  host: env.HOST,
+  stack: new Error().stack,
+  ...(env.COMMIT_SHA && { commitSha: env.COMMIT_SHA }),
+});
+
+const info = (message: string, args: Json = {}) => {
   const logEntry: LogEntry = {
-    timestamp: new Date().toISOString(),
+    ...getBaseLogEntry(),
     level: "info",
     message,
-    host: env.HOST,
-    stack: new Error().stack,
-    ...(env.COMMIT_SHA && { commitSha: env.COMMIT_SHA }),
     ...args,
   };
 
   logToConsole(logEntry);
 };
 
-const warn = (message: string, args: Record<string, unknown> = {}) => {
+const warn = (message: string, args: Json = {}) => {
   const logEntry: LogEntry = {
-    timestamp: new Date().toISOString(),
+    ...getBaseLogEntry(),
     level: "warn",
     message,
-    host: env.HOST,
-    stack: new Error().stack,
-    ...(env.COMMIT_SHA && { commitSha: env.COMMIT_SHA }),
     ...args,
   };
 
   logToConsole(logEntry);
 };
 
-const error = (message: string, args: Record<string, unknown> = {}) => {
+const error = (message: string, args: Json = {}) => {
   const logEntry: LogEntry = {
-    timestamp: new Date().toISOString(),
+    ...getBaseLogEntry(),
     level: "error",
     message,
-    host: env.HOST,
-    stack: new Error().stack,
-    ...(env.COMMIT_SHA && { commitSha: env.COMMIT_SHA }),
     ...args,
   };
 
