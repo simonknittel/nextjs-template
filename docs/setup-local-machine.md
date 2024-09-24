@@ -8,7 +8,14 @@
 ## Setup
 
 1. Clone the repository
-2. (Optional) Append `./git-hooks/post-merge` to [.git/hooks/post-merge](../.git/hooks/post-merge)
+2. (Optional) Append the following to [.git/hooks/post-merge](../.git/hooks/post-merge)
+   - Make sure the file is executable: `chmod +x .git/hooks/post-merge`
+
+```sh
+#!/bin/sh
+`./git-hooks/post-merge`
+```
+
 3. Configure environment variables: Duplicate [.env.example](../.env.example) to [.env](../.env) and fill in the blanks.
 4. Start up the database: `docker compose up`
 5. Open a second terminal
