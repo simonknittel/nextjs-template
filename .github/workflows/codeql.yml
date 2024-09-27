@@ -17,6 +17,7 @@ jobs:
     timeout-minutes: 5
     permissions:
       security-events: write
+      contents: read
 
     strategy:
       fail-fast: false
