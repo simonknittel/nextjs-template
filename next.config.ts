@@ -4,10 +4,6 @@ import "./src/env";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
 
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -16,6 +12,7 @@ const nextConfig: NextConfig = {
 
   poweredByHeader: false,
 
+  // eslint-disable-next-line @typescript-eslint/require-await
   headers: async () => [
     {
       source: "/:path*",
