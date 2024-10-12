@@ -1,7 +1,8 @@
 {
   "cSpell.words": [
     "clsx",
-    "nextjs"
+    "nextjs",
+    "nocheck"
   ],
   "dotenv.enableAutocloaking": false,
   "typescript.tsdk": "node_modules/typescript/lib",
