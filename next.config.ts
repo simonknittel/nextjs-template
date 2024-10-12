@@ -51,6 +51,16 @@ const nextConfig: NextConfig = {
       fullUrl: true,
     },
   },
+
+  output: "standalone",
+
+  images: {
+    remotePatterns: [],
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "attachment",
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    minimumCacheTTL: 60 * 60 * 24 * 31, // cache uploaded images for 31 days
+  },
 };
 
 export default nextConfig;
