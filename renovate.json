@@ -15,7 +15,13 @@
       "prConcurrentLimit": 5,
       "branchConcurrentLimit": 5,
       "schedule": ["before 7am on Tuesday"],
-      "matchPackageNames": ["*", "!postgres", "!react", "!react-dom"]
+      "matchPackageNames": [
+        "*",
+        "!postgres",
+        "!react",
+        "!react-dom",
+        "!eslint-plugin-react-compiler"
+      ]
     }
   ],
   "osvVulnerabilityAlerts": true,
