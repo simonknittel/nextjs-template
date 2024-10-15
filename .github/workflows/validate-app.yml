@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v4.2.0
+      - uses: actions/checkout@v4.2.1
 
       - uses: actions/setup-node@v4.0.4
         with:
@@ -20,7 +20,7 @@ jobs:
         id: npm-cache-dir
         run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
 
-      - uses: actions/cache@v4.0.2
+      - uses: actions/cache@v4.1.0
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-${{ hashFiles('.nvmrc', 'package-lock.json', 'prisma/prisma.schema') }}
@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v4.2.0
+      - uses: actions/checkout@v4.2.1
 
       - uses: actions/setup-node@v4.0.4
         with:
@@ -48,7 +48,7 @@ jobs:
         id: npm-cache-dir
         run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
 
-      - uses: actions/cache@v4.0.2
+      - uses: actions/cache@v4.1.0
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-${{ hashFiles('.nvmrc', 'package-lock.json', 'prisma/prisma.schema') }}
@@ -64,7 +64,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v4.2.0
+      - uses: actions/checkout@v4.2.1
 
       - uses: actions/setup-node@v4.0.4
         with:
@@ -74,7 +74,7 @@ jobs:
         id: npm-cache-dir
         run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
 
-      - uses: actions/cache@v4.0.2
+      - uses: actions/cache@v4.1.0
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-${{ hashFiles('.nvmrc', 'package-lock.json', 'prisma/prisma.schema') }}
@@ -89,7 +89,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v4.2.0
+      - uses: actions/checkout@v4.2.1
 
       - uses: actions/setup-node@v4.0.4
         with:
@@ -99,7 +99,7 @@ jobs:
         id: npm-cache-dir
         run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
 
-      - uses: actions/cache@v4.0.2
+      - uses: actions/cache@v4.1.0
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-${{ hashFiles('.nvmrc', 'package-lock.json', 'prisma/prisma.schema') }}
