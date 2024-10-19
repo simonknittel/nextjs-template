@@ -10,6 +10,7 @@
     "prisma.prisma",
     "redhat.vscode-yaml",
     "vitest.explorer",
-    "github.vscode-github-actions"
+    "github.vscode-github-actions",
+    "gitlab.gitlab-workflow"
   ]
 }

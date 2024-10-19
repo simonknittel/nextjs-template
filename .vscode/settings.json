@@ -1,9 +1,5 @@
 {
-  "cSpell.words": [
-    "clsx",
-    "nextjs",
-    "nocheck"
-  ],
+  "cSpell.words": ["clsx", "nextjs", "nocheck", "SAST"],
   "dotenv.enableAutocloaking": false,
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
