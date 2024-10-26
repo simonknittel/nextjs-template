@@ -9,11 +9,6 @@
       "automerge": true,
       "minimumReleaseAge": "7 days",
       "internalChecksFilter": "strict",
-      "platformAutomerge": false,
-      "automergeStrategy": "squash",
-      "prHourlyLimit": 10,
-      "prConcurrentLimit": 5,
-      "branchConcurrentLimit": 5,
       "schedule": ["before 7am on Tuesday"],
       "matchPackageNames": [
         "*",
@@ -25,5 +20,10 @@
     }
   ],
   "osvVulnerabilityAlerts": true,
-  "configMigration": true
+  "configMigration": true,
+  "prHourlyLimit": 10,
+  "prConcurrentLimit": 5,
+  "branchConcurrentLimit": 5,
+  "platformAutomerge": false,
+  "automergeStrategy": "squash"
 }
