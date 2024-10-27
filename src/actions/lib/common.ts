@@ -1,8 +1,8 @@
+import { Logger } from "@/logging";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { unstable_rethrow } from "next/navigation";
 import { serializeError } from "serialize-error";
 import { ZodError } from "zod";
-import { log } from "../../logging";
 
 export type ServerActionResponse = Readonly<{
   status: number;
