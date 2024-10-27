@@ -1,0 +1,8 @@
+services:
+  postgres:
+    image: postgres:17.0-alpine3.20
+    restart: on-failure
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432

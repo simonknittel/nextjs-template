@@ -11,6 +11,7 @@
     "redhat.vscode-yaml",
     "vitest.explorer",
     "github.vscode-github-actions",
-    "gitlab.gitlab-workflow"
+    "gitlab.gitlab-workflow",
+    "ms-playwright.playwright"
   ]
 }

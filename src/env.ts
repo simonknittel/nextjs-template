@@ -26,11 +26,11 @@ export const env = createEnv({
       return "localhost:3000";
     }, z.string()),
     COMMIT_SHA: z.string().optional(),
-    SMTP_HOST: z.string(),
-    SMTP_PORT: z.coerce.number(),
+    SMTP_HOST: z.string().optional(),
+    SMTP_PORT: z.coerce.number().optional(),
     SMTP_USER: z.string().optional(),
     SMTP_PASSWORD: z.string().optional(),
-    SMTP_FROM: z.string().email(),
+    SMTP_FROM: z.string().optional(),
   },
 
   /**

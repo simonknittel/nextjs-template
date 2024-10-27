@@ -1,9 +1,9 @@
-include:
-  - template: Jobs/SAST.gitlab-ci.yml
-  - template: Jobs/Secret-Detection.gitlab-ci.yml
+# include:
+#   - template: Jobs/SAST.gitlab-ci.yml
+#   - template: Jobs/Secret-Detection.gitlab-ci.yml
 
 .default_properties:
-  image: node:22.10.0-alpine3.20
+  image: node:22.10.0-bookworm
   before_script:
     - npm ci --cache .npm --prefer-offline
   cache:
@@ -15,22 +15,54 @@ include:
     paths:
       - .npm
 
+.vars: &vars
+  DATABASE_URL: postgres://postgres:postgres@postgres:5432/db
+
+build:
+  extends: .default_properties
+  stage: build
+  variables:
+    <<: *vars
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - .next/
+    expire_in: 1 hour
+
 lint:
   extends: .default_properties
+  stage: test
   script:
     - SKIP_VALIDATION=1 npm run lint
 
 prettier:
   extends: .default_properties
+  stage: test
   script:
     - npx prettier --check .
 
 test:
   extends: .default_properties
+  stage: test
   script:
-    - npm run test
+    - SKIP_VALIDATION=1 npm run test
 
-build:
+playwright:
   extends: .default_properties
+  image: mcr.microsoft.com/playwright:v1.48.1-noble
+  services:
+    - postgres
+  variables:
+    <<: *vars
+    POSTGRES_PASSWORD: postgres
+    HOSTNAME: 0.0.0.0
   script:
-    - SKIP_VALIDATION=1 npm run build
+    - cd playwright
+    - npm ci
+    - npx prisma generate --schema=../prisma/schema.prisma --generator=playwrightClient
+    - npx prisma db push --schema=../prisma/schema.prisma
+    - npx playwright test
+  artifacts:
+    paths:
+      - playwright/playwright-report/

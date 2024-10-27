@@ -1,0 +1,16 @@
+{
+  "name": "playwright",
+  "version": "1.0.0",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "1.48.2",
+    "@types/node": "22.8.1",
+    "prisma": "5.21.1"
+  },
+  "dependencies": {
+    "@prisma/client": "5.21.1"
+  }
+}

@@ -1,5 +1,12 @@
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
+    previewFeatures = ["omitApi"]
+}
+
+generator playwrightClient {
+    provider        = "prisma-client-js"
+    previewFeatures = ["omitApi"]
+    output          = "../playwright/node_modules/.prisma/client"
 }
 
 datasource db {

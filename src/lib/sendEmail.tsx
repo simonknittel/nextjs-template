@@ -1,6 +1,7 @@
+import { env } from "@/env";
+import { Logger } from "@/logging";
 import nodemailer from "nodemailer";
 import type Mail from "nodemailer/lib/mailer";
-import { env } from "../env";
 
 const smtpOptions = {
   host: env.SMTP_HOST,
@@ -33,6 +34,11 @@ type Data = Omit<Mail.Options, "from">;
  * ```
  */
 export const sendEmail = (data: Data) => {
+  if (!env.SMTP_HOST || !env.SMTP_PORT || !env.SMTP_FROM) {
+    Logger.error("Failed to send email. Missing SMTP configuration");
+    return Promise.resolve();
+  }
+
   const transporter = nodemailer.createTransport({
     ...smtpOptions,
   });
