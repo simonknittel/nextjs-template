@@ -37,7 +37,7 @@ export const serverActionErrorHandler = (
     (error instanceof Error &&
       ["Bad Request", "Unexpected end of JSON input"].includes(error.message))
   ) {
-    log.warn("Bad Request", {
+    Logger.warn("Bad Request", {
       error: serializeError(error),
     });
     return {
@@ -48,7 +48,7 @@ export const serverActionErrorHandler = (
       error: JSON.stringify(error),
     };
   } else if (error instanceof Error && error.message === "Unauthenticated") {
-    log.warn("Unauthenticated", {
+    Logger.warn("Unauthenticated", {
       error: serializeError(error),
     });
     return {
@@ -57,7 +57,7 @@ export const serverActionErrorHandler = (
         options?.errorMessages?.[401] ?? "You have to be signed in to do this.",
     };
   } else if (error instanceof Error && error.message === "Unauthorized") {
-    log.warn("Unauthorized", {
+    Logger.warn("Unauthorized", {
       error: serializeError(error),
     });
     return {
@@ -74,7 +74,7 @@ export const serverActionErrorHandler = (
       error.code === "P2015") ||
     (error instanceof PrismaClientKnownRequestError && error.code === "P2025")
   ) {
-    log.warn("Not Found", {
+    Logger.warn("Not Found", {
       error: serializeError(error),
     });
     return {
@@ -87,7 +87,7 @@ export const serverActionErrorHandler = (
     (error instanceof Error && error.message === "Duplicate") ||
     (error instanceof PrismaClientKnownRequestError && error.code === "P2002")
   ) {
-    log.warn("Duplicate", {
+    Logger.warn("Duplicate", {
       error: serializeError(error),
     });
     return {
@@ -98,7 +98,7 @@ export const serverActionErrorHandler = (
     };
   }
 
-  log.error("errorHandler", {
+  Logger.error("errorHandler", {
     error: serializeError(error),
   });
 
