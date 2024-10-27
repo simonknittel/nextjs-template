@@ -3,7 +3,7 @@ include:
   - template: Jobs/Secret-Detection.gitlab-ci.yml
 
 .default_properties:
-  image: node:22.9.0-alpine3.20
+  image: node:22.10.0-alpine3.20
   before_script:
     - npm ci --cache .npm --prefer-offline
   cache:
