@@ -5,3 +5,4 @@
 ## Setup
 
 - [Local Machine](./docs/setup-local-machine.md)
+- [Playwright](./playwright/README.md)
