@@ -9,5 +9,7 @@ export default defineConfig({
     },
 
     passWithNoTests: true,
+
+    include: ["src/**/*.test.ts"],
   },
 });
