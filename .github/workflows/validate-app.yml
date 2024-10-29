@@ -123,7 +123,7 @@ jobs:
 
     runs-on: ubuntu-24.04
 
-    container: mcr.microsoft.com/playwright:v1.48.1-noble
+    container: mcr.microsoft.com/playwright:v1.48.2-noble
 
     services:
       postgres:
