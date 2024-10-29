@@ -1,5 +1,5 @@
-import { env } from "../env";
-import { type LogOutput } from "./types";
+import { env } from "@/env";
+import type { LogOutput } from "./types";
 
 export const logToConsole: LogOutput = (logEntry) => {
   switch (logEntry.level) {

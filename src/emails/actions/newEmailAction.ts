@@ -1,12 +1,16 @@
 "use server";
+
+import { env } from "@/env";
+import {
+  serverActionErrorHandler,
+  type ServerAction,
+} from "@/lib/actions-common";
+import { prisma } from "@/prisma";
 import { render } from "@react-email/components";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
-import MyEmailTemplate from "../../emails/MyEmailTemplate";
-import { prisma } from "../db";
-import { env } from "../env";
+import MyEmailTemplate from "../../../emails/MyEmailTemplate";
 import { sendEmail } from "../lib/sendEmail";
-import { type ServerAction, serverActionErrorHandler } from "./lib/common";
 
 const schema = z.object({
   email: z.string().email(),

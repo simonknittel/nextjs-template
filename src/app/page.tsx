@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { CgSpinnerTwoAlt } from "react-icons/cg";
-import { NewEmailForm } from "../components/NewEmailForm";
-import { SentEmails } from "../components/SentEmails";
+import { NewEmailForm } from "../emails/components/NewEmailForm";
+import { SentEmails } from "../emails/components/SentEmails";
 
 export default function Page() {
   return (

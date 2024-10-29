@@ -1,16 +1,12 @@
 import clsx from "clsx";
-import { prisma } from "../db";
+import { getSentEmails } from "../queries";
 
 type Props = Readonly<{
   className?: string;
 }>;
 
 export const SentEmails = async ({ className }: Props) => {
-  const emails = await prisma.sentEmail.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+  const emails = await getSentEmails();
 
   return (
     <div className={clsx(className, "flex flex-col gap-4")}>
