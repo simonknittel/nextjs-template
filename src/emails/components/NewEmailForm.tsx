@@ -1,5 +1,8 @@
 "use client";
 
+import { Button } from "@/components/Button";
+import { EmailInput } from "@/components/form/EmailInput";
+import { Textarea } from "@/components/form/Textarea";
 import clsx from "clsx";
 import { useTransition, type ReactNode } from "react";
 import toast from "react-hot-toast";
@@ -35,36 +38,24 @@ export const NewEmailForm = ({ className }: Props) => {
 
   return (
     <form action={_action} className={clsx(className, "flex flex-col gap-2")}>
-      <input
-        type="email"
+      <EmailInput
         name="email"
-        className="border rounded p-2"
         placeholder="Recipient"
         required
         autoFocus
         autoComplete="email"
       />
 
-      <textarea
-        name="body"
-        className="border rounded p-2"
-        placeholder="Body"
-        required
-        rows={5}
-      />
+      <Textarea name="body" placeholder="Body" required rows={5} />
 
-      <button
-        type="submit"
-        disabled={isPending}
-        className="flex gap-2 items-center self-end px-4 py-2 bg-black rounded text-white"
-      >
+      <Button type="submit" disabled={isPending} className="self-end">
         {isPending ? (
           <CgSpinnerTwoAlt className="animate-spin" />
         ) : (
           <FaRegPaperPlane />
         )}
         Submit
-      </button>
+      </Button>
     </form>
   );
 };

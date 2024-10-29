@@ -15,7 +15,10 @@ export const SentEmails = async ({ className }: Props) => {
           <div className="flex gap-2">
             <h3 className="font-bold">{email.email}</h3>
 
-            <time className="text-neutral-500">
+            <time
+              className="text-neutral-500"
+              dateTime={email.createdAt.toISOString()}
+            >
               {email.createdAt.toLocaleDateString("de-de", {
                 dateStyle: "medium",
               })}{" "}
