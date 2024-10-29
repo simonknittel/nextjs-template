@@ -137,6 +137,13 @@ jobs:
           --health-retries 5
 
     steps:
+      # The container comes without preinstalled Git LFS
+      - name: Install Git LFS
+        run: |
+          apt-get update
+          apt-get install git lfs
+          git lfs install
+  
       - uses: actions/checkout@v4.2.1
         with:
           lfs: true
