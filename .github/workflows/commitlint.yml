@@ -1,9 +1,6 @@
 name: Validate commit messages
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
