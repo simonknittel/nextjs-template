@@ -161,9 +161,17 @@ jobs:
           name: build
           path: apps/app/.next
 
-      - name: Install Playwright dependencies
-        run: npm ci
-        working-directory: apps/playwright
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
+
+      - uses: actions/cache@v4.1.2
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-${{ hashFiles('.nvmrc', 'package-lock.json', 'packages/database/prisma/prisma.schema') }}
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline
 
       # https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md#postgresql
       - name: Prepare database
