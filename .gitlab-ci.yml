@@ -59,7 +59,7 @@ playwright:
     HOSTNAME: 0.0.0.0
   script:
     - npx --workspace=packages/database prisma db push
-    - npx --workspace=apps/app playwright test
+    - npx --workspace=apps/playwright playwright test
   artifacts:
     paths:
       - apps/playwright/playwright-report/

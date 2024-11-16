@@ -175,16 +175,14 @@ jobs:
 
       # https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md#postgresql
       - name: Prepare database
-        run: npx prisma db push
+        run: npx --workspace=packages/database prisma db push
         env:
           DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
-        working-directory: apps/playwright
 
       - name: Run Playwright tests
-        run: npx playwright test
+        run: npx --workspace=apps/playwright playwright test
         env:
           DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
-        working-directory: apps/playwright
 
       - uses: actions/upload-artifact@v4.4.3
         if: always()
