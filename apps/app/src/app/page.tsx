@@ -1,4 +1,4 @@
-import { Tile } from "@/components/Tile";
+import { Tile } from "@/common/components/Tile";
 import { Suspense } from "react";
 import { CgSpinnerTwoAlt } from "react-icons/cg";
 import { NewEmailForm } from "../emails/components/NewEmailForm";

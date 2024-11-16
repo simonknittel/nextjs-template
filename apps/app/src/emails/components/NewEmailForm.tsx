@@ -1,9 +1,9 @@
 "use client";
 
-import { Button } from "@/components/Button";
-import { EmailInput } from "@/components/form/EmailInput";
-import { Textarea } from "@/components/form/Textarea";
-import Modal from "@/components/Modal";
+import { Button } from "@/common/components/Button";
+import { EmailInput } from "@/common/components/form/EmailInput";
+import { Textarea } from "@/common/components/form/Textarea";
+import Modal from "@/common/components/Modal";
 import clsx from "clsx";
 import { useId, useState, useTransition, type ReactNode } from "react";
 import toast from "react-hot-toast";

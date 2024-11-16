@@ -1,7 +1,7 @@
+import ReactQueryProvider from "@/common/components/ReactQueryProvider";
+import { ToasterWrapper } from "@/common/components/ToasterWrapper";
 import type { Metadata } from "next";
 import { type ReactNode } from "react";
-import ReactQueryProvider from "../components/ReactQueryProvider";
-import { ToasterWrapper } from "../components/ToasterWrapper";
 import "./globals.css";
 
 export const metadata: Metadata = {

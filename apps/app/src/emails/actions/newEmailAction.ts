@@ -1,16 +1,16 @@
 "use server";
 
-import { env } from "@/env";
 import {
   serverActionErrorHandler,
   type ServerAction,
-} from "@/lib/actions-common";
+} from "@/common/utils/actions";
+import { env } from "@/env";
 import { prisma } from "@nextjs-template/database";
 import MyEmailTemplate from "@nextjs-template/transactional/emails/MyEmailTemplate";
 import { render } from "@react-email/components";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
-import { sendEmail } from "../lib/sendEmail";
+import { sendEmail } from "../utils/sendEmail";
 
 const schema = z.object({
   email: z.string().email(),
