@@ -1,0 +1,12 @@
+{
+  "name": "@nextjs-template/playwright",
+  "private": true,
+  "dependencies": {
+    "@prisma/client": "5.22.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.48.2",
+    "@types/node": "22.9.0",
+    "prisma": "5.22.0"
+  }
+}

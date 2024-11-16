@@ -21,7 +21,7 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: "cd ../ && npm run start",
+    command: "cd ../../ && npm run start --workspace=apps/app",
     url: "http://localhost:3000",
     reuseExistingServer: !process.env.CI,
   },

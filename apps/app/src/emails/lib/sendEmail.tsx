@@ -1,5 +1,5 @@
 import { env } from "@/env";
-import { Logger } from "@/logging";
+import { Logger } from "@nextjs-template/logging";
 import nodemailer from "nodemailer";
 import type Mail from "nodemailer/lib/mailer";
 

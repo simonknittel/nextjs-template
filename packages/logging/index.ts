@@ -1,4 +1,4 @@
-import { env } from "@/env";
+import { env } from "./env";
 import { logToConsole } from "./console";
 import { type Json, type LogEntry } from "./types";
 

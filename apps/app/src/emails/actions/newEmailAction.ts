@@ -5,11 +5,11 @@ import {
   serverActionErrorHandler,
   type ServerAction,
 } from "@/lib/actions-common";
-import { prisma } from "@/prisma";
+import { prisma } from "@nextjs-template/database";
+import MyEmailTemplate from "@nextjs-template/transactional/emails/MyEmailTemplate";
 import { render } from "@react-email/components";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
-import MyEmailTemplate from "../../../emails/MyEmailTemplate";
 import { sendEmail } from "../lib/sendEmail";
 
 const schema = z.object({

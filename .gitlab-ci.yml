@@ -10,7 +10,7 @@
     key:
       files:
         - package-lock.json
-        - prisma/prisma.schema
+        - packages/database/prisma/prisma.schema
       prefix: $CI_RUNNER_EXECUTABLE_ARCH-$CI_JOB_IMAGE
     paths:
       - .npm
@@ -24,7 +24,7 @@ build:
   variables:
     <<: *vars
   script:
-    - npm run build
+    - npm run build --workspace=apps/app
   artifacts:
     paths:
       - .next/
@@ -34,19 +34,19 @@ lint:
   extends: .default_properties
   stage: test
   script:
-    - SKIP_VALIDATION=1 npm run lint
+    - SKIP_VALIDATION=1 npm run lint --workspace=apps/app
 
 prettier:
   extends: .default_properties
   stage: test
   script:
-    - npx prettier --check .
+    - npx --workspace=apps/app prettier --check .
 
 test:
   extends: .default_properties
   stage: test
   script:
-    - SKIP_VALIDATION=1 npm run test
+    - SKIP_VALIDATION=1 npm run test --workspace=apps/app
 
 playwright:
   extends: .default_properties
@@ -58,11 +58,8 @@ playwright:
     POSTGRES_PASSWORD: postgres
     HOSTNAME: 0.0.0.0
   script:
-    - cd playwright
-    - npm ci
-    - npx prisma generate --schema=../prisma/schema.prisma --generator=playwrightClient
-    - npx prisma db push --schema=../prisma/schema.prisma
-    - npx playwright test
+    - npx --workspace=packages/database prisma db push
+    - npx --workspace=apps/app playwright test
   artifacts:
     paths:
-      - playwright/playwright-report/
+      - apps/playwright/playwright-report/

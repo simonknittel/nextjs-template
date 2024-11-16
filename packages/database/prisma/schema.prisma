@@ -3,12 +3,6 @@ generator client {
     previewFeatures = ["omitApi"]
 }
 
-generator playwrightClient {
-    provider        = "prisma-client-js"
-    previewFeatures = ["omitApi"]
-    output          = "../playwright/node_modules/.prisma/client"
-}
-
 datasource db {
     provider = "postgresql"
     url      = env("DATABASE_URL")

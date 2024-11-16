@@ -7,8 +7,6 @@ export const env = createEnv({
    * isn't built with invalid env vars.
    */
   server: {
-    DATABASE_URL: z.string().url(),
-    NODE_ENV: z.enum(["development", "test", "production"]),
     BASE_URL: z.preprocess((str) => {
       if (str) {
         return str;
@@ -25,7 +23,6 @@ export const env = createEnv({
 
       return "localhost:3000";
     }, z.string()),
-    COMMIT_SHA: z.string().optional(),
     SMTP_HOST: z.string().optional(),
     SMTP_PORT: z.coerce.number().optional(),
     SMTP_USER: z.string().optional(),
@@ -47,11 +44,8 @@ export const env = createEnv({
    * middlewares) or client-side so we need to destruct manually.
    */
   runtimeEnv: {
-    DATABASE_URL: process.env.DATABASE_URL,
-    NODE_ENV: process.env.NODE_ENV,
     BASE_URL: process.env.BASE_URL,
     HOST: process.env.HOST,
-    COMMIT_SHA: process.env.COMMIT_SHA,
     SMTP_HOST: process.env.SMTP_HOST,
     SMTP_PORT: process.env.SMTP_PORT,
     SMTP_USER: process.env.SMTP_USER,
