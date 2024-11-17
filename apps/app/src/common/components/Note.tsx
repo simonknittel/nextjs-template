@@ -1,6 +1,10 @@
 import clsx from "clsx";
 import { type ReactNode } from "react";
-import { MdOutlineInfo, MdOutlineReportGmailerrorred } from "react-icons/md";
+import {
+  MdOutlineCheck,
+  MdOutlineInfo,
+  MdOutlineReportGmailerrorred,
+} from "react-icons/md";
 
 type Props = Readonly<{
   className?: string;
@@ -13,11 +17,16 @@ export const Note = ({ className, children, type }: Props) => {
     <div
       className={clsx(className, "border rounded p-2 flex gap-2 items-start", {
         "border-blue-500 bg-blue-50": type === "info",
+        "border-green-500 bg-green-50": type === "success",
         "border-red-500 bg-red-50": type === "error",
       })}
     >
       {type === "info" && (
         <MdOutlineInfo className="text-blue-500 text-2xl flex-grow-0 flex-shrink-0" />
+      )}
+
+      {type === "success" && (
+        <MdOutlineCheck className="text-green-500 text-2xl flex-grow-0 flex-shrink-0" />
       )}
 
       {type === "error" && (

@@ -27,4 +27,7 @@
 7. Install dependencies: `npm ci --prefer-offline`
 8. Update the database's schema: `npx --workspace=packages/database prisma migrate dev`
 9. Run the app: `npm run dev --workspace=apps/app`
-10. Access the app at: <http://localhost:3000>
+10. Create an developer account
+    1. Signup at <http://localhost:3000/signup>
+    2. Verify the email address at <http://localhost:1080>
+    3. Change the `role` of the account to `DEVELOPER` in the database

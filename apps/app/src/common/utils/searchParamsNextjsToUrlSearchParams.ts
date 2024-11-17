@@ -1,5 +1,9 @@
+export type NextjsSearchParams = Promise<
+  Record<string, string | string[] | undefined>
+>;
+
 export const searchParamsNextjsToURLSearchParams = (
-  nextjsSearchParams: Record<string, string | string[] | undefined>,
+  nextjsSearchParams: Awaited<NextjsSearchParams>,
 ): URLSearchParams => {
   const urlSearchParams = new URLSearchParams();
 

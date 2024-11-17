@@ -1,0 +1,15 @@
+.Dialog {
+  opacity: 1;
+  transform: scale(1);
+
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+@starting-style {
+  .Dialog {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}

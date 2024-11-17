@@ -28,6 +28,15 @@ export const env = createEnv({
     SMTP_USER: z.string().optional(),
     SMTP_PASSWORD: z.string().optional(),
     SMTP_FROM: z.string().optional(),
+    MIN_PASSWORD_LENGTH: z.coerce.number().default(16),
+    MAX_PASSWORD_LENGTH: z.coerce.number().default(128),
+    EMAIL_VERIFICATION_TOKEN_EXPIRATION: z.coerce
+      .number()
+      .default(60 * 60 * 24),
+    PASSWORD_RESET_TOKEN_EXPIRATION: z.coerce.number().default(60 * 60 * 24),
+    SIGNUP_ENABLED: z.preprocess((str) => {
+      return str === "true";
+    }, z.boolean()),
   },
 
   /**
@@ -51,6 +60,13 @@ export const env = createEnv({
     SMTP_USER: process.env.SMTP_USER,
     SMTP_PASSWORD: process.env.SMTP_PASSWORD,
     SMTP_FROM: process.env.SMTP_FROM,
+    MIN_PASSWORD_LENGTH: process.env.MIN_PASSWORD_LENGTH,
+    MAX_PASSWORD_LENGTH: process.env.MAX_PASSWORD_LENGTH,
+    EMAIL_VERIFICATION_TOKEN_EXPIRATION:
+      process.env.EMAIL_VERIFICATION_TOKEN_EXPIRATION,
+    PASSWORD_RESET_TOKEN_EXPIRATION:
+      process.env.PASSWORD_RESET_TOKEN_EXPIRATION,
+    SIGNUP_ENABLED: process.env.SIGNUP_ENABLED,
   },
 
   emptyStringAsUndefined: true,
