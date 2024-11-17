@@ -89,9 +89,12 @@ export const getMessage = (
 
   if (!query) return "An unknown error occurred.";
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return (
     Array.from(Object.entries(categoryMessages)).find(
-      ([key, value]) => value.query === query,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      ([, value]) => value.query === query,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     )?.[1].message ?? "An unknown error occurred."
   );
 };

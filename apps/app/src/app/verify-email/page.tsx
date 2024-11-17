@@ -33,7 +33,7 @@ export default async function Page({ searchParams }: Props) {
     if (tokenVerificationResult) {
       await prisma.user.update({
         // @ts-expect-error I don't know why the if statement converts the false from the union to true
-        where: { id: tokenVerificationResult.userId },
+        where: { id: tokenVerificationResult.userId }, // eslint-disable-line @typescript-eslint/no-unsafe-assignment
         data: { emailVerifiedAt: new Date() },
       });
       redirect(`/login?success=${MESSAGES.login.verified.query}`);

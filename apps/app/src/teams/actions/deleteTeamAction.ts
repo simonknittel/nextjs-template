@@ -31,7 +31,7 @@ export const deleteTeamAction: ServerAction = async (formData) => {
     /**
      * Soft delete
      */
-    const deletedItem = await prisma.team.update({
+    await prisma.team.update({
       where: {
         id,
       },

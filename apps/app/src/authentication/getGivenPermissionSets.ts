@@ -8,5 +8,5 @@ export const getGivenPermissionSets = cache(async (userId: User["id"]) => {
     },
   });
 
-  return [...teamIds.flatMap((teamId) => [])];
+  return [...teamIds.flatMap(() => [])];
 });
