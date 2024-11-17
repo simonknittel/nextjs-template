@@ -91,7 +91,7 @@ test("signup process", async ({ page }) => {
   await page.waitForURL(/.*\/admin/);
   await expect(page).toHaveURL(/.*\/admin/);
 
-  await expect(page.getByText("Dashboard", { exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Dashboard");
 
   await expect(page).toHaveScreenshot({
     maxDiffPixelRatio: 0.05,

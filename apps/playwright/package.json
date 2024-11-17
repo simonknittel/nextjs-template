@@ -2,7 +2,8 @@
   "name": "@nextjs-template/playwright",
   "private": true,
   "dependencies": {
-    "@nextjs-template/database": "*"
+    "@nextjs-template/database": "*",
+    "dotenv": "16.4.5"
   },
   "devDependencies": {
     "@playwright/test": "1.48.2"
