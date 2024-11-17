@@ -2,16 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-async function main() {
-  await prisma.sentEmail.deleteMany();
-
-  await prisma.sentEmail.create({
-    data: {
-      email: "foobar@localhost",
-      body: "Lorem ipsum",
-    },
-  });
-}
+async function main() {}
 
 main()
   .then(async () => {
