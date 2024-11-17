@@ -79,12 +79,12 @@ export const MESSAGES = {
     },
     unverified: {
       query: "unverified",
-      message: "Please check your emails to verify your account.",
+      message: "Please check your emails to confirm your account.",
     },
     signup: {
       query: "signup",
       message:
-        "You have successfully signed up. Please check your emails to verify your account before logging in.",
+        "You have successfully signed up. Please check your emails to confirm your account before logging in.",
     },
     rateLimit: {
       query: "rate-limit",

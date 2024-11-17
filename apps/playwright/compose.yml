@@ -6,3 +6,14 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - 5432:5432
+
+  maildev:
+    image: maildev/maildev:2.1.0
+    restart: on-failure
+    environment:
+      - TZ=Europe/Berlin
+      - MAILDEV_WEB_PORT=1080
+      - MAILDEV_SMTP_PORT=1025
+    ports:
+      - 1080:1080
+      - 1025:1025

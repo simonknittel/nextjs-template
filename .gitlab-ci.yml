@@ -51,6 +51,7 @@ test:
 playwright:
   extends: .default_properties
   image: mcr.microsoft.com/playwright:v1.48.2-noble
+  # TODO: Add maildev
   services:
     - postgres
   variables:

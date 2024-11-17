@@ -107,6 +107,6 @@ export const signupAction = async (formData: FormData) => {
     unstable_rethrow(error);
 
     Logger.error("Signup failed: unknown error", serializeError(error));
-    redirect(`/signup?error=${MESSAGES.login.unknown.query}`);
+    redirect(`/signup?error=${MESSAGES.signup.unknown.query}`);
   }
 };
