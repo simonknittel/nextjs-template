@@ -1,9 +1,9 @@
 "use server";
 
-import { serverActionErrorHandler } from "@/common/utils/actions";
 import { prisma } from "@nextjs-template/database";
 import { Logger } from "@nextjs-template/logging";
-import { redirect } from "next/navigation";
+import { unstable_rethrow } from "next/navigation";
+import { serializeError } from "serialize-error";
 import { z } from "zod";
 import { requestResetPassword } from "../requestResetPassword";
 
@@ -11,7 +11,10 @@ const schema = z.object({
   email: z.string().email(),
 });
 
-export const requestPasswordResetAction = async (formData: FormData) => {
+export const requestPasswordResetAction = async (
+  previousState: unknown,
+  formData: FormData,
+) => {
   try {
     /**
      * Rate limit the request
@@ -21,25 +24,30 @@ export const requestPasswordResetAction = async (formData: FormData) => {
     /**
      * Validate the request
      */
-    const { email } = schema.parse({
+    const result = schema.safeParse({
       email: formData.get("email"),
     });
+    if (!result.success) {
+      return {
+        error: "Invalid request.",
+      };
+    }
 
     /**
      * Find user
      */
     const user = await prisma.user.findUnique({
       where: {
-        email,
+        email: result.data.email,
         disabledAt: null,
       },
     });
     if (!user) {
       Logger.warn("Password reset for unknown user requested", {
-        email,
+        email: result.data.email,
       });
       return {
-        message:
+        success:
           "An email with a link to reset the password will be sent to the provided email address, if it is associated with a user account.",
       };
     }
@@ -49,8 +57,16 @@ export const requestPasswordResetAction = async (formData: FormData) => {
     /**
      * Respond with the result
      */
-    redirect(`/admin/users/user/${user.id}`);
+    return {
+      success:
+        "An email with a link to reset the password will be sent to the provided email address, if it is associated with a user account.",
+    };
   } catch (error) {
-    return serverActionErrorHandler(error);
+    unstable_rethrow(error);
+
+    Logger.error("Internal server error", serializeError(error));
+    return {
+      error: "An unknown error occurred. Please try again later.",
+    };
   }
 };

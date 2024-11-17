@@ -1,12 +1,11 @@
 "use server";
 
-import { authenticateAction } from "@/authentication/authenticateAndAuthorize";
-import {
-  type ServerAction,
-  serverActionErrorHandler,
-} from "@/common/utils/actions";
+import { authenticate } from "@/authentication/authenticateAndAuthorize";
 import { prisma } from "@nextjs-template/database";
-import { redirect } from "next/navigation";
+import { Logger } from "@nextjs-template/logging";
+import { revalidatePath } from "next/cache";
+import { unstable_rethrow } from "next/navigation";
+import { serializeError } from "serialize-error";
 import { z } from "zod";
 
 const schema = z.object({
@@ -14,21 +13,28 @@ const schema = z.object({
   teams: z.array(z.string().trim().cuid2()),
 });
 
-export const updateTeamMembershipsAction: ServerAction = async (formData) => {
+export const updateTeamMembershipsAction = async (
+  previousState: unknown,
+  formData: FormData,
+) => {
   try {
     /**
      * Authenticate and authorize the request
      */
-    const authentication = await authenticateAction("updateTeamMembership");
-    authentication.authorizeAction("administration", "manage");
+    const authentication = await authenticate();
+    if (!authentication)
+      return { error: "You are not authorized to perform this action." };
+    if (!authentication.authorize("administration", "manage"))
+      return { error: "You are not authorized to perform this action." };
 
     /**
      * Validate the request
      */
-    const { userId, teams } = schema.parse({
+    const result = schema.safeParse({
       userId: formData.get("userId"),
       teams: formData.getAll("teams"),
     });
+    if (!result.success) return { error: "Invalid request." };
 
     /**
      * Update
@@ -36,7 +42,7 @@ export const updateTeamMembershipsAction: ServerAction = async (formData) => {
     await prisma.$transaction([
       prisma.user.update({
         where: {
-          id: userId,
+          id: result.data.userId,
         },
         data: {
           teamMemberships: {
@@ -47,12 +53,12 @@ export const updateTeamMembershipsAction: ServerAction = async (formData) => {
 
       prisma.user.update({
         where: {
-          id: userId,
+          id: result.data.userId,
         },
         data: {
           teamMemberships: {
             createMany: {
-              data: teams.map((teamId) => ({
+              data: result.data.teams.map((teamId) => ({
                 teamId,
               })),
             },
@@ -64,8 +70,14 @@ export const updateTeamMembershipsAction: ServerAction = async (formData) => {
     /**
      * Respond with the result
      */
-    redirect(`/admin/users/user/${userId}`);
+    revalidatePath(`/admin/users/user/${result.data.userId}`);
+    return { success: "Successfully updated team memberships." };
   } catch (error) {
-    return serverActionErrorHandler(error);
+    unstable_rethrow(error);
+
+    Logger.error("Internal server error", serializeError(error));
+    return {
+      error: "An unknown error occurred. Please try again later.",
+    };
   }
 };

@@ -5,7 +5,7 @@ import { Note } from "@/common/components/Note";
 import { DisableUserButton } from "@/users/components/DisableUserButton";
 import { UserActions } from "@/users/components/UserActions";
 import { UserTeams } from "@/users/components/UserTeams";
-import { prisma } from "@nextjs-template/database";
+import { getUserByIdDeduped } from "@/users/queries";
 import { Logger } from "@nextjs-template/logging";
 import { type Metadata } from "next";
 import Link from "next/link";
@@ -27,11 +27,7 @@ export async function generateMetadata({
   try {
     const { id } = await params;
 
-    const user = await prisma.user.findUnique({
-      where: {
-        id,
-      },
-    });
+    const user = await getUserByIdDeduped(id);
     if (!user) return {};
 
     return {
@@ -61,14 +57,7 @@ export default async function Page({ params }: Props) {
 
   const { id } = await params;
 
-  const user = await prisma.user.findUnique({
-    where: {
-      id,
-    },
-    include: {
-      teamMemberships: true,
-    },
-  });
+  const user = await getUserByIdDeduped(id);
   if (!user) notFound();
 
   return (
