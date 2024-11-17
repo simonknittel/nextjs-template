@@ -17,6 +17,10 @@ export const MESSAGES = {
       message:
         "The password was found in a database of stolen passwords. Please choose a different one.",
     },
+    rateLimit: {
+      query: "rate-limit",
+      message: "Too many attempts. Please try again later.",
+    },
     unknown: {
       query: "unknown",
       message: "An unknown error occurred.",
@@ -35,6 +39,10 @@ export const MESSAGES = {
     verified: {
       query: "verified",
       message: "Your email address has been verified. You can now log in.",
+    },
+    rateLimit: {
+      query: "rate-limit",
+      message: "Too many attempts. Please try again later.",
     },
     unknown: {
       query: "unknown",
@@ -55,6 +63,10 @@ export const MESSAGES = {
       message:
         "The password was found in a database of stolen passwords. Please choose a different one.",
     },
+    rateLimit: {
+      query: "rate-limit",
+      message: "Too many attempts. Please try again later.",
+    },
     unknown: {
       query: "unknown",
       message: "An unknown error occurred.",
@@ -73,6 +85,10 @@ export const MESSAGES = {
       query: "signup",
       message:
         "You have successfully signed up. Please check your emails to verify your account before logging in.",
+    },
+    rateLimit: {
+      query: "rate-limit",
+      message: "Too many attempts. Please try again later.",
     },
     unknown: {
       query: "unknown",

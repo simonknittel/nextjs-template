@@ -21,6 +21,7 @@
     "lucia": "3.2.2",
     "next": "15.0.3",
     "nodemailer": "6.9.16",
+    "rate-limiter-flexible": "5.0.4",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-aria-components": "1.4.1",
     "react-dom": "19.0.0-rc-66855b96-20241106",

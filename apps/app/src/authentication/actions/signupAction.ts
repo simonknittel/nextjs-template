@@ -4,6 +4,7 @@ import { env } from "@/env";
 import { prisma } from "@nextjs-template/database";
 import { Logger } from "@nextjs-template/logging";
 import { redirect, unstable_rethrow } from "next/navigation";
+import { RateLimiterMemory } from "rate-limiter-flexible";
 import { serializeError } from "serialize-error";
 import { z } from "zod";
 import { haveIBeenPwned } from "../checkHaveIBeenPwned";
@@ -23,13 +24,14 @@ const schema = z.object({
     .max(env.MAX_PASSWORD_LENGTH),
 });
 
+const rateLimiter = new RateLimiterMemory({
+  // 5 requests per minute
+  points: 5,
+  duration: 60,
+});
+
 export const signupAction = async (formData: FormData) => {
   try {
-    /**
-     * Rate limit the request
-     */
-    // TODO
-
     /**
      * Validate the request
      */
@@ -38,10 +40,22 @@ export const signupAction = async (formData: FormData) => {
       password: formData.get("password"),
       passwordRepeat: formData.get("passwordRepeat"),
     });
-
     if (!result.success) {
       Logger.warn("Signup failed: invalid request");
       redirect(`/signup?error=${MESSAGES.signup.passwordRequirements.query}`);
+    }
+
+    /**
+     * Rate limit the request
+     */
+    try {
+      await rateLimiter.consume(result.data.email);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      Logger.warn("Signup failed: rate limit exceeded", {
+        email: result.data.email,
+      });
+      redirect(`/signup?error=${MESSAGES.signup.rateLimit.query}`);
     }
 
     const { password, passwordRepeat } = result.data;
@@ -92,7 +106,7 @@ export const signupAction = async (formData: FormData) => {
   } catch (error) {
     unstable_rethrow(error);
 
-    Logger.error("Login failed: unknown error", serializeError(error));
+    Logger.error("Signup failed: unknown error", serializeError(error));
     redirect(`/signup?error=${MESSAGES.login.unknown.query}`);
   }
 };

@@ -10,6 +10,13 @@ import { prisma } from "@nextjs-template/database";
 import { Logger } from "@nextjs-template/logging";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+import { RateLimiterMemory } from "rate-limiter-flexible";
+
+const rateLimiter = new RateLimiterMemory({
+  // 5 requests per minute
+  points: 5,
+  duration: 60,
+});
 
 export const metadata: Metadata = {
   title: "Confirm your email address | Next.js Template",
@@ -28,6 +35,22 @@ export default async function Page({ searchParams }: Props) {
 
   let tokenVerificationResult;
   if (token) {
+    /**
+     * Rate limit the request
+     */
+    try {
+      await rateLimiter.consume(token);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      Logger.warn("Email verification failed: rate limit exceeded", {
+        token,
+      });
+      redirect(`/verify-email?error=${MESSAGES.verifyEmail.rateLimit.query}`);
+    }
+
+    /**
+     * Validate the token
+     */
     tokenVerificationResult = await validateEmailVerificationToken(token);
 
     if (tokenVerificationResult) {
@@ -39,7 +62,7 @@ export default async function Page({ searchParams }: Props) {
       redirect(`/login?success=${MESSAGES.login.verified.query}`);
     }
 
-    Logger.warn("Email verification: invalid token");
+    Logger.warn("Email verification failed: invalid token");
   } else {
     tokenVerificationResult = null;
   }

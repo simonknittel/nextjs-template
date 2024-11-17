@@ -7,6 +7,7 @@ import { Logger } from "@nextjs-template/logging";
 import SetPasswordConfirmation from "@nextjs-template/transactional/emails/SetPasswordConfirmation";
 import { render } from "@react-email/components";
 import { redirect, unstable_rethrow } from "next/navigation";
+import { RateLimiterMemory } from "rate-limiter-flexible";
 import { serializeError } from "serialize-error";
 import { z } from "zod";
 import { haveIBeenPwned } from "../checkHaveIBeenPwned";
@@ -29,13 +30,14 @@ const passwordSchema = z.object({
     .max(env.MAX_PASSWORD_LENGTH),
 });
 
+const rateLimiter = new RateLimiterMemory({
+  // 5 requests per minute
+  points: 5,
+  duration: 60,
+});
+
 export const setPasswordAction = async (formData: FormData) => {
   try {
-    /**
-     * Rate limit the request
-     */
-    // TODO
-
     /**
      * Validate the request
      */
@@ -48,12 +50,28 @@ export const setPasswordAction = async (formData: FormData) => {
     }
     const tokenId = tokenResult.data;
 
+    /**
+     * Rate limit the request
+     */
+    try {
+      await rateLimiter.consume(tokenId);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      Logger.warn("Set password failed: rate limit exceeded", {
+        tokenId,
+      });
+      redirect(`/set-password?error=${MESSAGES.setPassword.rateLimit.query}`);
+    }
+
+    /**
+     * Validate the request
+     */
     const passwordResult = passwordSchema.safeParse({
       newPassword: formData.get("newPassword"),
       newPasswordRepeat: formData.get("newPasswordRepeat"),
     });
     if (!passwordResult.success) {
-      Logger.warn("Set password failed: invalid request");
+      Logger.warn("Set password failed: invalid request", { tokenId });
       redirect(
         `/set-password?token=${tokenId}&error=${MESSAGES.setPassword.passwordRequirements.query}`,
       );
@@ -61,14 +79,14 @@ export const setPasswordAction = async (formData: FormData) => {
 
     const { newPassword, newPasswordRepeat } = passwordResult.data;
     if (newPassword !== newPasswordRepeat) {
-      Logger.warn("Set password failed: passwords don't match");
+      Logger.warn("Set password failed: passwords don't match", { tokenId });
       redirect(
         `/set-password?token=${tokenId}&error=${MESSAGES.setPassword.passwordsDontMatch.query}`,
       );
     }
 
     if (await haveIBeenPwned(newPassword)) {
-      Logger.warn("Set password failed: password breached");
+      Logger.warn("Set password failed: password breached", { tokenId });
       redirect(
         `/set-password?token=${tokenId}&error=${MESSAGES.setPassword.passwordBreached.query}`,
       );
@@ -76,7 +94,7 @@ export const setPasswordAction = async (formData: FormData) => {
 
     const token = await validatePasswordResetToken(tokenId);
     if (!token) {
-      Logger.warn("Set password failed: invalid token");
+      Logger.warn("Set password failed: invalid token", { tokenId });
       redirect(
         `/set-password?error=${MESSAGES.setPassword.invalidToken.query}`,
       );

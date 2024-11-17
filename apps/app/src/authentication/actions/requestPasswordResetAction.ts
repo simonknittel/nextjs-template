@@ -3,6 +3,7 @@
 import { prisma } from "@nextjs-template/database";
 import { Logger } from "@nextjs-template/logging";
 import { unstable_rethrow } from "next/navigation";
+import { RateLimiterMemory } from "rate-limiter-flexible";
 import { serializeError } from "serialize-error";
 import { z } from "zod";
 import { requestResetPassword } from "../requestResetPassword";
@@ -11,16 +12,17 @@ const schema = z.object({
   email: z.string().email(),
 });
 
+const rateLimiter = new RateLimiterMemory({
+  // 5 requests per minute
+  points: 5,
+  duration: 60,
+});
+
 export const requestPasswordResetAction = async (
   previousState: unknown,
   formData: FormData,
 ) => {
   try {
-    /**
-     * Rate limit the request
-     */
-    // TODO
-
     /**
      * Validate the request
      */
@@ -34,6 +36,21 @@ export const requestPasswordResetAction = async (
     }
 
     /**
+     * Rate limit the request
+     */
+    try {
+      await rateLimiter.consume(result.data.email);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      Logger.warn("Request password reset failed: rate limit exceeded", {
+        email: result.data.email,
+      });
+      return {
+        error: "Too many attempts. Please try again later.",
+      };
+    }
+
+    /**
      * Find user
      */
     const user = await prisma.user.findUnique({
@@ -43,7 +60,7 @@ export const requestPasswordResetAction = async (
       },
     });
     if (!user) {
-      Logger.warn("Password reset for unknown user requested", {
+      Logger.warn("Request password set failed: unknown user", {
         email: result.data.email,
       });
       return {
@@ -64,7 +81,10 @@ export const requestPasswordResetAction = async (
   } catch (error) {
     unstable_rethrow(error);
 
-    Logger.error("Internal server error", serializeError(error));
+    Logger.error(
+      "Request password set failed: unknown error",
+      serializeError(error),
+    );
     return {
       error: "An unknown error occurred. Please try again later.",
     };
