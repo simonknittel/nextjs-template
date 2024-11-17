@@ -55,7 +55,7 @@ test("signup process", async ({ page }) => {
   const verificationToken = await prisma.emailVerificationToken.findFirst();
   expect(verificationToken).not.toBeNull();
 
-  const maildevResponse = await fetch("http://localhost:1080/email");
+  const maildevResponse = await fetch(`${process.env.MAILDEV_BASE_URL}/email`);
   const emails = await maildevResponse.json();
   const verificationEmail = emails.find(
     (email: any) => email.subject === "Confirm your email address"
@@ -100,7 +100,7 @@ test("signup process", async ({ page }) => {
   /**
    * Cleanup
    */
-  await fetch(`http://localhost:1080/email/${verificationEmail.id}`, {
+  await fetch(`${process.env.MAILDEV_BASE_URL}/email/${verificationEmail.id}`, {
     method: "DELETE",
   });
   await prisma.user.delete({
