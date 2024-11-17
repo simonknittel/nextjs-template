@@ -17,10 +17,10 @@
 ```
 
 3. Configure environment variables
-   1. Duplicate the `example.dev` files to `.env` and fill in the blanks.
-   2. `apps/app/example.dev` -> `apps/app/.env`
-   3. `apps/playwright/example.dev` -> `apps/playwright/.env`
-   4. `packages/database/example.dev` -> `packages/database/.env`
+   1. Duplicate the `example.env` files to `.env` and fill in the blanks.
+   2. `apps/app/example.env` -> `apps/app/.env`
+   3. `apps/playwright/example.env` -> `apps/playwright/.env`
+   4. `packages/database/example.env` -> `packages/database/.env`
 4. Start up the database: `docker compose up`
 5. Open a second terminal
 6. Install required Node.js version: `nvm install`
