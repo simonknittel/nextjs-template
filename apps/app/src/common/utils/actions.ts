@@ -1,5 +1,5 @@
 import { Logger } from "@nextjs-template/logging";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
+import { PrismaClientKnownRequestError } from "@nextjs-template/database";
 import { unstable_rethrow } from "next/navigation";
 import { serializeError } from "serialize-error";
 import { ZodError } from "zod";
