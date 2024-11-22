@@ -1,5 +1,5 @@
-import { Logger } from "@nextjs-template/logging";
 import { PrismaClientKnownRequestError } from "@nextjs-template/database";
+import { Logger } from "@nextjs-template/logging";
 import { unstable_rethrow } from "next/navigation";
 import { serializeError } from "serialize-error";
 import { ZodError } from "zod";
@@ -14,7 +14,7 @@ export type ServerAction = (
   formData: FormData,
   options?: {
     successAction?: "redirectToOverView" | "redirectToDetails";
-  }
+  },
 ) => Promise<ServerActionResponse>;
 
 export const serverActionErrorHandler = (
@@ -28,7 +28,7 @@ export const serverActionErrorHandler = (
       409?: string;
       500?: string;
     };
-  }
+  },
 ): ServerActionResponse => {
   unstable_rethrow(error);
 
