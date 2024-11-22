@@ -14,7 +14,7 @@ export type ServerAction = (
   formData: FormData,
   options?: {
     successAction?: "redirectToOverView" | "redirectToDetails";
-  },
+  }
 ) => Promise<ServerActionResponse>;
 
 export const serverActionErrorHandler = (
@@ -28,7 +28,7 @@ export const serverActionErrorHandler = (
       409?: string;
       500?: string;
     };
-  },
+  }
 ): ServerActionResponse => {
   unstable_rethrow(error);
 
