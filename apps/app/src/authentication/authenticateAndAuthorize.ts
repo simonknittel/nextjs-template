@@ -7,7 +7,7 @@ import { cache } from "react";
 import { comparePermissionSets } from "./comparePermissionSets";
 import { getGivenPermissionSets } from "./getGivenPermissionSets";
 import { lucia } from "./lucia";
-import type { PermissionSet, PermissionSetAttribute } from "./PermissionSet";
+import type { ExistingPermissionSet, PermissionSet } from "./PermissionSet";
 
 export const authenticate = cache(async () => {
   const awaitedCookies = await cookies();
@@ -25,9 +25,9 @@ export const authenticate = cache(async () => {
   return {
     ...authentication,
     authorize: (
-      resource: PermissionSet["resource"],
-      operation: PermissionSet["operation"],
-      attributes?: PermissionSetAttribute[],
+      resource: ExistingPermissionSet["resource"],
+      operation: ExistingPermissionSet["operation"],
+      attributes?: PermissionSet["attributes"],
     ) =>
       authorize(
         authentication,
@@ -54,9 +54,9 @@ export async function authenticatePage(requestPath?: string) {
   return {
     ...authentication,
     authorizePage: (
-      resource: PermissionSet["resource"],
-      operation: PermissionSet["operation"],
-      attributes?: PermissionSetAttribute[],
+      resource: ExistingPermissionSet["resource"],
+      operation: ExistingPermissionSet["operation"],
+      attributes?: PermissionSet["attributes"],
     ) => {
       const result = authentication.authorize(resource, operation, attributes);
 
@@ -94,9 +94,9 @@ export async function authenticateApi(
   return {
     ...authentication,
     authorizeApi: (
-      resource: PermissionSet["resource"],
-      operation: PermissionSet["operation"],
-      attributes?: PermissionSetAttribute[],
+      resource: ExistingPermissionSet["resource"],
+      operation: ExistingPermissionSet["operation"],
+      attributes?: PermissionSet["attributes"],
     ) => {
       const result = authentication.authorize(resource, operation, attributes);
 
@@ -131,9 +131,9 @@ export async function authenticateAction(actionName?: string) {
   return {
     ...authentication,
     authorizeAction: (
-      resource: PermissionSet["resource"],
-      operation: PermissionSet["operation"],
-      attributes?: PermissionSetAttribute[],
+      resource: ExistingPermissionSet["resource"],
+      operation: ExistingPermissionSet["operation"],
+      attributes?: PermissionSet["attributes"],
     ) => {
       const result = authentication.authorize(resource, operation, attributes);
 
@@ -164,10 +164,10 @@ export const requireAuthentication = cache(async () => {
 
 export function authorize(
   authentication: { session: Session; user: User },
-  givenPermissionSets: PermissionSet[],
-  resource: PermissionSet["resource"],
-  operation: PermissionSet["operation"],
-  attributes?: PermissionSetAttribute[],
+  givenPermissionSets: ExistingPermissionSet[],
+  resource: ExistingPermissionSet["resource"],
+  operation: ExistingPermissionSet["operation"],
+  attributes?: PermissionSet["attributes"],
 ) {
   if (
     authentication.user.role === UserRole.DEVELOPER ||
@@ -176,11 +176,10 @@ export function authorize(
     return true;
 
   const result = comparePermissionSets(
-    // @ts-expect-error Overall types for authorization need to be improved
     {
       resource,
       operation,
-      ...(attributes ? { attributes } : {}),
+      attributes,
     },
     givenPermissionSets,
   );

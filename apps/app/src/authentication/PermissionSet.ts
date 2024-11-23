@@ -1,9 +1,13 @@
-export interface PermissionSetAttribute {
-  key: string;
-  value: string | boolean;
+export interface PermissionSet {
+  resource: string;
+  operation: string;
+  attributes?: {
+    key: string;
+    value: string | boolean;
+  }[];
 }
 
-export type PermissionSet =
+export type ExistingPermissionSet =
   | {
       resource: "administration";
       operation: "manage";

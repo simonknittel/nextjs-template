@@ -1,7 +1,4 @@
-import {
-  type PermissionSet,
-  type PermissionSetAttribute,
-} from "./PermissionSet";
+import { type PermissionSet } from "./PermissionSet";
 
 export function comparePermissionSets(
   requiredPermissionSet: PermissionSet,
@@ -22,7 +19,9 @@ export function comparePermissionSets(
         // Check if any attributes are required and we have some
         if (
           "attributes" in requiredPermissionSet &&
-          "attributes" in givenPermissionSet
+          requiredPermissionSet.attributes &&
+          "attributes" in givenPermissionSet &&
+          givenPermissionSet.attributes
         ) {
           const result = hasMatchingAttributes(
             requiredPermissionSet.attributes,
@@ -54,8 +53,8 @@ export function comparePermissionSets(
 }
 
 function hasMatchingAttributes(
-  requiredAttributes: PermissionSetAttribute[],
-  givenAttributes: PermissionSetAttribute[],
+  requiredAttributes: NonNullable<PermissionSet["attributes"]>,
+  givenAttributes: NonNullable<PermissionSet["attributes"]>,
 ) {
   for (const requiredAttribute of requiredAttributes) {
     if (requiredAttribute.value === true) {
