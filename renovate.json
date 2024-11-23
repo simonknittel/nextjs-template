@@ -15,9 +15,24 @@
         "!postgres",
         "!react",
         "!react-dom",
-        "!eslint-plugin-react-compiler"
+        "!eslint-plugin-react-compiler",
+        "!playwright",
+        "!@playwright/test",
+        "!mcr.microsoft.com/playwright"
       ]
-    }
+    },
+    {
+      "groupName": "Patch Tuesday (Playwright)",
+      "matchPackageNames": [
+        "playwright",
+        "@playwright/test",
+        "mcr.microsoft.com/playwright",
+      ],
+      "matchDatasources": ["docker", "npm"],
+      "minimumReleaseAge": "7 days",
+      "internalChecksFilter": "strict",
+      "schedule": ["before 7am on Tuesday"]
+    },
   ],
   "osvVulnerabilityAlerts": true,
   "configMigration": true,
