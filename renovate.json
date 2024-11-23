@@ -26,13 +26,13 @@
       "matchPackageNames": [
         "playwright",
         "@playwright/test",
-        "mcr.microsoft.com/playwright",
+        "mcr.microsoft.com/playwright"
       ],
       "matchDatasources": ["docker", "npm"],
       "minimumReleaseAge": "7 days",
       "internalChecksFilter": "strict",
       "schedule": ["before 7am on Tuesday"]
-    },
+    }
   ],
   "osvVulnerabilityAlerts": true,
   "configMigration": true,
