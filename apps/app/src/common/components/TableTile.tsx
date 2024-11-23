@@ -52,7 +52,7 @@ export const TableTile = ({
       </h2>
 
       {!isCollapsed && (
-        <div className="bg-white rounded drop-shadow-sm overflow-hidden">
+        <div className="bg-white dark:bg-neutral-800 rounded drop-shadow-sm overflow-hidden">
           <div className="overflow-auto">{children}</div>
         </div>
       )}

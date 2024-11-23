@@ -11,7 +11,7 @@ export const Thead = ({ className, children }: Props) => {
     <thead>
       <tr
         className={clsx(
-          "grid items-center gap-4 text-left pr-4 lg:pl-4 h-14 border-b border-solid border-neutral-200",
+          "grid items-center gap-4 text-left pr-4 lg:pl-4 h-14 border-b border-solid border-neutral-200 dark:border-neutral-700",
           className,
         )}
       >

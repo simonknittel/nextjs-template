@@ -16,9 +16,9 @@ export const Note = ({ className, children, type }: Props) => {
   return (
     <div
       className={clsx(className, "border rounded p-2 flex gap-2 items-start", {
-        "border-blue-500 bg-blue-50": type === "info",
-        "border-green-500 bg-green-50": type === "success",
-        "border-red-500 bg-red-50": type === "error",
+        "border-blue-500 bg-blue-50 dark:bg-blue-950": type === "info",
+        "border-green-500 bg-green-50 dark:bg-green-950": type === "success",
+        "border-red-500 bg-red-50 dark:bg-red-950": type === "error",
       })}
     >
       {type === "info" && (

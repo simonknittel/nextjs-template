@@ -15,7 +15,7 @@ export const DesktopSidebar = async () => {
   );
 
   return (
-    <div className="bg-neutral-800 text-white flex flex-col justify-between overflow-auto h-full">
+    <div className="bg-neutral-950 text-white dark:text-neutral-200 flex flex-col justify-between overflow-auto h-full">
       <SidebarHeader />
 
       <nav className="p-4 relative flex-1" data-sidebar-highlight-container>

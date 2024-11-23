@@ -6,6 +6,11 @@ type Props = Readonly<{
 
 export const Skeleton = ({ className }: Props) => {
   return (
-    <div className={clsx(className, "rounded bg-white h-32 animate-pulse")} />
+    <div
+      className={clsx(
+        className,
+        "rounded bg-white dark:bg-neutral-800 h-32 animate-pulse",
+      )}
+    />
   );
 };

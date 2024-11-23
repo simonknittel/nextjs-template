@@ -71,7 +71,10 @@ const Content = () => {
   return (
     <form className="flex gap-4" action={action}>
       <div>
-        <label htmlFor={inputId} className="block font-bold">
+        <label
+          htmlFor={inputId}
+          className="block font-bold dark:text-neutral-200"
+        >
           Email address
         </label>
         <EmailInput

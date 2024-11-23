@@ -15,7 +15,9 @@ export default async function Layout({ children }: Props) {
       <div className="min-h-dvh">
         <Navigation />
 
-        <div className="lg:ml-80 min-h-dvh bg-stone-100">{children}</div>
+        <div className="lg:ml-80 min-h-dvh bg-stone-100 dark:bg-neutral-900 dark:text-neutral-200">
+          {children}
+        </div>
       </div>
 
       <ToasterWrapper />

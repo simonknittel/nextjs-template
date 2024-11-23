@@ -17,7 +17,7 @@ export const Table = async ({ className }: Props) => {
   if (users.length === 0)
     return (
       <section className={className}>
-        <div className="bg-white rounded drop-shadow-sm overflow-hidden mt-2 px-4 lg:px-8 py-4">
+        <div className="bg-white dark:bg-neutral-800 rounded drop-shadow-sm overflow-hidden mt-2 px-4 lg:px-8 py-4">
           <p className="italic text-neutral-500">No users found</p>
         </div>
       </section>
@@ -50,13 +50,13 @@ const Row = ({ user }: RowProps) => {
     <tr
       key={user.id}
       className={
-        "grid items-center gap-4 h-14 grid-cols-[1fr_80px] border-b-[1px] last-of-type:border-b-0 border-solid border-neutral-200 pr-4 lg:pl-4"
+        "grid items-center gap-4 h-14 grid-cols-[1fr_80px] border-b-[1px] last-of-type:border-b-0 border-solid border-neutral-200 dark:border-neutral-700 pr-4 lg:pl-4"
       }
     >
       <td className="overflow-hidden">
         <Link
           href={`/admin/users/user/${user.id}`}
-          className="flex items-center rounded gap-2 py-2 h-11 text-base px-4 hover:bg-neutral-200 active:bg-neutral-300 transition-colors"
+          className="flex items-center rounded gap-2 py-2 h-11 text-base px-4 hover:bg-neutral-200 dark:hover:bg-neutral-700 active:bg-neutral-300 dark:active:bg-neutral-600 transition-colors"
         >
           <span className="flex-auto overflow-hidden text-ellipsis whitespace-nowrap">
             {user.email}

@@ -62,6 +62,8 @@ export default async function Page({ params }: Props) {
 
   return (
     <main className="p-4 pb-20 lg:p-8">
+      <h1 className="sr-only">Team details</h1>
+
       <div>
         <Link
           href="/admin/teams"

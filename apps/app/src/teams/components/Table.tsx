@@ -13,7 +13,7 @@ export const Table = ({ className, teams }: Props) => {
   if (teams.length === 0)
     return (
       <section className={className}>
-        <div className="bg-white rounded drop-shadow-sm overflow-hidden mt-2 px-4 lg:px-8 py-4">
+        <div className="bg-white dark:bg-neutral-800 rounded drop-shadow-sm overflow-hidden mt-2 px-4 lg:px-8 py-4">
           <p className="italic text-neutral-500">No teams found</p>
         </div>
       </section>
@@ -55,13 +55,13 @@ const Row = ({ team }: Row) => {
     <tr
       key={team.id}
       className={clsx(
-        "grid grid-cols-[1fr] items-center gap-4 h-14 border-b border-solid border-neutral-200 last-of-type:border-b-0 pr-4 lg:pl-4",
+        "grid grid-cols-[1fr] items-center gap-4 h-14 border-b border-solid border-neutral-200 dark:border-neutral-700 last-of-type:border-b-0 pr-4 lg:pl-4",
       )}
     >
       <td title={team.name} className="overflow-hidden">
         <Link
           href={`/admin/teams/${team.id}`}
-          className="flex items-center rounded gap-2 py-2 h-11 text-base px-4 hover:bg-neutral-200 active:bg-neutral-300 transition-colors"
+          className="flex items-center rounded gap-2 py-2 h-11 text-base px-4 hover:bg-neutral-200 dark:hover:bg-neutral-700 active:bg-neutral-300 dark:active:bg-neutral-600 transition-colors"
         >
           <span className="overflow-hidden whitespace-nowrap text-ellipsis">
             {team.name}

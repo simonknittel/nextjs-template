@@ -24,7 +24,7 @@ export const MobileActionBar = async ({ className }: Props) => {
     <div
       className={clsx(
         className,
-        "fixed z-40 left-0 right-0 bottom-0 h-16 shadow-t bg-neutral-800 text-white",
+        "fixed z-40 left-0 right-0 bottom-0 h-16 shadow-t bg-neutral-800 dark:bg-neutral-950 text-white dark:text-neutral-200",
       )}
     >
       <nav className="h-full px-1">

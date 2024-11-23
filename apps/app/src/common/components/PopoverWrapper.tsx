@@ -12,7 +12,7 @@ export const PopoverWrapper = ({ children, ...props }: Props) => {
     <Popover {...props} placement="top">
       <Dialog
         className={clsx(
-          "bg-white rounded drop-shadow-sm border-neutral-200 border-solid border-[1px] p-4",
+          "bg-white dark:bg-neutral-900 rounded drop-shadow-sm border-neutral-200 dark:border-neutral-700 border-solid border-[1px] p-4",
           styles.Dialog,
         )}
       >

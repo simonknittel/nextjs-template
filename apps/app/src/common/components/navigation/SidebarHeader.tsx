@@ -6,13 +6,13 @@ type Props = Readonly<{
 
 export const SidebarHeader = ({ className }: Props) => {
   return (
-    <div
+    <header
       className={clsx(
         className,
         "flex items-center justify-center border-b border-neutral-700 p-4",
       )}
     >
       <p className="font-bold">Next.js Template</p>
-    </div>
+    </header>
   );
 };

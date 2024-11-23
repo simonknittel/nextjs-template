@@ -23,10 +23,15 @@ export const Tile = ({
   compact,
 }: Props) => {
   return (
-    <section className={clsx(className, "bg-white rounded drop-shadow-sm")}>
+    <section
+      className={clsx(
+        className,
+        "bg-white dark:bg-neutral-800 rounded drop-shadow-sm",
+      )}
+    >
       <div
         className={clsx({
-          "border-b border-solid border-neutral-200 px-4 py-2 lg:px-8 lg:py-4":
+          "border-b border-solid border-neutral-200 dark:border-neutral-700 px-4 py-2 lg:px-8 lg:py-4":
             !headingSrOnly || description,
         })}
       >
@@ -47,7 +52,7 @@ export const Tile = ({
           {badge && !headingSrOnly && (
             <span
               className={clsx("border border-solid rounded-3xl text-sm px-1", {
-                "bg-red-100 border-red-500 text-red-500":
+                "bg-red-100 dark:bg-red-950 border-red-500 text-red-500":
                   badgeVariant === "error",
               })}
             >
