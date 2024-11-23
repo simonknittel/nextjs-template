@@ -1,8 +1,27 @@
 <h1 align="center">Next.js Template</h1>
 
-<center>A boilerplate set up like how I'm usually using Next.js</center>
+<p align="center">A boilerplate for how I'm usually using Next.js</p>
 
-## Setup
+<p align="center">
+  <a href="#features">Features</a> • <a href="#full-documentation">Full documentation</a>
+</p>
 
-- [Local Machine](./docs/setup-local-machine.md)
+## Features
+
+- Next.js
+- Monorepo with npm workspaces and Turborepo
+- TypeScript
+- Prisma
+- Tailwind CSS
+- Lucia Auth
+- React Email
+- GitHub Actions
+- Renovate
+- Playwright
+- Vitest
+
+## Full documentation
+
+- [Getting started](./docs/getting-started.md)
 - [Playwright](./docs/playwright.md)
+- [Authorization](./docs/authorization.md)

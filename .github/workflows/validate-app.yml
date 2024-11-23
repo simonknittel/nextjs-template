@@ -32,7 +32,7 @@ jobs:
         run: npm ci --prefer-offline
 
       - name: Build
-        run: npm run build --workspace=apps/app
+        run: npx turbo run build
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres
 

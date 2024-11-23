@@ -1,0 +1,22 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [
+        "dist/**",
+        ".next/**",
+        "!.next/cache/**",
+        "tsconfig.tsbuildinfo"
+      ]
+    },
+    "@nextjs-template/database#build": {
+      "cache": false
+    },
+    "@nextjs-template/app#dev": {
+      "dependsOn": ["@nextjs-template/database#build"],
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

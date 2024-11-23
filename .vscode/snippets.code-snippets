@@ -1,0 +1,24 @@
+{
+  "React component": {
+    "scope": "typescriptreact",
+    "prefix": "react-component",
+    "body": [
+      "import clsx from \"clsx\";",
+      "",
+      "type Props = Readonly<{",
+      "\tclassName?: string;",
+      "}>",
+      "",
+      "export const $TM_FILENAME_BASE = ({ className }: Props) => {",
+      "\treturn (",
+      "\t\t<div className={clsx(className)}>",
+      "\t\t\t<p>$TM_FILENAME_BASE</p>$1",
+      "\t\t</div>",
+      "\t);",
+      "};",
+      ""
+    ],
+    "description": "Boilerplate of a React component",
+    "isFileTemplate": true
+  }
+}

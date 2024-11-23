@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@lucia-auth/adapter-prisma": "4.0.1",
-    "@nextjs-template/database": "file:../../packages/database",
-    "@nextjs-template/transactional": "file:../../packages/transactional",
+    "@nextjs-template/database": "*",
+    "@nextjs-template/transactional": "*",
     "@node-rs/argon2": "2.0.0",
     "@paralleldrive/cuid2": "2.2.2",
     "@react-email/components": "0.0.28",

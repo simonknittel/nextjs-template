@@ -1,4 +1,4 @@
-# Setup Local Machine
+# Getting started
 
 ## Requirements
 
@@ -26,7 +26,7 @@
 6. Install required Node.js version: `nvm install`
 7. Install dependencies: `npm ci --prefer-offline`
 8. Update the database's schema: `npx --workspace=packages/database prisma migrate dev`
-9. Run the app: `npm run dev --workspace=apps/app`
+9. Run the app: `npx turbo run @nextjs-template/app#dev`
 10. Create an developer account
     1. Signup at <http://localhost:3000/signup>
     2. Verify the email address at <http://localhost:1080>

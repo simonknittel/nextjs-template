@@ -176,11 +176,11 @@ export function authorize(
     return true;
 
   const result = comparePermissionSets(
+    // @ts-expect-error Overall types for authorization need to be improved
     {
       resource,
       operation,
-      // @ts-expect-error
-      attributes,
+      ...(attributes ? { attributes } : {}),
     },
     givenPermissionSets,
   );
