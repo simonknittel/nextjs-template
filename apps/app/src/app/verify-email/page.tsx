@@ -68,7 +68,7 @@ export default async function Page({ searchParams }: Props) {
   }
 
   return (
-    <main className="p-4 pb-20 lg:p-8 min-h-dvh bg-stone-100">
+    <main className="p-4 pb-20 lg:p-8 min-h-dvh bg-stone-100 dark:bg-neutral-900 dark:text-neutral-200">
       <h1 className="sr-only">Confirm your email address</h1>
 
       <Tile
