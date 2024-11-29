@@ -5,6 +5,9 @@
   "directories": {
     "doc": "docs"
   },
+  "scripts": {
+    "dev:app": "turbo run @nextjs-template/app#dev"
+  },
   "workspaces": [
     "apps/*",
     "packages/*"
