@@ -1,5 +1,6 @@
 import ReactQueryProvider from "@/common/components/ReactQueryProvider";
 import { ToasterWrapper } from "@/common/components/ToasterWrapper";
+import { ThemeProvider } from "@/shadcn/components/theme-provider";
 import type { Metadata } from "next";
 import { type ReactNode } from "react";
 import "./globals.css";
@@ -14,11 +15,18 @@ type Props = Readonly<{
 
 export default function RootLayout({ children }: Props) {
   return (
-    <html lang="de" className="bg-neutral-100">
+    <html lang="en" suppressHydrationWarning>
       <body>
         <ReactQueryProvider>
-          {children}
-          <ToasterWrapper />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+            <ToasterWrapper />
+          </ThemeProvider>
         </ReactQueryProvider>
       </body>
     </html>

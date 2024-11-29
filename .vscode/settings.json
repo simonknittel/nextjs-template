@@ -9,6 +9,7 @@
     "nvmrc",
     "oslojs",
     "SAST",
+    "shadcn",
     "SIGNUP"
   ],
   "dotenv.enableAutocloaking": false,
