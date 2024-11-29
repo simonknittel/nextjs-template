@@ -74,7 +74,7 @@ jobs:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ vars.TURBO_TEAM }}
 
-    container: mcr.microsoft.com/playwright:v1.48.2-noble
+    container: mcr.microsoft.com/playwright:v1.49.0-noble
 
     services:
       postgres:
