@@ -68,6 +68,14 @@ export default async function Page({ searchParams }: Props) {
         <CardContent>
           {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
           <form action={loginAction} className="grid gap-4">
+            {urlSearchParams.has("redirect_to") && (
+              <input
+                type="hidden"
+                name="redirect_to"
+                value={urlSearchParams.get("redirect_to")!}
+              />
+            )}
+
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <EmailInput

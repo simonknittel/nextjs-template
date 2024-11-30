@@ -11,7 +11,10 @@ export function middleware(request: NextRequest) {
     Logger.info("Unauthenticated request to middleware", {
       requestUrl: request.url,
     });
-    return NextResponse.redirect(new URL("/login", request.url));
+    const requestUrl = new URL(request.url);
+    return NextResponse.redirect(
+      new URL(`/login?redirect_to=${requestUrl.pathname}`, request.url),
+    );
   }
 
   return NextResponse.next();

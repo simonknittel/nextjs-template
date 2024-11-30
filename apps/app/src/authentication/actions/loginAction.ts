@@ -14,6 +14,7 @@ import { requestResetPassword } from "../requestResetPassword";
 const schema = z.object({
   email: z.string().email(),
   password: z.string().min(8).max(128),
+  redirect_to: z.string().startsWith("/admin").nullish(),
 });
 
 const rateLimiter = new RateLimiterMemory({
@@ -30,6 +31,7 @@ export const loginAction = async (formData: FormData) => {
     const result = schema.safeParse({
       email: formData.get("email"),
       password: formData.get("password"),
+      redirect_to: formData.get("redirect_to"),
     });
     if (!result.success) {
       Logger.warn("Login failed: invalid request");
@@ -46,7 +48,9 @@ export const loginAction = async (formData: FormData) => {
       Logger.warn("Login failed: rate limit exceeded", {
         email: result.data.email,
       });
-      redirect(`/login?error=${MESSAGES.login.rateLimit.query}`);
+      redirect(
+        `/login?error=${MESSAGES.login.rateLimit.query}${result.data.redirect_to ? `&redirect_to=${result.data.redirect_to}` : ""}`,
+      );
     }
 
     /**
@@ -66,14 +70,18 @@ export const loginAction = async (formData: FormData) => {
     });
     if (!user) {
       Logger.warn("Login failed: user not found", { email: result.data.email });
-      redirect(`/login?error=${MESSAGES.login.userOrPasswordInvalid.query}`);
+      redirect(
+        `/login?error=${MESSAGES.login.userOrPasswordInvalid.query}${result.data.redirect_to ? `&redirect_to=${result.data.redirect_to}` : ""}`,
+      );
     }
     if (!user.passwordHash) {
       Logger.warn("Login failed: user has no password hash", {
         email: result.data.email,
       });
       await requestResetPassword(user);
-      redirect(`/login?error=${MESSAGES.login.passwordMissing.query}`);
+      redirect(
+        `/login?error=${MESSAGES.login.passwordMissing.query}${result.data.redirect_to ? `&redirect_to=${result.data.redirect_to}` : ""}`,
+      );
     }
 
     try {
@@ -83,14 +91,18 @@ export const loginAction = async (formData: FormData) => {
       Logger.warn("Login failed: invalid password", {
         email: result.data.email,
       });
-      redirect(`/login?error=${MESSAGES.login.userOrPasswordInvalid.query}`);
+      redirect(
+        `/login?error=${MESSAGES.login.userOrPasswordInvalid.query}${result.data.redirect_to ? `&redirect_to=${result.data.redirect_to}` : ""}`,
+      );
     }
 
     if (!user.emailVerifiedAt) {
       Logger.warn("Login failed: email not verified", {
         email: result.data.email,
       });
-      redirect(`/verify-email?error=${MESSAGES.verifyEmail.unverified.query}`);
+      redirect(
+        `/verify-email?error=${MESSAGES.verifyEmail.unverified.query}${result.data.redirect_to ? `&redirect_to=${result.data.redirect_to}` : ""}`,
+      );
     }
 
     Logger.info("Login successful", { email: result.data.email });
@@ -100,7 +112,11 @@ export const loginAction = async (formData: FormData) => {
     /**
      * Respond with the result
      */
-    redirect(`/admin`);
+    if (result.data.redirect_to) {
+      redirect(result.data.redirect_to);
+    } else {
+      redirect(`/admin`);
+    }
   } catch (error) {
     unstable_rethrow(error);
 
