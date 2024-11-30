@@ -1,8 +1,9 @@
 import clsx from "clsx";
+import { Loader2, Save } from "lucide-react";
 import { unstable_rethrow } from "next/navigation";
 import { useRef, useState, useTransition } from "react";
 import toast from "react-hot-toast";
-import { FaPen, FaSave, FaSpinner } from "react-icons/fa";
+import { FaPen } from "react-icons/fa";
 import type { ServerAction } from "../utils/actions";
 import { useOutsideClick } from "../utils/useOutsideClick";
 
@@ -122,9 +123,9 @@ export const EditableText = ({
 
           <button disabled={isPending} className="flex-none group" title="Save">
             {isPending ? (
-              <FaSpinner className="animate-spin" />
+              <Loader2 className="animate-spin" />
             ) : (
-              <FaSave className="group-hover:text-neutral-700 group-active:test-neutral-900" />
+              <Save className="group-hover:text-neutral-700 group-active:test-neutral-900" />
             )}
           </button>
         </form>

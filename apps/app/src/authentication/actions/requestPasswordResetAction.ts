@@ -65,7 +65,7 @@ export const requestPasswordResetAction = async (
       });
       return {
         success:
-          "An email with a link to reset the password will be sent to the provided email address, if it is associated with a user account.",
+          "An email with a link to reset the password will be sent to the provided email address.",
       };
     }
 
@@ -76,7 +76,7 @@ export const requestPasswordResetAction = async (
      */
     return {
       success:
-        "An email with a link to reset the password will be sent to the provided email address, if it is associated with a user account.",
+        "An email with a link to reset the password will be sent to the provided email address.",
     };
   } catch (error) {
     unstable_rethrow(error);

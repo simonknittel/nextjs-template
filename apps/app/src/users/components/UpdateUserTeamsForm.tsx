@@ -1,13 +1,12 @@
 "use client";
 
-import { Button } from "@/common/components/Button";
-import { Checkbox } from "@/common/components/form/Checkbox";
-import { Note } from "@/common/components/Note";
+import { Alert } from "@/shadcn/components/ui/alert";
+import { Button } from "@/shadcn/components/ui/button";
+import { Checkbox } from "@/shadcn/components/ui/checkbox";
 import type { Team, TeamMembership, User } from "@nextjs-template/database";
 import clsx from "clsx";
+import { Loader2, Save } from "lucide-react";
 import { useActionState } from "react";
-import { FaSpinner } from "react-icons/fa";
-import { FiSave } from "react-icons/fi";
 import { updateTeamMembershipsAction } from "../actions/updateTeamMembershipsAction";
 
 type Props = Readonly<{
@@ -34,7 +33,7 @@ export const UpdateUserTeamsForm = ({ className, user, teams }: Props) => {
         <p className="italic text-neutral-500">No teams found</p>
       ) : (
         teams.map((team) => (
-          <div key={team.id}>
+          <div key={team.id} className="flex items-center space-x-2">
             <Checkbox
               id={team.id}
               name="teams"
@@ -44,22 +43,24 @@ export const UpdateUserTeamsForm = ({ className, user, teams }: Props) => {
                   (membership) => membership.teamId === team.id,
                 ),
               )}
-            >
-              {team.name}
-            </Checkbox>
+            />
+            <label htmlFor={team.id}>{team.name}</label>
           </div>
         ))
       )}
 
       <Button type="submit" className="self-start mt-4" disabled={isPending}>
-        {isPending ? <FaSpinner className="animate-spin" /> : <FiSave />}
+        {isPending ? <Loader2 className="animate-spin" /> : <Save />}
         Save
       </Button>
 
       {state && (
-        <Note type={state.success ? "success" : "error"} className="mt-4">
+        <Alert
+          variant={state.success ? "success" : "destructive"}
+          className="mt-4"
+        >
           {state.success || state.error}
-        </Note>
+        </Alert>
       )}
     </form>
   );

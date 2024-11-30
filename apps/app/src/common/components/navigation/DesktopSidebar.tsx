@@ -15,7 +15,7 @@ export const DesktopSidebar = async () => {
   );
 
   return (
-    <div className="bg-neutral-950 text-white dark:text-neutral-200 flex flex-col justify-between overflow-auto h-full">
+    <div className="flex flex-col justify-between overflow-auto h-full border-r">
       <SidebarHeader />
 
       <nav className="p-4 relative flex-1" data-sidebar-highlight-container>
@@ -33,7 +33,7 @@ export const DesktopSidebar = async () => {
 
         {showAdministration && (
           <div className="mt-4">
-            <p className="ml-4 text-neutral-500 mt-4 text-sm">Admin</p>
+            <p className="ml-4 text-muted-foreground mt-4 text-sm">Admin</p>
 
             <ul>
               <li>
@@ -62,7 +62,7 @@ export const DesktopSidebar = async () => {
         <SidebarHighlight />
       </nav>
 
-      <Account className="border-t border-neutral-700" />
+      <Account className="border-t" />
     </div>
   );
 };

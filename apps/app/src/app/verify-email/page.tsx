@@ -1,11 +1,11 @@
 import { getMessage, MESSAGES } from "@/authentication/messages";
 import { validateEmailVerificationToken } from "@/authentication/validateEmailVerificationToken";
 import { Note } from "@/common/components/Note";
-import { Tile } from "@/common/components/Tile";
 import {
   type NextjsSearchParams,
   searchParamsNextjsToURLSearchParams,
 } from "@/common/utils/searchParamsNextjsToUrlSearchParams";
+import { Card, CardHeader, CardTitle } from "@/shadcn/components/ui/card";
 import { prisma } from "@nextjs-template/database";
 import { Logger } from "@nextjs-template/logging";
 import type { Metadata } from "next";
@@ -68,29 +68,34 @@ export default async function Page({ searchParams }: Props) {
   }
 
   return (
-    <main className="p-4 pb-20 lg:p-8 min-h-dvh bg-stone-100 dark:bg-neutral-900 dark:text-neutral-200">
+    <main className="p-4 pb-20 lg:p-8 min-h-dvh flex items-center justify-center">
       <h1 className="sr-only">Confirm your email address</h1>
 
-      <Tile
-        heading="Confirm your email address"
-        className="max-w-96 mx-auto mt-4 lg:mt-8"
-      >
-        {urlSearchParams.has("success") && (
-          <Note type="success">
-            {getMessage("verifyEmail", urlSearchParams.get("success"))}
-          </Note>
-        )}
+      <Card className="w-full mx-auto max-w-sm">
+        <CardHeader>
+          <CardTitle className="text-2xl">Email address confirmation</CardTitle>
+        </CardHeader>
 
-        {tokenVerificationResult === false && (
-          <Note type="error">{getMessage("verifyEmail", "invalidToken")}</Note>
-        )}
+        <div className="px-6 pb-6">
+          {urlSearchParams.has("success") && (
+            <Note type="success">
+              {getMessage("verifyEmail", urlSearchParams.get("success"))}
+            </Note>
+          )}
 
-        {urlSearchParams.has("error") && (
-          <Note type="error">
-            {getMessage("verifyEmail", urlSearchParams.get("error"))}
-          </Note>
-        )}
-      </Tile>
+          {tokenVerificationResult === false && (
+            <Note type="error">
+              {getMessage("verifyEmail", "invalidToken")}
+            </Note>
+          )}
+
+          {urlSearchParams.has("error") && (
+            <Note type="error">
+              {getMessage("verifyEmail", urlSearchParams.get("error"))}
+            </Note>
+          )}
+        </div>
+      </Card>
     </main>
   );
 }

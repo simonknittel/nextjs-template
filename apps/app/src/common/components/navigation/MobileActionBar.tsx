@@ -61,7 +61,9 @@ export const MobileActionBar = async ({ className }: Props) => {
 
                 {showAdministration && (
                   <div className="mt-4">
-                    <p className="ml-4 text-neutral-500 mt-4 text-sm">Admin</p>
+                    <p className="ml-4 text-muted-foreground mt-4 text-sm">
+                      Admin
+                    </p>
 
                     <ul>
                       <li>

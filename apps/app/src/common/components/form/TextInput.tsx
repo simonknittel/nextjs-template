@@ -1,3 +1,4 @@
+import { Input } from "@/shadcn/components/ui/input";
 import clsx from "clsx";
 import { type ComponentProps } from "react";
 
@@ -10,7 +11,7 @@ export const TextInput = (props: Props) => {
   const { className, ...other } = props;
 
   return (
-    <input
+    <Input
       type="text"
       className={clsx(
         "flex h-11 items-center px-2 bg-white rounded border-neutral-200 border-solid border-[1px] cursor-text",

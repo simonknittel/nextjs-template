@@ -1,5 +1,6 @@
 "use client";
 
+import { Card } from "@/shadcn/components/ui/card";
 import clsx from "clsx";
 import { useState, type ReactNode } from "react";
 import { IoChevronDownCircleOutline } from "react-icons/io5";
@@ -52,9 +53,9 @@ export const TableTile = ({
       </h2>
 
       {!isCollapsed && (
-        <div className="bg-white dark:bg-neutral-800 rounded drop-shadow-sm overflow-hidden">
+        <Card className="overflow-hidden">
           <div className="overflow-auto">{children}</div>
-        </div>
+        </Card>
       )}
     </section>
   );

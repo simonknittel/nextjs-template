@@ -7,7 +7,7 @@ test("has title", async ({ page }) => {
   await expect(page).toHaveTitle("Next.js Template");
 
   await expect(page).toHaveScreenshot({
-    maxDiffPixelRatio: 0.05,
+    maxDiffPixelRatio: 0.02,
   });
 });
 
@@ -18,7 +18,7 @@ test("signup process", async ({ page }) => {
   await page.goto("/signup");
 
   await expect(page).toHaveScreenshot({
-    maxDiffPixelRatio: 0.05,
+    maxDiffPixelRatio: 0.02,
   });
 
   await page.locator('input[id="email"]').fill("admin@example.com");
@@ -49,7 +49,7 @@ test("signup process", async ({ page }) => {
   ).toBeVisible();
 
   await expect(page).toHaveScreenshot({
-    maxDiffPixelRatio: 0.05,
+    maxDiffPixelRatio: 0.02,
   });
 
   const verificationToken = await prisma.emailVerificationToken.findFirst();
@@ -81,7 +81,7 @@ test("signup process", async ({ page }) => {
   ).toBeVisible();
 
   await expect(page).toHaveScreenshot({
-    maxDiffPixelRatio: 0.05,
+    maxDiffPixelRatio: 0.02,
   });
 
   await page.locator('input[id="email"]').fill("admin@example.com");
@@ -95,7 +95,7 @@ test("signup process", async ({ page }) => {
 
   // TODO: Fix sidebar
   // await expect(page).toHaveScreenshot({
-  //   maxDiffPixelRatio: 0.05,
+  //   maxDiffPixelRatio: 0.02,
   // });
 
   /**

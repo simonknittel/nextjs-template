@@ -1,13 +1,13 @@
 "use client";
 
 import { requestPasswordResetAction } from "@/authentication/actions/requestPasswordResetAction";
-import { Button } from "@/common/components/Button";
-import { Note } from "@/common/components/Note";
 import { Tile } from "@/common/components/Tile";
+import { Alert } from "@/shadcn/components/ui/alert";
+import { Button } from "@/shadcn/components/ui/button";
 import type { User } from "@prisma/client";
 import clsx from "clsx";
+import { Loader2 } from "lucide-react";
 import { useActionState } from "react";
-import { FaSpinner } from "react-icons/fa";
 
 type Props = Readonly<{
   className?: string;
@@ -21,18 +21,21 @@ export const UserActions = ({ className, user }: Props) => {
   );
 
   return (
-    <Tile className={clsx(className)} heading="Actions" headingSrOnly>
+    <Tile className={clsx(className)} heading="Actions">
       <form>
         <input type="hidden" name="email" value={user.email} />
         <Button formAction={formAction} disabled={isPending}>
-          {isPending ? <FaSpinner className="animate-spin" /> : null}
+          {isPending ? <Loader2 className="animate-spin" /> : null}
           Reset password
         </Button>
 
         {state && (
-          <Note type={state.success ? "success" : "error"} className="mt-4">
+          <Alert
+            variant={state.success ? "success" : "destructive"}
+            className="mt-4"
+          >
             {state.success || state.error}
-          </Note>
+          </Alert>
         )}
       </form>
     </Tile>

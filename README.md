@@ -19,6 +19,7 @@
 - Renovate
 - Playwright
 - Vitest
+- shadcn/ui
 
 ## Full documentation
 

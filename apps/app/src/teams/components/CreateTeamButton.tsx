@@ -1,19 +1,17 @@
 "use client";
 
-import { Button } from "@/common/components/Button";
 import { TextInput } from "@/common/components/form/TextInput";
-import { PopoverWrapper } from "@/common/components/PopoverWrapper";
-import clsx from "clsx";
-import { unstable_rethrow } from "next/navigation";
-import { useContext, useId, useTransition } from "react";
+import { Button } from "@/shadcn/components/ui/button";
+import { Label } from "@/shadcn/components/ui/label";
 import {
-  Button as AriaButton,
-  DialogTrigger,
-  OverlayTriggerStateContext,
-} from "react-aria-components";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/shadcn/components/ui/popover";
+import { CirclePlus, Loader2, Save } from "lucide-react";
+import { unstable_rethrow } from "next/navigation";
+import { useId, useTransition } from "react";
 import toast from "react-hot-toast";
-import { FaSpinner } from "react-icons/fa";
-import { FiPlusCircle, FiSave } from "react-icons/fi";
 import { createTeamAction } from "../actions/createTeamAction";
 
 type Props = Readonly<{
@@ -22,26 +20,22 @@ type Props = Readonly<{
 
 export const CreateTeamButton = ({ className }: Props) => {
   return (
-    <DialogTrigger>
-      <AriaButton
-        className={clsx(
-          className,
-          "flex items-center justify-center rounded gap-2 py-2 min-h-11 text-base px-6 bg-black text-white enabled:hover:bg-neutral-700 enabled:active:bg-neutral-800 font-bold",
-        )}
-      >
-        <FiPlusCircle />
-        New team
-      </AriaButton>
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button className={className}>
+          <CirclePlus />
+          Create team
+        </Button>
+      </PopoverTrigger>
 
-      <PopoverWrapper>
+      <PopoverContent>
         <Content />
-      </PopoverWrapper>
-    </DialogTrigger>
+      </PopoverContent>
+    </Popover>
   );
 };
 
 const Content = () => {
-  const state = useContext(OverlayTriggerStateContext);
   const [isPending, startTransition] = useTransition();
   const inputId = useId();
 
@@ -52,7 +46,6 @@ const Content = () => {
 
         if (response === undefined || response.status === 200) {
           toast.success("Successfully saved");
-          state.close();
         } else {
           toast.error(
             response.errorMessage ??
@@ -70,13 +63,8 @@ const Content = () => {
 
   return (
     <form className="flex gap-4" action={action}>
-      <div>
-        <label
-          htmlFor={inputId}
-          className="block font-bold dark:text-neutral-200"
-        >
-          Name
-        </label>
+      <div className="flex flex-col gap-2">
+        <Label htmlFor={inputId}>Name</Label>
         <TextInput
           id={inputId}
           name="name"
@@ -87,13 +75,13 @@ const Content = () => {
       </div>
 
       <Button
-        iconOnly
-        title="Save"
-        className="h-[42px] self-end w-11"
+        title="Create new team"
+        size="icon"
         disabled={isPending}
         type="submit"
+        className="self-end"
       >
-        {isPending ? <FaSpinner className="animate-spin" /> : <FiSave />}
+        {isPending ? <Loader2 className="animate-spin" /> : <Save />}
       </Button>
     </form>
   );
