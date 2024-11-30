@@ -69,7 +69,7 @@ const Row = ({ team }: Row) => {
           </span>
 
           {team.disabledAt && (
-            <span className="text-neutral-500 italic">(disabled)</span>
+            <span className="text-muted-foreground italic">(disabled)</span>
           )}
         </Link>
       </td>
