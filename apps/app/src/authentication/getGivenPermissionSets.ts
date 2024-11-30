@@ -8,5 +8,18 @@ export const getGivenPermissionSets = cache(async (userId: User["id"]) => {
     },
   });
 
-  return [...teamIds.flatMap(() => [])];
+  return [
+    ...teamIds.flatMap((id) => [
+      {
+        resource: "team",
+        operation: "update",
+        attributes: [
+          {
+            key: "id",
+            value: id,
+          },
+        ],
+      },
+    ]),
+  ];
 });
