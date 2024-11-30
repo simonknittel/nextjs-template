@@ -26,3 +26,4 @@
 - [Getting started](./docs/getting-started.md)
 - [Playwright](./docs/playwright.md)
 - [Authorization](./docs/authorization.md)
+- [Folder structure](./docs/folder-structure.md)
