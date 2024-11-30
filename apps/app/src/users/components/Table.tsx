@@ -1,5 +1,6 @@
 import { TableTile } from "@/common/components/TableTile";
 import { Thead } from "@/common/components/Thead";
+import { Card, CardContent } from "@/shadcn/components/ui/card";
 import { UserRole, type User } from "@prisma/client";
 import clsx from "clsx";
 import Link from "next/link";
@@ -16,11 +17,11 @@ export const Table = async ({ className }: Props) => {
 
   if (users.length === 0)
     return (
-      <section className={className}>
-        <div className="bg-white dark:bg-neutral-800 rounded drop-shadow-sm overflow-hidden mt-2 px-4 lg:px-8 py-4">
-          <p className="italic text-neutral-500">No users found</p>
-        </div>
-      </section>
+      <Card className={className}>
+        <CardContent className="py-6">
+          <p>No users found</p>
+        </CardContent>
+      </Card>
     );
 
   return (

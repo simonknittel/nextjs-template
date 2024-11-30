@@ -8,10 +8,12 @@ import type { User } from "@prisma/client";
 import clsx from "clsx";
 import { Loader2 } from "lucide-react";
 import { useActionState } from "react";
+import { canDisable, canRequestResetPassword } from "../can";
+import { DisableUserButton } from "./DisableUserButton";
 
 type Props = Readonly<{
   className?: string;
-  user: Pick<User, "email">;
+  user: Pick<User, "id" | "email" | "disabledAt">;
 }>;
 
 export const UserActions = ({ className, user }: Props) => {
@@ -22,22 +24,32 @@ export const UserActions = ({ className, user }: Props) => {
 
   return (
     <Tile className={clsx(className)} heading="Actions">
-      <form>
-        <input type="hidden" name="email" value={user.email} />
-        <Button formAction={formAction} disabled={isPending}>
-          {isPending ? <Loader2 className="animate-spin" /> : null}
-          Reset password
-        </Button>
+      <div className="flex gap-2">
+        <form>
+          <input type="hidden" name="email" value={user.email} />
 
-        {state && (
-          <Alert
-            variant={state.success ? "success" : "destructive"}
-            className="mt-4"
+          <Button
+            formAction={formAction}
+            disabled={isPending || !canRequestResetPassword(user)}
           >
-            {state.success || state.error}
-          </Alert>
+            {isPending ? <Loader2 className="animate-spin" /> : null}
+            Reset password
+          </Button>
+
+          {state && (
+            <Alert
+              variant={state.success ? "success" : "destructive"}
+              className="mt-4"
+            >
+              {state.success || state.error}
+            </Alert>
+          )}
+        </form>
+
+        {canDisable(user) && (
+          <DisableUserButton user={user}>Disable</DisableUserButton>
         )}
-      </form>
+      </div>
     </Tile>
   );
 };

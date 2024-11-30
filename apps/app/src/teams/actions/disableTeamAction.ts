@@ -13,12 +13,12 @@ const schema = z.object({
   id: z.string().cuid2(),
 });
 
-export const deleteTeamAction: ServerAction = async (formData) => {
+export const disableTeamAction: ServerAction = async (formData) => {
   try {
     /**
      * Authenticate and authorize the request
      */
-    const authentication = await authenticateAction("deleteTeam");
+    const authentication = await authenticateAction("disableTeam");
     authentication.authorizeAction("administration", "manage");
 
     /**
@@ -29,15 +29,15 @@ export const deleteTeamAction: ServerAction = async (formData) => {
     });
 
     /**
-     * Soft delete
+     * Disable
      */
-    await prisma.team.update({
+    const disabledTeam = await prisma.team.update({
       where: {
         id,
       },
       data: {
-        deletedAt: new Date(),
-        deletedBy: {
+        disabledAt: new Date(),
+        disabledBy: {
           connect: {
             id: authentication.user.id,
           },
@@ -48,7 +48,7 @@ export const deleteTeamAction: ServerAction = async (formData) => {
     /**
      * Respond with the result
      */
-    redirect(`/admin/teams`);
+    redirect(`/admin/teams/team/${disabledTeam.id}`);
   } catch (error) {
     return serverActionErrorHandler(error);
   }

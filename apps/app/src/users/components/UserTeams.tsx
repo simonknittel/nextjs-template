@@ -6,7 +6,7 @@ import { UpdateUserTeamsForm } from "./UpdateUserTeamsForm";
 
 type Props = Readonly<{
   className?: string;
-  user: Pick<User, "id"> & { teamMemberships: TeamMembership[] };
+  user: Pick<User, "id" | "disabledAt"> & { teamMemberships: TeamMembership[] };
 }>;
 
 export const UserTeams = async ({ className, user }: Props) => {

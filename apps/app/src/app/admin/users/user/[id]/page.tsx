@@ -1,12 +1,16 @@
 import { authenticatePage } from "@/authentication/authenticateAndAuthorize";
 import { MetadataTile } from "@/common/components/MetadataTile/MetadataTile";
 import { MetadataTileEntry } from "@/common/components/MetadataTile/MetadataTileEntry";
-import { Note } from "@/common/components/Note";
-import { DisableUserButton } from "@/users/components/DisableUserButton";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/shadcn/components/ui/alert";
 import { UserActions } from "@/users/components/UserActions";
 import { UserTeams } from "@/users/components/UserTeams";
 import { getUserByIdDeduped } from "@/users/queries";
 import { Logger } from "@nextjs-template/logging";
+import { AlertCircle } from "lucide-react";
 import { type Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -77,9 +81,11 @@ export default async function Page({ params }: Props) {
       <div className="flex gap-8 items-start flex-col xl:flex-row mt-4">
         <div className="w-full xl:flex-none xl:w-[400px]">
           {user.disabledAt && (
-            <Note type="error" className="mb-4">
-              Disabled
-            </Note>
+            <Alert variant="destructive" className="mb-4" disableDefaultTitle>
+              <AlertCircle className="size-4" />
+              <AlertTitle>Disabled</AlertTitle>
+              <AlertDescription>This user has been disabled.</AlertDescription>
+            </Alert>
           )}
 
           <MetadataTile>
@@ -87,12 +93,6 @@ export default async function Page({ params }: Props) {
               {user.email}
             </MetadataTileEntry>
           </MetadataTile>
-
-          {!user.disabledAt && (
-            <div className="flex justify-center">
-              <DisableUserButton user={user}>Disable</DisableUserButton>
-            </div>
-          )}
         </div>
 
         <div className="flex-auto w-full flex flex-col gap-4">

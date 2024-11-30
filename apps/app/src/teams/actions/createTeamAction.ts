@@ -45,7 +45,7 @@ export const createTeamAction: ServerAction = async (formData) => {
     /**
      * Respond with the result
      */
-    redirect(`/admin/teams/${createdTeam.id}`);
+    redirect(`/admin/teams/team/${createdTeam.id}`);
   } catch (error) {
     return serverActionErrorHandler(error);
   }

@@ -29,7 +29,7 @@ export const disableUserAction: ServerAction = async (formData) => {
     });
 
     /**
-     * Create user
+     * Disable
      */
     const disabledUser = await prisma.user.update({
       where: {

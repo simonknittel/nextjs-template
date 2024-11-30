@@ -1,12 +1,17 @@
 import { authenticatePage } from "@/authentication/authenticateAndAuthorize";
 import { MetadataTile } from "@/common/components/MetadataTile/MetadataTile";
 import { MetadataTileEntry } from "@/common/components/MetadataTile/MetadataTileEntry";
-import { Note } from "@/common/components/Note";
-import { canDelete, canUpdate } from "@/teams/can";
-import { DeleteTeamButton } from "@/teams/components/DeleteTeamButton";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/shadcn/components/ui/alert";
+import { canUpdate } from "@/teams/can";
 import { EditableTeamName } from "@/teams/components/EditableTeamName";
+import { TeamActions } from "@/teams/components/TeamActions";
 import { getTeamById } from "@/teams/queries";
 import { Logger } from "@nextjs-template/logging";
+import { AlertCircle } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -35,7 +40,7 @@ export async function generateMetadata({
     };
   } catch (error) {
     Logger.error(
-      "Error while generating metadata for /admin/teams/[teamId]/page.tsx",
+      "Error while generating metadata for /admin/teams/team/[teamId]/page.tsx",
       {
         error: serializeError(error),
       },
@@ -57,7 +62,7 @@ export default async function Page({ params }: Props) {
   const team = await getTeamById(teamId);
   if (!team) notFound();
 
-  const authentication = await authenticatePage("/admin/teams/[teamId]");
+  const authentication = await authenticatePage("/admin/teams/team/[teamId]");
   authentication.authorizePage("administration", "manage");
 
   return (
@@ -76,10 +81,12 @@ export default async function Page({ params }: Props) {
 
       <div className="flex gap-8 items-start flex-col xl:flex-row mt-4">
         <div className="w-full xl:w-[400px]">
-          {team.deletedAt && (
-            <Note type="error" className="mb-4">
-              Disabled
-            </Note>
+          {team.disabledAt && (
+            <Alert variant="destructive" className="mb-4" disableDefaultTitle>
+              <AlertCircle className="size-4" />
+              <AlertTitle>Disabled</AlertTitle>
+              <AlertDescription>This team has been disabled.</AlertDescription>
+            </Alert>
           )}
 
           <MetadataTile>
@@ -87,15 +94,11 @@ export default async function Page({ params }: Props) {
               {canUpdate(team) ? <EditableTeamName team={team} /> : team.name}
             </MetadataTileEntry>
           </MetadataTile>
-
-          {canDelete(team) && (
-            <div className="flex justify-center">
-              <DeleteTeamButton team={team}>Disabled</DeleteTeamButton>
-            </div>
-          )}
         </div>
 
-        <div className="flex-1 w-full flex flex-col gap-4"></div>
+        <div className="flex-auto w-full flex flex-col gap-4">
+          <TeamActions team={team} />
+        </div>
       </div>
     </main>
   );

@@ -7,7 +7,7 @@ export const getTeams = async (includeDisabled = false) => {
 
   return prisma.team.findMany({
     where: {
-      deletedAt: includeDisabled ? undefined : null,
+      disabledAt: includeDisabled ? undefined : null,
       id: {
         in: permittedIds,
       },
@@ -30,7 +30,7 @@ export const getPermittedTeamIdsForCurrentUserDeduped = cache(async () => {
   if (authentication.authorize("administration", "manage")) {
     const teams = await prisma.team.findMany({
       where: {
-        deletedAt: null,
+        disabledAt: null,
       },
     });
 

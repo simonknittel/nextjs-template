@@ -1,5 +1,6 @@
 import { TableTile } from "@/common/components/TableTile";
 import { Thead } from "@/common/components/Thead";
+import { Card, CardContent } from "@/shadcn/components/ui/card";
 import type { Team } from "@nextjs-template/database";
 import clsx from "clsx";
 import Link from "next/link";
@@ -12,11 +13,11 @@ type Props = Readonly<{
 export const Table = ({ className, teams }: Props) => {
   if (teams.length === 0)
     return (
-      <section className={className}>
-        <div className="bg-white dark:bg-neutral-800 rounded drop-shadow-sm overflow-hidden mt-2 px-4 lg:px-8 py-4">
-          <p className="italic text-neutral-500">No teams found</p>
-        </div>
-      </section>
+      <Card className={className}>
+        <CardContent className="py-6">
+          <p>No teams found</p>
+        </CardContent>
+      </Card>
     );
 
   return (
@@ -30,13 +31,13 @@ export const Table = ({ className, teams }: Props) => {
           {/* Could probably done with a smart `.sort()` function but this is easier to read */}
 
           {teams
-            .filter((team) => !team.deletedAt)
+            .filter((team) => !team.disabledAt)
             .map((team) => (
               <Row key={team.id} team={team} />
             ))}
 
           {teams
-            .filter((team) => team.deletedAt)
+            .filter((team) => team.disabledAt)
             .map((team) => (
               <Row key={team.id} team={team} />
             ))}
@@ -60,14 +61,14 @@ const Row = ({ team }: Row) => {
     >
       <td title={team.name} className="overflow-hidden h-full">
         <Link
-          href={`/admin/teams/${team.id}`}
+          href={`/admin/teams/team/${team.id}`}
           className="flex items-center gap-2 py-2 h-full text-base px-4 hover:bg-neutral-200 dark:hover:bg-neutral-700 active:bg-neutral-300 dark:active:bg-neutral-600 transition-colors"
         >
           <span className="overflow-hidden whitespace-nowrap text-ellipsis">
             {team.name}
           </span>
 
-          {team.deletedAt && (
+          {team.disabledAt && (
             <span className="text-neutral-500 italic">(disabled)</span>
           )}
         </Link>

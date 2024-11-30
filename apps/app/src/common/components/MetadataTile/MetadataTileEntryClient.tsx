@@ -20,7 +20,7 @@ export const MetadataTileEntryClient = ({
 }: EntryProps) => {
   return (
     <div className={className}>
-      <dt className="text-neutral-500">
+      <dt className="text-muted-foreground">
         {tooltip ? (
           <TooltipTrigger delay={0}>
             <Button className="flex gap-1 items-center">

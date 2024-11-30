@@ -8,10 +8,11 @@ import clsx from "clsx";
 import { Loader2, Save } from "lucide-react";
 import { useActionState } from "react";
 import { updateTeamMembershipsAction } from "../actions/updateTeamMembershipsAction";
+import { canUpdateUserTeams } from "../can";
 
 type Props = Readonly<{
   className?: string;
-  user: Pick<User, "id"> & { teamMemberships: TeamMembership[] };
+  user: Pick<User, "id" | "disabledAt"> & { teamMemberships: TeamMembership[] };
   teams: Team[];
 }>;
 
@@ -30,7 +31,7 @@ export const UpdateUserTeamsForm = ({ className, user, teams }: Props) => {
       <input type="hidden" name="userId" value={user.id} />
 
       {teams.length === 0 ? (
-        <p className="italic text-neutral-500">No teams found</p>
+        <p>No teams found</p>
       ) : (
         teams.map((team) => (
           <div key={team.id} className="flex items-center space-x-2">
@@ -43,13 +44,18 @@ export const UpdateUserTeamsForm = ({ className, user, teams }: Props) => {
                   (membership) => membership.teamId === team.id,
                 ),
               )}
+              disabled={!canUpdateUserTeams(user)}
             />
             <label htmlFor={team.id}>{team.name}</label>
           </div>
         ))
       )}
 
-      <Button type="submit" className="self-start mt-4" disabled={isPending}>
+      <Button
+        type="submit"
+        className="self-start mt-4"
+        disabled={isPending || !canUpdateUserTeams(user)}
+      >
         {isPending ? <Loader2 className="animate-spin" /> : <Save />}
         Save
       </Button>

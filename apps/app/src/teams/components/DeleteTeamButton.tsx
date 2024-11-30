@@ -1,14 +1,13 @@
 "use client";
 
-import { Button } from "@/common/components/Button";
+import { Button } from "@/shadcn/components/ui/button";
 import type { Team } from "@nextjs-template/database";
 import clsx from "clsx";
+import { Loader2, Save } from "lucide-react";
 import { unstable_rethrow } from "next/navigation";
 import { useTransition, type ReactNode } from "react";
 import toast from "react-hot-toast";
-import { FaSpinner } from "react-icons/fa";
-import { FiTrash2 } from "react-icons/fi";
-import { deleteTeamAction } from "../actions/deleteTeamAction";
+import { disableTeamAction } from "../actions/disableTeamAction";
 
 type Props = Readonly<{
   className?: string;
@@ -16,31 +15,28 @@ type Props = Readonly<{
   team: Pick<Team, "id" | "name">;
 }>;
 
-export const DeleteTeamButton = ({ className, children, team }: Props) => {
+export const DisableTeamButton = ({ className, children, team }: Props) => {
   const [isPending, startTransition] = useTransition();
 
   const _action = (formData: FormData) => {
     startTransition(async () => {
       try {
         const confirmation = window.confirm(
-          `Do you want to disable this team?`,
+          `Please confirm that you want to disable the team "${team.name}".`,
         );
         if (!confirmation) return;
 
-        const response = await deleteTeamAction(formData);
+        const response = await disableTeamAction(formData);
 
         if (response === undefined || response.status === 200) {
-          toast.success("Successfully disabled");
+          toast.success("Successfully disabled team.");
         } else {
-          toast.error(
-            response.errorMessage ??
-              "An error occurred. Please try again later.",
-          );
+          toast.error(response.errorMessage ?? "An unexpected error occurred.");
           console.error(response);
         }
       } catch (error) {
         unstable_rethrow(error);
-        toast.error("An error occurred. Please try again later.");
+        toast.error("An unexpected error occurred.");
         console.error(error);
       }
     });
@@ -52,14 +48,12 @@ export const DeleteTeamButton = ({ className, children, team }: Props) => {
 
       <Button
         disabled={isPending}
-        variant="tertiary"
-        colorScheme="red"
+        variant="destructive"
         type="submit"
-        title="Disable"
-        iconOnly={!Boolean(children)}
+        title="Disable team"
         onClick={(e) => e.stopPropagation()}
       >
-        {isPending ? <FaSpinner className="animate-spin" /> : <FiTrash2 />}
+        {isPending ? <Loader2 className="animate-spin" /> : <Save />}
         {children}
       </Button>
     </form>

@@ -22,7 +22,7 @@ model User {
     passwordResetTokens     PasswordResetToken[]
     sessions                Session[]
     createdTeams            Team[]                   @relation("createdUsers")
-    deletedTeams            Team[]                   @relation("deletedTeams")
+    disabledTeams           Team[]                   @relation("disabledTeams")
     teamMemberships         TeamMembership[]
 
     signupAt DateTime? @default(now())
@@ -78,9 +78,9 @@ model Team {
     createdById String
     createdBy   User     @relation("createdUsers", fields: [createdById], references: [id])
 
-    deletedAt   DateTime?
-    deletedById String?
-    deletedBy   User?     @relation("deletedTeams", fields: [deletedById], references: [id])
+    disabledAt   DateTime?
+    disabledById String?
+    disabledBy   User?     @relation("disabledTeams", fields: [disabledById], references: [id])
 }
 
 model TeamMembership {

@@ -1,9 +1,13 @@
 import type { Team } from "@nextjs-template/database";
 
-export const canUpdate = (team: Pick<Team, "deletedAt">) => {
-  return !team.deletedAt;
+/**
+ * can functions should be used to define centrally whether an action can be performed on a resource. These checks should not be used for authorization or other complex criteria.
+ */
+
+export const canUpdate = (team: Pick<Team, "disabledAt">) => {
+  return !team.disabledAt;
 };
 
-export const canDelete = (team: Pick<Team, "deletedAt">) => {
-  return !team.deletedAt;
+export const canDisable = (team: Pick<Team, "disabledAt">) => {
+  return !team.disabledAt;
 };

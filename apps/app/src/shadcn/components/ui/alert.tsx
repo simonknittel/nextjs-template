@@ -23,31 +23,45 @@ const alertVariants = cva(
 
 const Alert = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>
->(({ className, variant, children, ...props }, ref) => (
-  <div
-    ref={ref}
-    role="alert"
-    className={cn(alertVariants({ variant }), className)}
-    {...props}
-  >
-    {variant === "success" && (
-      <>
-        <Check className="size-4" />
-        <AlertTitle>Success</AlertTitle>
-      </>
-    )}
+  React.HTMLAttributes<HTMLDivElement> &
+    VariantProps<typeof alertVariants> & {
+      disableDefaultTitle?: boolean;
+    }
+>(
+  (
+    { className, variant, children, disableDefaultTitle = false, ...props },
+    ref,
+  ) => (
+    <div
+      ref={ref}
+      role="alert"
+      className={cn(alertVariants({ variant }), className)}
+      {...props}
+    >
+      {disableDefaultTitle ? (
+        children
+      ) : (
+        <>
+          {variant === "success" && (
+            <>
+              <Check className="size-4" />
+              <AlertTitle>Success</AlertTitle>
+            </>
+          )}
 
-    {variant === "destructive" && (
-      <>
-        <AlertCircle className="size-4" />
-        <AlertTitle>Error</AlertTitle>
-      </>
-    )}
+          {variant === "destructive" && (
+            <>
+              <AlertCircle className="size-4" />
+              <AlertTitle>Error</AlertTitle>
+            </>
+          )}
 
-    <AlertDescription>{children}</AlertDescription>
-  </div>
-));
+          <AlertDescription>{children}</AlertDescription>
+        </>
+      )}
+    </div>
+  ),
+);
 Alert.displayName = "Alert";
 
 const AlertTitle = React.forwardRef<

@@ -17,7 +17,7 @@ export const MetadataTileEntry = ({
 }: EntryProps) => {
   return (
     <div className={clsx(className)}>
-      <dt className="text-neutral-500">{title}</dt>
+      <dt className="text-muted-foreground">{title}</dt>
 
       <dd className={childrenClassName}>{children}</dd>
     </div>
