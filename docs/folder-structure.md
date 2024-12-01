@@ -8,5 +8,6 @@
       - `authentication`: Module for all authentication related code
       - `users`: Module for all user related code
       - `teams`: Module for all team related code
+      - `shadcn`: Temporary _onboarding_ location for shadcn/ui components before they got adapted to our default structure for React components and got moved to the `common` module.
   - `playwright`: E2E tests for applications
 - `packages`: hared code which can be used by multiple apps
