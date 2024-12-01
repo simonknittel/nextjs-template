@@ -23,7 +23,7 @@ export const DesktopSidebar = async () => {
           <li>
             <Link
               href="/admin"
-              className="flex gap-2 items-center p-4 hover:bg-neutral-500 active:bg-neutral-600 rounded"
+              className="flex gap-2 items-center p-4 hover:bg-muted rounded"
             >
               <IoHomeOutline />
               Dashboard
@@ -39,7 +39,7 @@ export const DesktopSidebar = async () => {
               <li>
                 <Link
                   href="/admin/teams"
-                  className="flex gap-2 items-center p-4 hover:bg-neutral-500 active:bg-neutral-600 rounded"
+                  className="flex gap-2 items-center p-4 hover:bg-muted rounded"
                 >
                   <TbUsers />
                   Teams
@@ -49,7 +49,7 @@ export const DesktopSidebar = async () => {
               <li>
                 <Link
                   href="/admin/users"
-                  className="flex gap-2 items-center p-4 hover:bg-neutral-500 active:bg-neutral-600 rounded"
+                  className="flex gap-2 items-center p-4 hover:bg-muted rounded"
                 >
                   <TbUser />
                   Users

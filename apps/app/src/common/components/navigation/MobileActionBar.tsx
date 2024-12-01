@@ -24,7 +24,7 @@ export const MobileActionBar = async ({ className }: Props) => {
     <div
       className={clsx(
         className,
-        "fixed z-40 left-0 right-0 bottom-0 h-16 shadow-t bg-neutral-800 dark:bg-neutral-950 text-white dark:text-neutral-200",
+        "fixed z-40 left-0 right-0 bottom-0 h-16 border-t bg-background",
       )}
     >
       <nav className="h-full px-1">
@@ -32,7 +32,7 @@ export const MobileActionBar = async ({ className }: Props) => {
           <li className="h-full py-1 flex-grow-0 flex-shrink-0 basis-1/5">
             <Link
               href="/admin"
-              className="flex flex-col items-center justify-center h-full active:bg-neutral-600 rounded"
+              className="flex flex-col items-center justify-center h-full active:bg-muted rounded"
             >
               <IoHomeOutline className="text-xl" />
               <span className="text-xs text-center">Dashboard</span>
@@ -51,7 +51,7 @@ export const MobileActionBar = async ({ className }: Props) => {
                   <li>
                     <Link
                       href="/admin"
-                      className="flex gap-2 items-center p-4 active:bg-neutral-600 rounded"
+                      className="flex gap-2 items-center p-4 active:bg-muted rounded"
                     >
                       <IoHomeOutline />
                       Dashboard
@@ -69,7 +69,7 @@ export const MobileActionBar = async ({ className }: Props) => {
                       <li>
                         <Link
                           href="/admin/teams"
-                          className="flex gap-2 items-center p-4 active:bg-neutral-600 rounded"
+                          className="flex gap-2 items-center p-4 active:bg-muted rounded"
                         >
                           <TbUsers />
                           Teams
@@ -79,7 +79,7 @@ export const MobileActionBar = async ({ className }: Props) => {
                       <li>
                         <Link
                           href="/admin/users"
-                          className="flex gap-2 items-center p-4 active:bg-neutral-600 rounded"
+                          className="flex gap-2 items-center p-4 active:bg-muted rounded"
                         >
                           <TbUser />
                           Users

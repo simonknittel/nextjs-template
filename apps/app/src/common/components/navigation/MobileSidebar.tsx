@@ -30,7 +30,7 @@ export const MobileSidebar = ({ children }: Props) => {
 
       <div
         className={clsx(
-          "fixed left-0 top-0 bottom-0 w-80 max-w-[85dvw] z-50 flex flex-col bg-neutral-800 text-white shadow-r overflow-auto transition-transform",
+          "fixed left-0 top-0 bottom-0 w-80 max-w-[85dvw] z-50 flex flex-col bg-background border-r overflow-auto transition-transform",
           {
             "-translate-x-full": isVisible === false,
             "translate-x-0": isVisible === true,
