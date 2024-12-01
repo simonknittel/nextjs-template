@@ -26,7 +26,7 @@ export const Table = async ({ className }: Props) => {
 
   return (
     <TableTile className={clsx(className)} heading="All users" headingSrOnly>
-      <table className="w-full min-w-[320px]">
+      <table className="w-full min-w-[320px] text-sm">
         <Thead className="grid-cols-[1fr_80px]">
           <th>Email address</th>
           <th>Role</th>
@@ -51,17 +51,15 @@ const Row = ({ user }: RowProps) => {
     <tr
       key={user.id}
       className={
-        "grid grid-cols-[1fr_80px] items-center h-14 border-b last-of-type:border-b-0"
+        "grid grid-cols-[1fr_80px] items-center h-11 border-b last-of-type:border-b-0"
       }
     >
       <td className="overflow-hidden h-full">
         <Link
           href={`/admin/users/user/${user.id}`}
-          className="flex items-center gap-2 py-2 h-full text-base px-4 hover:bg-neutral-200 dark:hover:bg-neutral-700 active:bg-neutral-300 dark:active:bg-neutral-600 transition-colors"
+          className="flex items-center px-4 h-full hover:bg-muted"
         >
-          <span className="flex-auto overflow-hidden text-ellipsis whitespace-nowrap">
-            {user.email}
-          </span>
+          {user.email}
         </Link>
       </td>
 

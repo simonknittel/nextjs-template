@@ -92,7 +92,7 @@ export const MobileActionBar = async ({ className }: Props) => {
                 <SidebarHighlight />
               </div>
 
-              <Account className="border-t border-neutral-700" />
+              <Account className="border-t" />
             </MobileSidebar>
           </li>
         </ul>

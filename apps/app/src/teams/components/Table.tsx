@@ -22,25 +22,15 @@ export const Table = ({ className, teams }: Props) => {
 
   return (
     <TableTile className={clsx(className)} heading="All teams" headingSrOnly>
-      <table className="w-full min-w-[320px]">
+      <table className="w-full min-w-[320px] text-sm">
         <Thead className="grid-cols-[1fr]">
           <th>Name</th>
         </Thead>
 
         <tbody>
-          {/* Could probably done with a smart `.sort()` function but this is easier to read */}
-
-          {teams
-            .filter((team) => !team.disabledAt)
-            .map((team) => (
-              <Row key={team.id} team={team} />
-            ))}
-
-          {teams
-            .filter((team) => team.disabledAt)
-            .map((team) => (
-              <Row key={team.id} team={team} />
-            ))}
+          {teams.map((team) => (
+            <Row key={team.id} team={team} />
+          ))}
         </tbody>
       </table>
     </TableTile>
@@ -56,21 +46,15 @@ const Row = ({ team }: Row) => {
     <tr
       key={team.id}
       className={clsx(
-        "grid grid-cols-[1fr] items-center gap-4 h-14 border-b last-of-type:border-b-0",
+        "grid grid-cols-[1fr] items-center gap-4 h-11 border-b last-of-type:border-b-0",
       )}
     >
       <td title={team.name} className="overflow-hidden h-full">
         <Link
           href={`/admin/teams/team/${team.id}`}
-          className="flex items-center gap-2 py-2 h-full text-base px-4 hover:bg-neutral-200 dark:hover:bg-neutral-700 active:bg-neutral-300 dark:active:bg-neutral-600 transition-colors"
+          className="flex items-center px-4 h-full hover:bg-muted"
         >
-          <span className="overflow-hidden whitespace-nowrap text-ellipsis">
-            {team.name}
-          </span>
-
-          {team.disabledAt && (
-            <span className="text-muted-foreground italic">(disabled)</span>
-          )}
+          {team.name}
         </Link>
       </td>
     </tr>
