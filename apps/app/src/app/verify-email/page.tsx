@@ -1,6 +1,7 @@
 import { getMessage, MESSAGES } from "@/authentication/messages";
 import { validateEmailVerificationToken } from "@/authentication/validateEmailVerificationToken";
 import { Card, CardHeader, CardTitle } from "@/common/components/Card";
+import { Logo } from "@/common/components/Logo";
 import { Note } from "@/common/components/Note";
 import {
   type NextjsSearchParams,
@@ -68,8 +69,10 @@ export default async function Page({ searchParams }: Props) {
   }
 
   return (
-    <main className="p-4 pb-20 lg:p-8 min-h-dvh flex items-center justify-center">
+    <main className="p-4 pb-20 lg:p-8 min-h-dvh flex flex-col gap-4 items-center justify-center">
       <h1 className="sr-only">Confirm your email address</h1>
+
+      <Logo />
 
       <Card className="w-full mx-auto max-w-sm">
         <CardHeader>

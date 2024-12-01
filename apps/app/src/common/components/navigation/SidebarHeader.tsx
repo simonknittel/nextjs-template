@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { Logo } from "../Logo";
 
 type Props = Readonly<{
   className?: string;
@@ -12,7 +13,7 @@ export const SidebarHeader = ({ className }: Props) => {
         "flex items-center justify-center border-b p-4",
       )}
     >
-      <p className="font-bold">Next.js Template</p>
+      <Logo size="compact" />
     </header>
   );
 };

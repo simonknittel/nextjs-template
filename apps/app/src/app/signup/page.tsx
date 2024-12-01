@@ -12,6 +12,7 @@ import {
 import { EmailInput } from "@/common/components/form/EmailInput";
 import { Label } from "@/common/components/form/Label";
 import { PasswordInput } from "@/common/components/form/PasswordInput";
+import { Logo } from "@/common/components/Logo";
 import { PasswordRequirements } from "@/common/components/PasswordRequirements";
 import {
   searchParamsNextjsToURLSearchParams,
@@ -40,8 +41,10 @@ export default async function Page({ searchParams }: Props) {
   );
 
   return (
-    <main className="p-4 pb-20 lg:p-8 min-h-dvh flex items-center justify-center">
+    <main className="p-4 pb-20 lg:p-8 min-h-dvh flex flex-col gap-4 items-center justify-center">
       <h1 className="sr-only">Signup</h1>
+
+      <Logo />
 
       <Card className="w-full mx-auto max-w-sm">
         {urlSearchParams.has("error") && (
