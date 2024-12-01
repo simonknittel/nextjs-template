@@ -16,7 +16,7 @@ export default async function Page() {
 
   return (
     <main className="p-4 pb-20 lg:p-8">
-      <div className="flex gap-4 items-center">
+      <div className="flex items-center justify-between">
         <PageHeading>Teams</PageHeading>
 
         <CreateTeamButton />

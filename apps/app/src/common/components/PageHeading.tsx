@@ -8,6 +8,13 @@ type Props = Readonly<{
 
 export const PageHeading = ({ className, children }: Props) => {
   return (
-    <h1 className={clsx("text-2xl lg:text-4xl", className)}>{children}</h1>
+    <h1
+      className={clsx(
+        "scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0",
+        className,
+      )}
+    >
+      {children}
+    </h1>
   );
 };
