@@ -1,11 +1,7 @@
 import { authenticatePage } from "@/authentication/authenticateAndAuthorize";
+import { Alert, AlertDescription, AlertTitle } from "@/common/components/Alert";
 import { MetadataTile } from "@/common/components/MetadataTile/MetadataTile";
 import { MetadataTileEntry } from "@/common/components/MetadataTile/MetadataTileEntry";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@/shadcn/components/ui/alert";
 import { UserActions } from "@/users/components/UserActions";
 import { UserTeams } from "@/users/components/UserTeams";
 import { getUserByIdDeduped } from "@/users/queries";

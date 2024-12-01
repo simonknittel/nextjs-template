@@ -1,23 +1,23 @@
 import { loginAction } from "@/authentication/actions/loginAction";
 import { authenticate } from "@/authentication/authenticateAndAuthorize";
 import { getMessage } from "@/authentication/messages";
-import { EmailInput } from "@/common/components/form/EmailInput";
-import { PasswordInput } from "@/common/components/form/PasswordInput";
-import {
-  searchParamsNextjsToURLSearchParams,
-  type NextjsSearchParams,
-} from "@/common/utils/searchParamsNextjsToUrlSearchParams";
-import { env } from "@/env";
-import { Alert } from "@/shadcn/components/ui/alert";
-import { Button } from "@/shadcn/components/ui/button";
+import { Alert } from "@/common/components/Alert";
+import { Button } from "@/common/components/Button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/shadcn/components/ui/card";
-import { Label } from "@/shadcn/components/ui/label";
+} from "@/common/components/Card";
+import { EmailInput } from "@/common/components/form/EmailInput";
+import { Label } from "@/common/components/form/Label";
+import { PasswordInput } from "@/common/components/form/PasswordInput";
+import {
+  searchParamsNextjsToURLSearchParams,
+  type NextjsSearchParams,
+} from "@/common/utils/searchParamsNextjsToUrlSearchParams";
+import { env } from "@/env";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";

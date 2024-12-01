@@ -1,9 +1,9 @@
 "use client";
 
+import { Button } from "@/common/components/Button";
 import { EmailInput } from "@/common/components/form/EmailInput";
-import { Button } from "@/shadcn/components/ui/button";
-import { Label } from "@/shadcn/components/ui/label";
-import { Popover, PopoverContent } from "@/shadcn/components/ui/popover";
+import { Label } from "@/common/components/form/Label";
+import { Popover, PopoverContent } from "@/common/components/Popover";
 import { PopoverTrigger } from "@radix-ui/react-popover";
 import { CirclePlus, Loader2, Save } from "lucide-react";
 import { unstable_rethrow } from "next/navigation";

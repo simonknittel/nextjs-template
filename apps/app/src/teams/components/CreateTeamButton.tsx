@@ -1,13 +1,13 @@
 "use client";
 
+import { Button } from "@/common/components/Button";
+import { Label } from "@/common/components/form/Label";
 import { TextInput } from "@/common/components/form/TextInput";
-import { Button } from "@/shadcn/components/ui/button";
-import { Label } from "@/shadcn/components/ui/label";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/shadcn/components/ui/popover";
+} from "@/common/components/Popover";
 import { CirclePlus, Loader2, Save } from "lucide-react";
 import { unstable_rethrow } from "next/navigation";
 import { useId, useTransition } from "react";

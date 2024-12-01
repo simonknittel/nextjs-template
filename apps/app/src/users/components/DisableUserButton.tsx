@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/shadcn/components/ui/button";
+import { Button } from "@/common/components/Button";
 import type { User } from "@nextjs-template/database";
 import clsx from "clsx";
 import { Loader2, Save } from "lucide-react";

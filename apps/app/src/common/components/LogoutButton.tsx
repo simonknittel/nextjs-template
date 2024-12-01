@@ -1,5 +1,5 @@
 import { logoutAction } from "@/authentication/actions/logoutAction";
-import { Button } from "@/shadcn/components/ui/button";
+import { Button } from "@/common/components/Button";
 import { LogOut } from "lucide-react";
 
 export const LogoutButton = () => {

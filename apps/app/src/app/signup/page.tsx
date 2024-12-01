@@ -1,7 +1,16 @@
 import { signupAction } from "@/authentication/actions/signupAction";
 import { authenticate } from "@/authentication/authenticateAndAuthorize";
 import { getMessage } from "@/authentication/messages";
+import { Alert } from "@/common/components/Alert";
+import { Button } from "@/common/components/Button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/common/components/Card";
 import { EmailInput } from "@/common/components/form/EmailInput";
+import { Label } from "@/common/components/form/Label";
 import { PasswordInput } from "@/common/components/form/PasswordInput";
 import { PasswordRequirements } from "@/common/components/PasswordRequirements";
 import {
@@ -9,15 +18,6 @@ import {
   type NextjsSearchParams,
 } from "@/common/utils/searchParamsNextjsToUrlSearchParams";
 import { env } from "@/env";
-import { Alert } from "@/shadcn/components/ui/alert";
-import { Button } from "@/shadcn/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/shadcn/components/ui/card";
-import { Label } from "@/shadcn/components/ui/label";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";

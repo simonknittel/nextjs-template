@@ -1,4 +1,4 @@
-import { cn } from "@/shadcn/lib/utils";
+import { cn } from "@/common/utils/cn";
 import type { TextareaHTMLAttributes } from "react";
 
 type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement>;

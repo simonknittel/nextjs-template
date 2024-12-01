@@ -1,6 +1,6 @@
 import ReactQueryProvider from "@/common/components/ReactQueryProvider";
+import { ThemeProvider } from "@/common/components/ThemeProvider";
 import { ToasterWrapper } from "@/common/components/ToasterWrapper";
-import { ThemeProvider } from "@/shadcn/components/theme-provider";
 import type { Metadata } from "next";
 import { type ReactNode } from "react";
 import "./globals.css";

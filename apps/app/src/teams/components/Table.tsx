@@ -1,6 +1,6 @@
+import { Card, CardContent } from "@/common/components/Card";
 import { TableTile } from "@/common/components/TableTile";
 import { Thead } from "@/common/components/Thead";
-import { Card, CardContent } from "@/shadcn/components/ui/card";
 import type { Team } from "@nextjs-template/database";
 import clsx from "clsx";
 import Link from "next/link";

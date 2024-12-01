@@ -1,8 +1,8 @@
 "use client";
 
-import { Alert } from "@/shadcn/components/ui/alert";
-import { Button } from "@/shadcn/components/ui/button";
-import { Checkbox } from "@/shadcn/components/ui/checkbox";
+import { Alert } from "@/common/components/Alert";
+import { Button } from "@/common/components/Button";
+import { Checkbox } from "@/common/components/form/Checkbox";
 import type { Team, TeamMembership, User } from "@nextjs-template/database";
 import clsx from "clsx";
 import { Loader2, Save } from "lucide-react";

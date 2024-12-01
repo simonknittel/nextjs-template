@@ -1,4 +1,4 @@
-import { cn } from "@/shadcn/lib/utils";
+import { cn } from "@/common/utils/cn";
 import * as LabelPrimitive from "@radix-ui/react-label";
 import { type ComponentProps } from "react";
 

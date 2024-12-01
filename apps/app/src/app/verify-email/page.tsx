@@ -1,11 +1,11 @@
 import { getMessage, MESSAGES } from "@/authentication/messages";
 import { validateEmailVerificationToken } from "@/authentication/validateEmailVerificationToken";
+import { Card, CardHeader, CardTitle } from "@/common/components/Card";
 import { Note } from "@/common/components/Note";
 import {
   type NextjsSearchParams,
   searchParamsNextjsToURLSearchParams,
 } from "@/common/utils/searchParamsNextjsToUrlSearchParams";
-import { Card, CardHeader, CardTitle } from "@/shadcn/components/ui/card";
 import { prisma } from "@nextjs-template/database";
 import { Logger } from "@nextjs-template/logging";
 import type { Metadata } from "next";

@@ -1,4 +1,4 @@
-import { cn } from "@/shadcn/lib/utils";
+import { cn } from "@/common/utils/cn";
 import { cva, type VariantProps } from "class-variance-authority";
 import { AlertCircle, Check } from "lucide-react";
 import * as React from "react";

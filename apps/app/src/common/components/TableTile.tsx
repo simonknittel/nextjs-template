@@ -1,6 +1,6 @@
 "use client";
 
-import { Card } from "@/shadcn/components/ui/card";
+import { Card } from "@/common/components/Card";
 import clsx from "clsx";
 import { useState, type ReactNode } from "react";
 import { IoChevronDownCircleOutline } from "react-icons/io5";

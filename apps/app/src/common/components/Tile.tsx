@@ -4,7 +4,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/shadcn/components/ui/card";
+} from "@/common/components/Card";
 import clsx from "clsx";
 import { type ReactNode } from "react";
 

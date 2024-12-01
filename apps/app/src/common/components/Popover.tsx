@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/shadcn/lib/utils";
+import { cn } from "@/common/utils/cn";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
 import type { ComponentProps } from "react";
 

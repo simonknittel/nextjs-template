@@ -1,4 +1,4 @@
-import { Input } from "@/shadcn/components/ui/input";
+import { Input } from "@/common/components/form/Input";
 import clsx from "clsx";
 import { type ComponentProps } from "react";
 

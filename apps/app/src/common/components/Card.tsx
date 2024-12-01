@@ -1,4 +1,4 @@
-import { cn } from "@/shadcn/lib/utils";
+import { cn } from "@/common/utils/cn";
 import type { HTMLAttributes } from "react";
 
 type CardProps = HTMLAttributes<HTMLDivElement>;
