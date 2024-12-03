@@ -15,8 +15,8 @@
   "engines": {
     "node": "22.11.0"
   },
-  "packageManager": "npm@10.9.0",
+  "packageManager": "npm@10.9.1",
   "devDependencies": {
-    "turbo": "2.3.1"
+    "turbo": "2.3.2"
   }
 }
