@@ -1,6 +1,6 @@
 # Authorization
 
-## How do define and usage a new permission?
+## How do define and use a new permission?
 
 1. Add permission schema to the [PermissionSet.ts](../apps/app/src/authentication/PermissionSet.ts) file.
 2. Add logic for how to assign this permission to a user in the [getGivenPermissionSets.ts](../apps/app/src/authentication/getGivenPermissionSets.ts) file.
