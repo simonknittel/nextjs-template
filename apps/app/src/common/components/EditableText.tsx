@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 import { FaPen } from "react-icons/fa";
 import type { ServerAction } from "../utils/actions";
 import { useOutsideClick } from "../utils/useOutsideClick";
+import { Button } from "./Button";
+import { TextInput } from "./form/TextInput";
 
 type Props = Readonly<{
   className?: string;
@@ -90,12 +92,9 @@ export const EditableText = ({
               name="value"
               defaultValue={value}
               disabled={isPending}
-              className={clsx(
-                "flex-auto min-w-0 rounded bg-white border-neutral-200 border-solid border-[1px] p-1",
-                {
-                  "animate-pulse": isPending,
-                },
-              )}
+              className={clsx("min-w-0", {
+                "animate-pulse": isPending,
+              })}
               autoFocus
               required={required}
               // @ts-expect-error Not sure how to fix this
@@ -103,17 +102,13 @@ export const EditableText = ({
               rows={5}
             />
           ) : (
-            <input
-              type="text"
+            <TextInput
               name="value"
               defaultValue={value}
               disabled={isPending}
-              className={clsx(
-                "flex-auto min-w-0 rounded bg-white border-neutral-200 border-solid border-[1px] p-1",
-                {
-                  "animate-pulse": isPending,
-                },
-              )}
+              className={clsx("min-w-0", {
+                "animate-pulse": isPending,
+              })}
               autoFocus
               required={required}
               // @ts-expect-error Not sure how to fix this
@@ -121,19 +116,15 @@ export const EditableText = ({
             />
           )}
 
-          <button disabled={isPending} className="flex-none group" title="Save">
-            {isPending ? (
-              <Loader2 className="animate-spin" />
-            ) : (
-              <Save className="group-hover:text-neutral-700 group-active:test-neutral-900" />
-            )}
-          </button>
+          <Button disabled={isPending} className="" title="Save">
+            {isPending ? <Loader2 className="animate-spin" /> : <Save />}
+          </Button>
         </form>
       ) : (
         <button
           type="button"
           onClick={handleClick}
-          className="flex items-center rounded gap-2 py-1 text-base px-2 -ml-2 hover:bg-neutral-200 active:bg-neutral-300 text-left"
+          className="flex items-center rounded gap-2 py-1 text-base px-2 -ml-2 hover:bg-muted text-left"
           title="Click to edit"
         >
           {value ? (
@@ -143,7 +134,9 @@ export const EditableText = ({
               value
             )
           ) : (
-            <span className="flex-auto text-neutral-500 italic">Empty</span>
+            <span className="flex-auto text-muted-foreground italic">
+              Empty
+            </span>
           )}
           <FaPen className="flex-none text-sm" />
         </button>
