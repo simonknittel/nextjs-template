@@ -1,6 +1,5 @@
 "use server";
 
-import type { ServerAction } from "@/common/utils/actions";
 import { Logger } from "@nextjs-template/logging";
 import { cookies } from "next/headers";
 import { redirect, unstable_rethrow } from "next/navigation";
@@ -8,7 +7,7 @@ import { serializeError } from "serialize-error";
 import { authenticate } from "../authenticateAndAuthorize";
 import { lucia } from "../lucia";
 
-export const logoutAction: ServerAction = async () => {
+export const logoutAction = async () => {
   try {
     /**
      * Invalidate session

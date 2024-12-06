@@ -54,7 +54,6 @@ export default async function Page({ searchParams }: Props) {
         </CardHeader>
 
         <CardContent>
-          {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
           <form action={setPasswordAction} className="flex flex-col gap-4">
             <input type="hidden" name="token" value={token} />
 

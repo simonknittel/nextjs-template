@@ -69,7 +69,6 @@ export default async function Page({ searchParams }: Props) {
         </CardHeader>
 
         <CardContent>
-          {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
           <form action={loginAction} className="grid gap-4">
             {urlSearchParams.has("redirect_to") && (
               <input

@@ -24,7 +24,6 @@ export const UpdateUserTeamsForm = ({ className, user, teams }: Props) => {
 
   return (
     <form
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       action={formAction}
       className={clsx(className, "flex flex-col gap-2")}
     >

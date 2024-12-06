@@ -60,7 +60,6 @@ export default async function Page({ searchParams }: Props) {
         </CardHeader>
 
         <CardContent>
-          {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
           <form action={signupAction} className="flex flex-col gap-4">
             <div className="grid gap-2">
               <Label htmlFor="email">Email address</Label>
