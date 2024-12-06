@@ -19,7 +19,7 @@ export const disableTeamAction: ServerAction = async (formData) => {
      * Authenticate and authorize the request
      */
     const authentication = await authenticateAction("disableTeam");
-    authentication.authorizeAction("administration", "manage");
+    await authentication.authorizeAction("administration", "manage");
 
     /**
      * Validate the request

@@ -64,7 +64,6 @@ const Row = ({ user }: RowProps) => {
       </td>
 
       <td className="overflow-hidden text-ellipsis whitespace-nowrap h-full flex items-center px-4">
-        {user.role === UserRole.DEVELOPER && "Admin"}
         {user.role === UserRole.ADMIN && "Admin"}
         {user.role === UserRole.USER && "User"}
       </td>

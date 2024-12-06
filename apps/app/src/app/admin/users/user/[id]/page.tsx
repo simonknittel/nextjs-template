@@ -3,6 +3,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/common/components/Alert";
 import { MetadataTile } from "@/common/components/MetadataTile/MetadataTile";
 import { MetadataTileEntry } from "@/common/components/MetadataTile/MetadataTileEntry";
 import { UserActions } from "@/users/components/UserActions";
+import { UserRoleTile } from "@/users/components/UserRoleTile";
 import { UserTeams } from "@/users/components/UserTeams";
 import { getUserByIdDeduped } from "@/users/queries";
 import { Logger } from "@nextjs-template/logging";
@@ -53,7 +54,7 @@ type Props = Readonly<{
 
 export default async function Page({ params }: Props) {
   const authentication = await authenticatePage("/admin/users/user/[id]");
-  authentication.authorizePage("administration", "manage");
+  await authentication.authorizePage("administration", "manage");
 
   const { id } = await params;
 
@@ -93,8 +94,8 @@ export default async function Page({ params }: Props) {
 
         <div className="flex-auto w-full flex flex-col gap-4">
           <UserActions user={user} />
-
           <UserTeams user={user} />
+          <UserRoleTile user={user} />
         </div>
       </div>
     </main>

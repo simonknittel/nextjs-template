@@ -15,7 +15,7 @@ type Props = Readonly<{
 export const MobileActionBar = async ({ className }: Props) => {
   const authentication = await requireAuthentication();
 
-  const showAdministration = authentication.authorize(
+  const showAdministration = await authentication.authorize(
     "administration",
     "manage",
   );

@@ -24,7 +24,7 @@ export const createUserAction: ServerAction = async (formData) => {
      * Authenticate and authorize the request
      */
     const authentication = await authenticateAction("disableUserAction");
-    authentication.authorizeAction("administration", "manage");
+    await authentication.authorizeAction("administration", "manage");
 
     /**
      * Validate the request

@@ -9,7 +9,7 @@ import { SidebarHighlight } from "./SidebarHighlight";
 export const DesktopSidebar = async () => {
   const authentication = await requireAuthentication();
 
-  const showAdministration = authentication.authorize(
+  const showAdministration = await authentication.authorize(
     "administration",
     "manage",
   );

@@ -19,7 +19,7 @@ export const createTeamAction: ServerAction = async (formData) => {
      * Authenticate and authorize the request
      */
     const authentication = await authenticateAction("createTeam");
-    authentication.authorizeAction("administration", "manage");
+    await authentication.authorizeAction("administration", "manage");
 
     /**
      * Validate the request

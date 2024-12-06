@@ -28,7 +28,7 @@ export const updateTeamAction: ServerAction = async (formData) => {
       name: formData.get("name"),
     });
 
-    authentication.authorizeAction("team", "update", [
+    await authentication.authorizeAction("team", "update", [
       { key: "id", value: id },
     ]);
 

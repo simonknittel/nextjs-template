@@ -30,4 +30,4 @@
 10. Create an developer account
     1. Signup at <http://localhost:3000/signup>
     2. Verify the email address at <http://localhost:1080>
-    3. Change the `role` of the account to `DEVELOPER` in the database
+    3. Change the `systemRole` of the account to `ADMIN` in the database

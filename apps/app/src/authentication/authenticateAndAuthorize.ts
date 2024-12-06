@@ -1,4 +1,3 @@
-import { UserRole } from "@nextjs-template/database";
 import { Logger } from "@nextjs-template/logging";
 import type { Session, User } from "lucia";
 import { cookies } from "next/headers";
@@ -6,6 +5,8 @@ import { redirect } from "next/navigation";
 import { cache } from "react";
 import { comparePermissionSets } from "./comparePermissionSets";
 import { getGivenPermissionSets } from "./getGivenPermissionSets";
+import { hasSystemRoleBypass } from "./hasSystemRoleBypass";
+import { isSystemRoleBypassEnabled } from "./isSystemRoleBypassEnabled";
 import { lucia } from "./lucia";
 import type { ExistingPermissionSet, PermissionSet } from "./PermissionSet";
 
@@ -31,6 +32,7 @@ export const authenticate = cache(async () => {
     ) =>
       authorize(
         authentication,
+        // @ts-expect-error TODO: Improve the authorization types
         givenPermissionSets,
         resource,
         operation,
@@ -53,12 +55,16 @@ export async function authenticatePage(requestPath?: string) {
 
   return {
     ...authentication,
-    authorizePage: (
+    authorizePage: async (
       resource: ExistingPermissionSet["resource"],
       operation: ExistingPermissionSet["operation"],
       attributes?: PermissionSet["attributes"],
     ) => {
-      const result = authentication.authorize(resource, operation, attributes);
+      const result = await authentication.authorize(
+        resource,
+        operation,
+        attributes,
+      );
 
       if (!result) {
         Logger.info("Unauthorized request to page", {
@@ -93,12 +99,16 @@ export async function authenticateApi(
 
   return {
     ...authentication,
-    authorizeApi: (
+    authorizeApi: async (
       resource: ExistingPermissionSet["resource"],
       operation: ExistingPermissionSet["operation"],
       attributes?: PermissionSet["attributes"],
     ) => {
-      const result = authentication.authorize(resource, operation, attributes);
+      const result = await authentication.authorize(
+        resource,
+        operation,
+        attributes,
+      );
 
       if (!result) {
         Logger.info("Unauthorized request to API", {
@@ -130,12 +140,16 @@ export async function authenticateAction(actionName?: string) {
 
   return {
     ...authentication,
-    authorizeAction: (
+    authorizeAction: async (
       resource: ExistingPermissionSet["resource"],
       operation: ExistingPermissionSet["operation"],
       attributes?: PermissionSet["attributes"],
     ) => {
-      const result = authentication.authorize(resource, operation, attributes);
+      const result = await authentication.authorize(
+        resource,
+        operation,
+        attributes,
+      );
 
       if (!result) {
         Logger.info("Unauthorized request to action", {
@@ -162,7 +176,7 @@ export const requireAuthentication = cache(async () => {
   return authentication;
 });
 
-export function authorize(
+export async function authorize(
   authentication: { session: Session; user: User },
   givenPermissionSets: ExistingPermissionSet[],
   resource: ExistingPermissionSet["resource"],
@@ -170,8 +184,8 @@ export function authorize(
   attributes?: PermissionSet["attributes"],
 ) {
   if (
-    authentication.user.role === UserRole.DEVELOPER ||
-    authentication.user.role === UserRole.ADMIN
+    hasSystemRoleBypass(authentication) &&
+    (await isSystemRoleBypassEnabled())
   )
     return true;
 

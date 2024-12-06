@@ -17,6 +17,7 @@ model User {
     email                   String                   @unique
     emailVerifiedAt         DateTime?
     passwordHash            String?
+    systemRole              UserSystemRole           @default(USER)
     role                    UserRole                 @default(USER)
     emailVerificationTokens EmailVerificationToken[]
     passwordResetTokens     PasswordResetToken[]
@@ -38,8 +39,12 @@ model User {
     disabledUsers User[]    @relation("disabledUsers")
 }
 
+enum UserSystemRole {
+    ADMIN
+    USER
+}
+
 enum UserRole {
-    DEVELOPER
     ADMIN
     USER
 }

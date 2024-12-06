@@ -27,7 +27,7 @@ export const getTeamById = (id: Team["id"]) => {
 export const getPermittedTeamIdsForCurrentUserDeduped = cache(async () => {
   const authentication = await requireAuthentication();
 
-  if (authentication.authorize("administration", "manage")) {
+  if (await authentication.authorize("administration", "manage")) {
     const teams = await prisma.team.findMany({
       where: {
         disabledAt: null,

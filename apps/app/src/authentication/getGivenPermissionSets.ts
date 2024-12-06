@@ -1,22 +1,36 @@
-import { prisma, type User } from "@nextjs-template/database";
+import { prisma, UserRole, type User } from "@nextjs-template/database";
 import { cache } from "react";
 
 export const getGivenPermissionSets = cache(async (userId: User["id"]) => {
-  const teamIds = await prisma.teamMembership.findMany({
+  const user = await prisma.user.findUniqueOrThrow({
     where: {
-      userId,
+      id: userId,
+    },
+    include: {
+      teamMemberships: {
+        select: {
+          teamId: true,
+        },
+      },
     },
   });
 
   return [
-    ...teamIds.flatMap((id) => [
+    ...(user.role === UserRole.ADMIN
+      ? [
+          { resource: "administration", operation: "manage" },
+          { resource: "team", operation: "manage" },
+        ]
+      : []),
+
+    ...user.teamMemberships.flatMap((membership) => [
       {
         resource: "team",
         operation: "update",
         attributes: [
           {
             key: "id",
-            value: id,
+            value: membership.teamId,
           },
         ],
       },

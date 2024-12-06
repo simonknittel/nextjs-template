@@ -1,4 +1,5 @@
 import { authenticatePage } from "@/authentication/authenticateAndAuthorize";
+import { SystemRoleBypassEnablerServer } from "@/authentication/components/SystemRoleBypassEnablerServer";
 import { SkipToMain } from "@/common/components/SkipToMain";
 import { ToasterWrapper } from "@/common/components/ToasterWrapper";
 import { Navigation } from "@/common/components/navigation";
@@ -21,6 +22,7 @@ export default async function Layout({ children }: Props) {
         <div className="lg:ml-80 min-h-dvh">{children}</div>
       </div>
 
+      <SystemRoleBypassEnablerServer />
       <ToasterWrapper />
     </>
   );

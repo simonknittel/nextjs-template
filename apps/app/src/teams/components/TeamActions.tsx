@@ -4,7 +4,7 @@ import { Tile } from "@/common/components/Tile";
 import type { Team } from "@nextjs-template/database";
 import clsx from "clsx";
 import { canDisable } from "../can";
-import { DisableTeamButton } from "./DeleteTeamButton";
+import { DisableTeamButton } from "./DisableTeamButton";
 
 type Props = Readonly<{
   className?: string;
