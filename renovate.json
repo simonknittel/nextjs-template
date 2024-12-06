@@ -13,8 +13,6 @@
       "matchPackageNames": [
         "*",
         "!postgres",
-        "!react",
-        "!react-dom",
         "!eslint-plugin-react-compiler",
         "!playwright",
         "!@playwright/test",
