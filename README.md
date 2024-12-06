@@ -21,7 +21,7 @@
 
 ## Features
 
-- Next.js
+- Next.js 15 + React 19
 - Monorepo with npm workspaces and Turborepo
 - TypeScript
 - Prisma
