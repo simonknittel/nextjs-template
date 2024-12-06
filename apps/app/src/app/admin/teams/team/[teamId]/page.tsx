@@ -62,7 +62,7 @@ export default async function Page({ params }: Props) {
   authentication.authorizePage("administration", "manage");
 
   return (
-    <main className="p-4 pb-20 lg:p-8">
+    <main id="main" className="p-4 pb-20 lg:p-8">
       <h1 className="sr-only">Team details</h1>
 
       <div>

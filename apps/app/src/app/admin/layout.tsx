@@ -1,4 +1,5 @@
 import { authenticatePage } from "@/authentication/authenticateAndAuthorize";
+import { SkipToMain } from "@/common/components/SkipToMain";
 import { ToasterWrapper } from "@/common/components/ToasterWrapper";
 import { Navigation } from "@/common/components/navigation";
 import { type ReactNode } from "react";
@@ -12,6 +13,8 @@ export default async function Layout({ children }: Props) {
 
   return (
     <>
+      <SkipToMain />
+
       <div className="min-h-dvh">
         <Navigation />
 
