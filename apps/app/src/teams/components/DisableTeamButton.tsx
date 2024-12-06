@@ -3,7 +3,7 @@
 import { Button } from "@/common/components/Button";
 import type { Team } from "@nextjs-template/database";
 import clsx from "clsx";
-import { Loader2, Save } from "lucide-react";
+import { Ban, Loader2 } from "lucide-react";
 import { unstable_rethrow } from "next/navigation";
 import { useTransition, type ReactNode } from "react";
 import toast from "react-hot-toast";
@@ -53,7 +53,7 @@ export const DisableTeamButton = ({ className, children, team }: Props) => {
         title="Disable team"
         onClick={(e) => e.stopPropagation()}
       >
-        {isPending ? <Loader2 className="animate-spin" /> : <Save />}
+        {isPending ? <Loader2 className="animate-spin" /> : <Ban />}
         {children}
       </Button>
     </form>
