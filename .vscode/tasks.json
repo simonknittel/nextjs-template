@@ -6,7 +6,39 @@
     {
       "label": "turbo run build",
       "type": "shell",
-      "command": "npx turbo run build"
+      "command": "npx turbo run build",
+      "problemMatcher": []
+    },
+    {
+      "label": "npm run lint --workspace=apps/app",
+      "type": "npm",
+      "script": "lint",
+      "path": "apps${pathSeparator}app",
+      // The standard $eslint-stylish problemMatcher doesn't work with monorepos
+      "problemMatcher": [
+        {
+          "owner": "eslint",
+          "fileLocation": [
+            "relative",
+            "${workspaceFolder}${pathSeparator}apps${pathSeparator}app"
+          ],
+          "pattern": [
+            {
+              "regexp": "\\.\\/(.+)",
+              "kind": "location",
+              "file": 1
+            },
+            {
+              "regexp": "^([0-9]+):([0-9]+)  (.+?): (.+?)(  (\\S+))?$",
+              "line": 1,
+              "column": 2,
+              "severity": 3,
+              "message": 4,
+              "code": 6
+            }
+          ]
+        }
+      ]
     }
   ]
 }
