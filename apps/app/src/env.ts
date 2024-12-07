@@ -7,6 +7,7 @@ export const env = createEnv({
    * isn't built with invalid env vars.
    */
   server: {
+    NODE_ENV: z.enum(["development", "production"]).default("development"),
     BASE_URL: z.preprocess((str) => {
       if (str) {
         return str;
@@ -53,6 +54,7 @@ export const env = createEnv({
    * middlewares) or client-side so we need to destruct manually.
    */
   runtimeEnv: {
+    NODE_ENV: process.env.NODE_ENV,
     BASE_URL: process.env.BASE_URL,
     HOST: process.env.HOST,
     SMTP_HOST: process.env.SMTP_HOST,

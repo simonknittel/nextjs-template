@@ -11,7 +11,7 @@ const schema = z.object({
 
     return "localhost:3000";
   }, z.string()),
-  NODE_ENV: z.union([z.literal("development"), z.literal("production")]),
+  NODE_ENV: z.enum(["development", "production"]).default("development"),
 });
 
 export const env = schema.parse(process.env);

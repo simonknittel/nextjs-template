@@ -1,5 +1,6 @@
 import { type NextConfig } from "next";
 import "./src/env";
+import { env } from "./src/env";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -37,11 +38,15 @@ const nextConfig: NextConfig = {
           key: "Referrer-Policy",
           value: "strict-origin-when-cross-origin",
         },
-        // TODO: Reenable on prod
-        // {
-        //   key: "Strict-Transport-Security",
-        //   value: "max-age=31536000; includeSubDomains; preload",
-        // },
+        ...(env.NODE_ENV === "production"
+          ? [
+              {
+                key: "Strict-Transport-Security",
+                value: "max-age=31536000; includeSubDomains; preload",
+              },
+            ]
+          : []),
+        // TODO: Implement CSP
       ],
     },
   ],
