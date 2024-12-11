@@ -13,10 +13,10 @@
     "packages/*"
   ],
   "engines": {
-    "node": "22.11.0"
+    "node": "22.12.0"
   },
   "packageManager": "npm@10.9.1",
   "devDependencies": {
-    "turbo": "2.3.2"
+    "turbo": "2.3.3"
   }
 }
