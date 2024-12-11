@@ -4,7 +4,7 @@
   "type": "module",
   "dependencies": {
     "@nextjs-template/database": "*",
-    "dotenv": "16.4.5"
+    "dotenv": "16.4.7"
   },
   "devDependencies": {
     "@playwright/test": "1.49.0"
