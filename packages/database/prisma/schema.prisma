@@ -13,7 +13,7 @@ datasource db {
 //
 
 model User {
-    id                      String                   @id @default(cuid())
+    id                      String                   @id @default(cuid(2))
     email                   String                   @unique
     emailVerifiedAt         DateTime?
     passwordHash            String?
@@ -75,7 +75,7 @@ model PasswordResetToken {
 //
 
 model Team {
-    id          String           @id @default(cuid())
+    id          String           @id @default(cuid(2))
     name        String
     memberships TeamMembership[]
 
@@ -89,7 +89,7 @@ model Team {
 }
 
 model TeamMembership {
-    id     String @id @default(cuid())
+    id     String @id @default(cuid(2))
     teamId String
     team   Team   @relation(fields: [teamId], references: [id])
     userId String
