@@ -42,6 +42,7 @@ export const loginAction = async (formData: FormData) => {
      * Rate limit the request
      */
     try {
+      // TODO: Implement separate rate limit for IP address
       await rateLimiter.consume(result.data.email);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
