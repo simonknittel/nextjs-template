@@ -31,7 +31,7 @@ export const requestPasswordResetAction = async (
     });
     if (!result.success) {
       return {
-        error: "Invalid request.",
+        error: "Bad Request",
       };
     }
 
@@ -82,10 +82,9 @@ export const requestPasswordResetAction = async (
   } catch (error) {
     unstable_rethrow(error);
 
-    Logger.error(
-      "Request password set failed: unknown error",
-      serializeError(error),
-    );
+    Logger.error("Request password set failed: Internal Server Error", {
+      error: serializeError(error),
+    });
     return {
       error: "An unknown error occurred. Please try again later.",
     };

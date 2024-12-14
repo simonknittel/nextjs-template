@@ -34,7 +34,7 @@ export const loginAction = async (formData: FormData) => {
       redirect_to: formData.get("redirect_to"),
     });
     if (!result.success) {
-      Logger.warn("Login failed: invalid request");
+      Logger.warn("Login failed: Bad Request");
       redirect(`/login?error=${MESSAGES.login.userOrPasswordInvalid.query}`);
     }
 
@@ -121,7 +121,9 @@ export const loginAction = async (formData: FormData) => {
   } catch (error) {
     unstable_rethrow(error);
 
-    Logger.error("Login failed: unknown error", serializeError(error));
+    Logger.error("Login failed: Internal Server Error", {
+      error: serializeError(error),
+    });
     redirect(`/login?error=${MESSAGES.login.unknown.query}`);
   }
 };

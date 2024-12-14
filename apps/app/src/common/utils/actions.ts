@@ -44,7 +44,7 @@ export const serverActionErrorHandler = (
       status: 400,
       errorMessage:
         options?.errorMessages?.[400] ??
-        "Invalid request. Please check your inputs.",
+        "Bad Request. Please check your inputs.",
       error: JSON.stringify(error),
     };
   } else if (error instanceof Error && error.message === "Unauthenticated") {

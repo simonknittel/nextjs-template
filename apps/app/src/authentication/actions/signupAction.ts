@@ -41,7 +41,7 @@ export const signupAction = async (formData: FormData) => {
       passwordRepeat: formData.get("passwordRepeat"),
     });
     if (!result.success) {
-      Logger.warn("Signup failed: invalid request");
+      Logger.warn("Signup failed: Bad Request");
       redirect(`/signup?error=${MESSAGES.signup.passwordRequirements.query}`);
     }
 
@@ -108,7 +108,9 @@ export const signupAction = async (formData: FormData) => {
   } catch (error) {
     unstable_rethrow(error);
 
-    Logger.error("Signup failed: unknown error", serializeError(error));
+    Logger.error("Signup failed: Internal Server Error", {
+      error: serializeError(error),
+    });
     redirect(`/signup?error=${MESSAGES.signup.unknown.query}`);
   }
 };

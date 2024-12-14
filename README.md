@@ -26,7 +26,10 @@
 - TypeScript
 - Prisma
 - Tailwind CSS
-- Lucia Auth
+- Authentication and authorization
+  - Lucia Auth
+  - Email and password
+  - 2FA (TOTP)
 - React Email
 - GitHub Actions
 - Renovate

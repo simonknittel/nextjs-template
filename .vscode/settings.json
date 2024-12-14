@@ -11,7 +11,8 @@
     "oslojs",
     "SAST",
     "shadcn",
-    "SIGNUP"
+    "SIGNUP",
+    "totp"
   ],
   "dotenv.enableAutocloaking": false,
   "typescript.tsdk": "node_modules/typescript/lib",

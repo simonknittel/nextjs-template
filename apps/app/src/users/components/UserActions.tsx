@@ -8,12 +8,13 @@ import type { User } from "@nextjs-template/database";
 import clsx from "clsx";
 import { Loader2 } from "lucide-react";
 import { useActionState } from "react";
-import { canDisable, canRequestResetPassword } from "../can";
+import { canDisable, canDisableTotp, canRequestResetPassword } from "../can";
+import { DisableTotpButton } from "./DisableTotpButton";
 import { DisableUserButton } from "./DisableUserButton";
 
 type Props = Readonly<{
   className?: string;
-  user: Pick<User, "id" | "email" | "disabledAt">;
+  user: Pick<User, "id" | "email" | "disabledAt" | "totpKeyVerifiedAt">;
 }>;
 
 export const UserActions = ({ className, user }: Props) => {
@@ -45,6 +46,8 @@ export const UserActions = ({ className, user }: Props) => {
             </Alert>
           )}
         </form>
+
+        {canDisableTotp(user) && <DisableTotpButton user={user} />}
 
         {canDisable(user) && <DisableUserButton user={user} />}
       </div>

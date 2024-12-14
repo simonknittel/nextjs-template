@@ -31,7 +31,7 @@ export const logoutAction = async () => {
   } catch (error) {
     unstable_rethrow(error);
 
-    Logger.error("Login failed", serializeError(error));
+    Logger.error("Login failed", { error: serializeError(error) });
     redirect(`/admin?error=unknown`);
   }
 };

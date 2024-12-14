@@ -25,6 +25,8 @@ model User {
     createdTeams            Team[]                   @relation("createdUsers")
     disabledTeams           Team[]                   @relation("disabledTeams")
     teamMemberships         TeamMembership[]
+    totpKey                 Bytes?
+    totpKeyVerifiedAt       DateTime?
 
     signedUpAt DateTime?
 

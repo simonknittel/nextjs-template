@@ -99,6 +99,10 @@ export default async function Page({ params }: Props) {
             <MetadataTileEntry title="Invited at at">
               {user.invitedAt?.toISOString() || "Not invited"}
             </MetadataTileEntry>
+
+            <MetadataTileEntry title="2FA enabled at">
+              {user.totpKeyVerifiedAt?.toISOString() || "Not enabled"}
+            </MetadataTileEntry>
           </MetadataTile>
         </div>
 

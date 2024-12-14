@@ -5,10 +5,10 @@ import { type Json, type LogEntry } from "./types";
 export class Logger {
   static info(message: string, args: Json = {}) {
     const logEntry: LogEntry = {
+      ...args,
       ...this.getBaseLogEntry(),
       level: "info",
       message,
-      ...args,
     };
 
     logToConsole(logEntry);
@@ -16,10 +16,10 @@ export class Logger {
 
   static warn(message: string, args: Json = {}) {
     const logEntry: LogEntry = {
+      ...args,
       ...this.getBaseLogEntry(),
       level: "warn",
       message,
-      ...args,
     };
 
     logToConsole(logEntry);
@@ -27,10 +27,10 @@ export class Logger {
 
   static error(message: string, args: Json = {}) {
     const logEntry: LogEntry = {
+      ...args,
       ...this.getBaseLogEntry(),
       level: "error",
       message,
-      ...args,
     };
 
     logToConsole(logEntry);
@@ -40,7 +40,7 @@ export class Logger {
     return {
       timestamp: new Date().toISOString(),
       host: env.HOST,
-      stack: new Error().stack,
+      stack: new Error().stack?.replace(/^Error: \n/, ""),
       ...(env.COMMIT_SHA && { commitSha: env.COMMIT_SHA }),
     };
   }

@@ -26,6 +26,7 @@ import { redirect } from "next/navigation";
 export const metadata: Metadata = {
   title: "Login | Next.js Template",
 };
+
 type Props = Readonly<{
   searchParams: NextjsSearchParams;
 }>;

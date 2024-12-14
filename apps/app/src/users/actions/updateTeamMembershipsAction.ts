@@ -34,7 +34,7 @@ export const updateTeamMembershipsAction = async (
       userId: formData.get("userId"),
       teams: formData.getAll("teams"),
     });
-    if (!result.success) return { error: "Invalid request." };
+    if (!result.success) return { error: "Bad Request" };
 
     /**
      * Update
@@ -75,7 +75,7 @@ export const updateTeamMembershipsAction = async (
   } catch (error) {
     unstable_rethrow(error);
 
-    Logger.error("Internal server error", serializeError(error));
+    Logger.error("Internal server error", { error: serializeError(error) });
     return {
       error: "An unknown error occurred. Please try again later.",
     };

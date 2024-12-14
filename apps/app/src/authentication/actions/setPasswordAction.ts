@@ -72,7 +72,7 @@ export const setPasswordAction = async (formData: FormData) => {
       newPasswordRepeat: formData.get("newPasswordRepeat"),
     });
     if (!passwordResult.success) {
-      Logger.warn("Set password failed: invalid request", { tokenId });
+      Logger.warn("Set password failed: Bad Request", { tokenId });
       redirect(
         `/set-password?token=${tokenId}&error=${MESSAGES.setPassword.passwordRequirements.query}`,
       );
@@ -147,7 +147,7 @@ export const setPasswordAction = async (formData: FormData) => {
   } catch (error) {
     unstable_rethrow(error);
 
-    Logger.error("Set password failed", serializeError(error));
+    Logger.error("Set password failed", { error: serializeError(error) });
 
     /**
      * Set Referrer Policy because of token

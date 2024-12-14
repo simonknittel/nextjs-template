@@ -7,6 +7,7 @@ const createPrismaClient = () =>
     omit: {
       user: {
         passwordHash: true,
+        totpKey: true,
       },
     },
   });
