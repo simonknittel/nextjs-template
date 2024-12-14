@@ -6,7 +6,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "dev:app": "turbo run @nextjs-template/app#dev"
+    "dev:app": "turbo run @nextjs-template/app#dev",
+    "build": "turbo run build"
   },
   "workspaces": [
     "apps/*",
