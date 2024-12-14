@@ -1,31 +1,37 @@
 "use client";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/common/components/AlertDialog";
 import { Button } from "@/common/components/Button";
 import type { Team } from "@nextjs-template/database";
 import clsx from "clsx";
 import { Ban, Loader2 } from "lucide-react";
 import { unstable_rethrow } from "next/navigation";
-import { useTransition, type ReactNode } from "react";
+import { useId, useTransition } from "react";
 import toast from "react-hot-toast";
 import { disableTeamAction } from "../actions/disableTeamAction";
 
 type Props = Readonly<{
   className?: string;
-  children?: ReactNode;
-  team: Pick<Team, "id" | "name">;
+  team: Pick<Team, "id">;
 }>;
 
-export const DisableTeamButton = ({ className, children, team }: Props) => {
+export const DisableTeamButton = ({ className, team }: Props) => {
   const [isPending, startTransition] = useTransition();
+  const id = useId();
 
   const _action = (formData: FormData) => {
     startTransition(async () => {
       try {
-        const confirmation = window.confirm(
-          `Please confirm that you want to disable the team "${team.name}".`,
-        );
-        if (!confirmation) return;
-
         const response = await disableTeamAction(formData);
 
         if (response === undefined || response.status === 200) {
@@ -43,19 +49,38 @@ export const DisableTeamButton = ({ className, children, team }: Props) => {
   };
 
   return (
-    <form action={_action} className={clsx(className, "inline-block")}>
+    <form action={_action} id={id} className={clsx(className, "inline-block")}>
       <input type="hidden" name="id" value={team.id} />
 
-      <Button
-        disabled={isPending}
-        variant="destructive"
-        type="submit"
-        title="Disable team"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {isPending ? <Loader2 className="animate-spin" /> : <Ban />}
-        {children}
-      </Button>
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button
+            disabled={isPending}
+            variant="destructive"
+            title="Disable team"
+          >
+            {isPending ? <Loader2 className="animate-spin" /> : <Ban />}
+            Disable
+          </Button>
+        </AlertDialogTrigger>
+
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Disable team?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action can&apos;t be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+
+            <AlertDialogAction type="submit" form={id}>
+              Disable
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </form>
   );
 };

@@ -46,9 +46,7 @@ export const UserActions = ({ className, user }: Props) => {
           )}
         </form>
 
-        {canDisable(user) && (
-          <DisableUserButton user={user}>Disable</DisableUserButton>
-        )}
+        {canDisable(user) && <DisableUserButton user={user} />}
       </div>
     </Tile>
   );

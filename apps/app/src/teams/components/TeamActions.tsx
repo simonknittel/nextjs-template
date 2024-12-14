@@ -15,9 +15,7 @@ export const TeamActions = ({ className, team }: Props) => {
   return (
     <Tile className={clsx(className)} heading="Actions">
       <div className="flex gap-2">
-        {canDisable(team) && (
-          <DisableTeamButton team={team}>Disable</DisableTeamButton>
-        )}
+        {canDisable(team) && <DisableTeamButton team={team} />}
       </div>
     </Tile>
   );

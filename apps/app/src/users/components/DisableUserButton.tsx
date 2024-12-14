@@ -1,31 +1,37 @@
 "use client";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/common/components/AlertDialog";
 import { Button } from "@/common/components/Button";
 import type { User } from "@nextjs-template/database";
 import clsx from "clsx";
 import { Ban, Loader2 } from "lucide-react";
 import { unstable_rethrow } from "next/navigation";
-import { useTransition, type ReactNode } from "react";
+import { useId, useTransition } from "react";
 import toast from "react-hot-toast";
 import { disableUserAction } from "../actions/disableUserAction";
 
 type Props = Readonly<{
   className?: string;
-  children?: ReactNode;
-  user: Pick<User, "id" | "email">;
+  user: Pick<User, "id">;
 }>;
 
-export const DisableUserButton = ({ className, children, user }: Props) => {
+export const DisableUserButton = ({ className, user }: Props) => {
   const [isPending, startTransition] = useTransition();
+  const id = useId();
 
   const _action = (formData: FormData) => {
     startTransition(async () => {
       try {
-        const confirmation = window.confirm(
-          `Please confirm that you want to disable the user "${user.email}".`,
-        );
-        if (!confirmation) return;
-
         const response = await disableUserAction(formData);
 
         if (response === undefined || response.status === 200) {
@@ -43,19 +49,38 @@ export const DisableUserButton = ({ className, children, user }: Props) => {
   };
 
   return (
-    <form action={_action} className={clsx(className, "inline-block")}>
+    <form action={_action} id={id} className={clsx("inline-block", className)}>
       <input type="hidden" name="id" value={user.id} />
 
-      <Button
-        disabled={isPending}
-        variant="destructive"
-        type="submit"
-        title="Disable user"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {isPending ? <Loader2 className="animate-spin" /> : <Ban />}
-        {children}
-      </Button>
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button
+            disabled={isPending}
+            variant="destructive"
+            title="Disable user"
+          >
+            {isPending ? <Loader2 className="animate-spin" /> : <Ban />}
+            Disable
+          </Button>
+        </AlertDialogTrigger>
+
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Disable user?</AlertDialogTitle>
+            <AlertDialogDescription>
+              The user won&apos;t be able to log in anymore.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+
+            <AlertDialogAction type="submit" form={id}>
+              Disable
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </form>
   );
 };

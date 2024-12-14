@@ -40,6 +40,7 @@ export default async function Page({ searchParams }: Props) {
      * Rate limit the request
      */
     try {
+      // TODO: Implement separate rate limit for IP address
       await rateLimiter.consume(token);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
