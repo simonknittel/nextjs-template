@@ -1,6 +1,17 @@
+import { logoutAction } from "@/authentication/actions/logoutAction";
 import { authenticate } from "@/authentication/authenticateAndAuthorize";
 import clsx from "clsx";
-import { LogoutButton } from "../LogoutButton";
+import { Ellipsis, LogOut, UserRoundCog } from "lucide-react";
+import Link from "next/link";
+import { Button } from "../Button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../DropdownMenu";
 
 type Props = Readonly<{
   className?: string;
@@ -17,7 +28,27 @@ export const Account = async ({ className }: Props) => {
         <span className="block font-bold">{authentication.user.email}</span>
       </p>
 
-      <LogoutButton />
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline" size="icon" title="Open account menu">
+            <Ellipsis />
+          </Button>
+        </DropdownMenuTrigger>
+
+        <DropdownMenuContent>
+          <DropdownMenuLabel>Account</DropdownMenuLabel>
+
+          <DropdownMenuSeparator />
+
+          <DropdownMenuItem asChild className="cursor-pointer">
+            {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+            <button onClick={logoutAction} className="w-full">
+              <LogOut />
+              Logout
+            </button>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 };
