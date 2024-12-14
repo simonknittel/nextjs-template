@@ -89,6 +89,16 @@ export default async function Page({ params }: Props) {
             <MetadataTileEntry title="Email address">
               {user.email}
             </MetadataTileEntry>
+
+            <MetadataTileEntry title="ID">{user.id}</MetadataTileEntry>
+
+            <MetadataTileEntry title="Signed up at">
+              {user.signedUpAt?.toISOString() || "Not signed up"}
+            </MetadataTileEntry>
+
+            <MetadataTileEntry title="Invited at at">
+              {user.invitedAt?.toISOString() || "Not invited"}
+            </MetadataTileEntry>
           </MetadataTile>
         </div>
 

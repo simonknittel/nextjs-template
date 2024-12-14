@@ -41,6 +41,7 @@ export const createUserAction: ServerAction = async (formData) => {
         email,
         emailVerifiedAt: new Date(),
         role: UserRole.USER,
+        invitedAt: new Date(),
       },
     });
 

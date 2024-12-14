@@ -94,6 +94,7 @@ export const signupAction = async (formData: FormData) => {
       data: {
         email: result.data.email,
         passwordHash,
+        signedUpAt: new Date(),
       },
     });
 

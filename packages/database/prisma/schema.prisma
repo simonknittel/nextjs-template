@@ -26,9 +26,9 @@ model User {
     disabledTeams           Team[]                   @relation("disabledTeams")
     teamMemberships         TeamMembership[]
 
-    signupAt DateTime? @default(now())
+    signedUpAt DateTime?
 
-    invitedAt    DateTime? @default(now())
+    invitedAt    DateTime?
     invitedById  String?
     invitedBy    User?     @relation("invitedUsers", fields: [invitedById], references: [id])
     invitedUsers User[]    @relation("invitedUsers")

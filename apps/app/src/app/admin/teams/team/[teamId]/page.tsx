@@ -89,6 +89,12 @@ export default async function Page({ params }: Props) {
             <MetadataTileEntry title="Name">
               {canUpdate(team) ? <EditableTeamName team={team} /> : team.name}
             </MetadataTileEntry>
+
+            <MetadataTileEntry title="ID">{team.id}</MetadataTileEntry>
+
+            <MetadataTileEntry title="Created at">
+              {team.createdAt.toISOString()}
+            </MetadataTileEntry>
           </MetadataTile>
         </div>
 
