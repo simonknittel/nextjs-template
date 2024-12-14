@@ -41,6 +41,13 @@ export const Account = async ({ className }: Props) => {
           <DropdownMenuSeparator />
 
           <DropdownMenuItem asChild className="cursor-pointer">
+            <Link href="/admin/account" passHref>
+              <UserRoundCog />
+              Settings
+            </Link>
+          </DropdownMenuItem>
+
+          <DropdownMenuItem asChild className="cursor-pointer">
             {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
             <button onClick={logoutAction} className="w-full">
               <LogOut />
