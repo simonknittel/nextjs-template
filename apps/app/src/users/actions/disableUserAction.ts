@@ -31,19 +31,27 @@ export const disableUserAction: ServerAction = async (formData) => {
     /**
      * Disable
      */
-    const disabledUser = await prisma.user.update({
-      where: {
-        id,
-      },
-      data: {
-        disabledAt: new Date(),
-        disabledBy: {
-          connect: {
-            id: authentication.user.id,
+    const [disabledUser] = await prisma.$transaction([
+      prisma.user.update({
+        where: {
+          id,
+        },
+        data: {
+          disabledAt: new Date(),
+          disabledBy: {
+            connect: {
+              id: authentication.user.id,
+            },
           },
         },
-      },
-    });
+      }),
+
+      prisma.session.deleteMany({
+        where: {
+          userId: id,
+        },
+      }),
+    ]);
 
     /**
      * Respond with the result
