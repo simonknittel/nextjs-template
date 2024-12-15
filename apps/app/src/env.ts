@@ -38,7 +38,7 @@ export const env = createEnv({
     SIGNUP_ENABLED: z.preprocess((str) => {
       return str === "true";
     }, z.boolean()),
-    ENCRYPTION_KEY: z.string().min(32),
+    ENCRYPTION_KEY: z.string().length(44),
   },
 
   /**
