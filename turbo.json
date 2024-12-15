@@ -8,6 +8,24 @@
         ".next/**",
         "!.next/cache/**",
         "tsconfig.tsbuildinfo"
+      ],
+      "passThroughEnv": [
+        "COMMIT_SHA",
+        "HOST",
+        "NODE_ENV",
+        "DATABASE_URL",
+        "BASE_URL",
+        "SMTP_HOST",
+        "SMTP_PORT",
+        "SMTP_USER",
+        "SMTP_PASSWORD",
+        "SMTP_FROM",
+        "MIN_PASSWORD_LENGTH",
+        "MAX_PASSWORD_LENGTH",
+        "EMAIL_VERIFICATION_TOKEN_EXPIRATION",
+        "PASSWORD_RESET_TOKEN_EXPIRATION",
+        "SIGNUP_ENABLED",
+        "ENCRYPTION_KEY"
       ]
     },
     "@nextjs-template/database#build": {

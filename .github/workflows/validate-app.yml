@@ -140,11 +140,7 @@ jobs:
       #       ${{ runner.os }}-turbo-
 
       - name: Build
-        run: |
-          echo $DATABASE_URL
-          echo $TURBO_TEAM
-          echo $ENCRYPTION_KEY
-          npx turbo run build
+        run: npx turbo run build
 
       # https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md#postgresql
       - name: Prepare database
