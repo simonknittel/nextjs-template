@@ -25,7 +25,9 @@
         "EMAIL_VERIFICATION_TOKEN_EXPIRATION",
         "PASSWORD_RESET_TOKEN_EXPIRATION",
         "SIGNUP_ENABLED",
-        "ENCRYPTION_KEY"
+        "ENCRYPTION_KEY",
+        "SKIP_VALIDATION",
+        "CI"
       ]
     },
     "@nextjs-template/database#build": {
