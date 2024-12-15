@@ -60,7 +60,7 @@ export const DisableUserButton = ({ className, user }: Props) => {
             title="Disable user"
           >
             {isPending ? <Loader2 className="animate-spin" /> : <Ban />}
-            Disable
+            Disable user
           </Button>
         </AlertDialogTrigger>
 
