@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     env:
-      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ vars.TURBO_TEAM }}
       ENCRYPTION_KEY: ld91x9FB31jEae0nSjd/YqaJU9ZQS/QzLLJVcAITYBo= # No real key (openssl rand --base64 32)
