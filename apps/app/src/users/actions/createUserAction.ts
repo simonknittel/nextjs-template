@@ -42,6 +42,11 @@ export const createUserAction: ServerAction = async (formData) => {
         emailVerifiedAt: new Date(),
         role: UserRole.USER,
         invitedAt: new Date(),
+        invitedBy: {
+          connect: {
+            id: authentication.user.id,
+          },
+        },
       },
     });
 
