@@ -31,7 +31,7 @@ jobs:
         id: npm-cache-dir
         run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
 
-      - uses: actions/cache@v4.1.2
+      - uses: actions/cache@v4.2.0
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-${{ hashFiles('.nvmrc', 'package-lock.json', 'packages/database/prisma/prisma.schema') }}
@@ -123,7 +123,7 @@ jobs:
         id: npm-cache-dir
         run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
 
-      - uses: actions/cache@v4.1.2
+      - uses: actions/cache@v4.2.0
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-${{ hashFiles('.nvmrc', 'package-lock.json', 'packages/database/prisma/prisma.schema') }}
