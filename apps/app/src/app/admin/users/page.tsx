@@ -4,10 +4,12 @@ import {
   type NextjsSearchParams,
   searchParamsNextjsToURLSearchParams,
 } from "@/common/utils/searchParamsNextjsToUrlSearchParams";
+import { Skeleton } from "@/teams/components/Skeleton";
 import { CreateUserButton } from "@/users/components/CreateUserButton";
 import { Filters } from "@/users/components/Filters";
 import { Table } from "@/users/components/Table";
 import { type Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Users | Next.js Template",
@@ -35,10 +37,12 @@ export default async function Page({ searchParams }: Props) {
 
       <Filters className="mt-4 lg:mt-8" />
 
-      <Table
-        showDisabled={urlSearchParams.get("show-disabled") === "true"}
-        className="mt-4 lg:mt-8"
-      />
+      <Suspense fallback={<Skeleton className="mt-2 lg:mt-4" />}>
+        <Table
+          showDisabled={urlSearchParams.get("show-disabled") === "true"}
+          className="mt-2 lg:mt-4"
+        />
+      </Suspense>
     </main>
   );
 }

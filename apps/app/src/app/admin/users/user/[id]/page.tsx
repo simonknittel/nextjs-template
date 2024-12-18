@@ -103,6 +103,18 @@ export default async function Page({ params }: Props) {
             <MetadataTileEntry title="2FA enabled at">
               {user.totpKeyVerifiedAt?.toISOString() || "Not enabled"}
             </MetadataTileEntry>
+
+            {user.disabledAt && (
+              <>
+                <MetadataTileEntry title="Disabled at">
+                  {user.disabledAt.toISOString()}
+                </MetadataTileEntry>
+
+                <MetadataTileEntry title="Disabled by">
+                  {user.disabledBy?.email}
+                </MetadataTileEntry>
+              </>
+            )}
           </MetadataTile>
         </div>
 

@@ -19,6 +19,7 @@ export const getUserByIdDeduped = cache(async (id: User["id"]) => {
     },
     include: {
       teamMemberships: true,
+      disabledBy: true,
     },
   });
 });

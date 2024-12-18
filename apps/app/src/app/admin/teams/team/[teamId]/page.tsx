@@ -5,7 +5,7 @@ import { MetadataTileEntry } from "@/common/components/MetadataTile/MetadataTile
 import { canUpdate } from "@/teams/can";
 import { EditableTeamName } from "@/teams/components/EditableTeamName";
 import { TeamActions } from "@/teams/components/TeamActions";
-import { getTeamById } from "@/teams/queries";
+import { getTeamByIdDeduped } from "@/teams/queries";
 import { Logger } from "@nextjs-template/logging";
 import { AlertCircle } from "lucide-react";
 import type { Metadata } from "next";
@@ -28,7 +28,7 @@ export async function generateMetadata({
   try {
     const { teamId } = await params;
 
-    const team = await getTeamById(teamId);
+    const team = await getTeamByIdDeduped(teamId);
     if (!team) return {};
 
     return {
@@ -55,7 +55,7 @@ type Props = Readonly<{
 export default async function Page({ params }: Props) {
   const { teamId } = await params;
 
-  const team = await getTeamById(teamId);
+  const team = await getTeamByIdDeduped(teamId);
   if (!team) notFound();
 
   const authentication = await authenticatePage("/admin/teams/team/[teamId]");
@@ -95,6 +95,18 @@ export default async function Page({ params }: Props) {
             <MetadataTileEntry title="Created at">
               {team.createdAt.toISOString()}
             </MetadataTileEntry>
+
+            {team.disabledAt && (
+              <>
+                <MetadataTileEntry title="Disabled at">
+                  {team.disabledAt.toISOString()}
+                </MetadataTileEntry>
+
+                <MetadataTileEntry title="Disabled by">
+                  {team.disabledBy?.email}
+                </MetadataTileEntry>
+              </>
+            )}
           </MetadataTile>
         </div>
 

@@ -19,11 +19,14 @@ export const getTeams = async (includeDisabled = false) => {
   });
 };
 
-export const getTeamById = (id: Team["id"]) => {
+export const getTeamByIdDeduped = cache((id: Team["id"]) => {
   return prisma.team.findUnique({
     where: { id },
+    include: {
+      disabledBy: true,
+    },
   });
-};
+});
 
 export const getPermittedTeamIdsForCurrentUserDeduped = cache(
   async (includeDisabled = false) => {
