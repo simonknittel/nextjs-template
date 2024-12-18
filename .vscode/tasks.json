@@ -4,9 +4,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "turbo run build",
+      "label": "npm run build",
       "type": "shell",
-      "command": "npx turbo run build",
+      "command": "npm run build",
       "problemMatcher": []
     },
     {

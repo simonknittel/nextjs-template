@@ -19,7 +19,7 @@
       "runtimeVersion": "22.11.0",
       "skipFiles": ["<node_internals>/**"],
       "console": "integratedTerminal",
-      "preLaunchTask": "turbo run build"
+      "preLaunchTask": "npm run build"
     }
   ]
 }

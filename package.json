@@ -7,7 +7,8 @@
   },
   "scripts": {
     "dev:app": "turbo run @nextjs-template/app#dev",
-    "build": "turbo run build"
+    "build": "turbo run build",
+    "db:push": "npx --workspace packages/database prisma db push"
   },
   "workspaces": [
     "apps/*",
