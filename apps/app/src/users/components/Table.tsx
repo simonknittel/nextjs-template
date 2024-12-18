@@ -6,14 +6,13 @@ import clsx from "clsx";
 import Link from "next/link";
 import { getUsers } from "../queries";
 
-export const dynamic = "force-dynamic";
-
 type Props = Readonly<{
   className?: string;
+  showDisabled?: boolean;
 }>;
 
-export const Table = async ({ className }: Props) => {
-  const users = await getUsers();
+export const Table = async ({ className, showDisabled }: Props) => {
+  const users = await getUsers(showDisabled);
 
   if (users.length === 0)
     return (

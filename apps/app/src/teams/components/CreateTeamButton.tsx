@@ -24,7 +24,7 @@ export const CreateTeamButton = ({ className }: Props) => {
       <PopoverTrigger asChild>
         <Button className={className}>
           <CirclePlus />
-          Create team
+          Create
         </Button>
       </PopoverTrigger>
 

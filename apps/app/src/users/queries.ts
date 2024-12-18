@@ -1,10 +1,10 @@
 import { prisma, type User } from "@nextjs-template/database";
 import { cache } from "react";
 
-export const getUsers = async () => {
+export const getUsers = async (includeDisabled = false) => {
   return prisma.user.findMany({
     where: {
-      disabledAt: null,
+      disabledAt: includeDisabled ? undefined : null,
     },
     orderBy: {
       email: "asc",

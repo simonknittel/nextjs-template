@@ -1,8 +1,13 @@
 import { authenticatePage } from "@/authentication/authenticateAndAuthorize";
 import { PageHeading } from "@/common/components/PageHeading";
+import {
+  searchParamsNextjsToURLSearchParams,
+  type NextjsSearchParams,
+} from "@/common/utils/searchParamsNextjsToUrlSearchParams";
 import { CreateTeamButton } from "@/teams/components/CreateTeamButton";
+import { Filters } from "@/teams/components/Filters";
 import { Skeleton } from "@/teams/components/Skeleton";
-import { TeamsTableTile } from "@/teams/components/TeamsTableTile";
+import { Table } from "@/teams/components/Table";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
@@ -10,9 +15,17 @@ export const metadata: Metadata = {
   title: "Teams | Next.js Template",
 };
 
-export default async function Page() {
+type Props = Readonly<{
+  searchParams: NextjsSearchParams;
+}>;
+
+export default async function Page({ searchParams }: Props) {
   const authentication = await authenticatePage("/admin/teams");
   await authentication.authorizePage("administration", "manage");
+
+  const urlSearchParams = searchParamsNextjsToURLSearchParams(
+    await searchParams,
+  );
 
   return (
     <main id="main" className="p-4 pb-20 lg:p-8">
@@ -22,8 +35,13 @@ export default async function Page() {
         <CreateTeamButton />
       </div>
 
-      <Suspense fallback={<Skeleton className="mt-4 lg:mt-8" />}>
-        <TeamsTableTile className="mt-4 lg:mt-8" />
+      <Filters className="mt-4 lg:mt-8" />
+
+      <Suspense fallback={<Skeleton className="mt-2 lg:mt-4" />}>
+        <Table
+          showDisabled={urlSearchParams.get("show-disabled") === "true"}
+          className="mt-2 lg:mt-4"
+        />
       </Suspense>
     </main>
   );

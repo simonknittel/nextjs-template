@@ -4,13 +4,16 @@ import { Thead } from "@/common/components/Thead";
 import type { Team } from "@nextjs-template/database";
 import clsx from "clsx";
 import Link from "next/link";
+import { getTeams } from "../queries";
 
 type Props = Readonly<{
   className?: string;
-  teams: Team[];
+  showDisabled?: boolean;
 }>;
 
-export const Table = ({ className, teams }: Props) => {
+export const Table = async ({ className, showDisabled }: Props) => {
+  const teams = await getTeams(showDisabled);
+
   if (teams.length === 0)
     return (
       <Card className={className}>

@@ -3,7 +3,8 @@ import { prisma, type Team } from "@nextjs-template/database";
 import { cache } from "react";
 
 export const getTeams = async (includeDisabled = false) => {
-  const permittedIds = await getPermittedTeamIdsForCurrentUserDeduped();
+  const permittedIds =
+    await getPermittedTeamIdsForCurrentUserDeduped(includeDisabled);
 
   return prisma.team.findMany({
     where: {
@@ -24,24 +25,26 @@ export const getTeamById = (id: Team["id"]) => {
   });
 };
 
-export const getPermittedTeamIdsForCurrentUserDeduped = cache(async () => {
-  const authentication = await requireAuthentication();
+export const getPermittedTeamIdsForCurrentUserDeduped = cache(
+  async (includeDisabled = false) => {
+    const authentication = await requireAuthentication();
 
-  if (await authentication.authorize("administration", "manage")) {
-    const teams = await prisma.team.findMany({
-      where: {
-        disabledAt: null,
-      },
-    });
+    if (await authentication.authorize("administration", "manage")) {
+      const teams = await prisma.team.findMany({
+        where: {
+          disabledAt: includeDisabled ? undefined : null,
+        },
+      });
 
-    return teams.map((team) => team.id);
-  } else {
-    const memberships = await prisma.teamMembership.findMany({
-      where: {
-        userId: authentication.user.id,
-      },
-    });
+      return teams.map((team) => team.id);
+    } else {
+      const memberships = await prisma.teamMembership.findMany({
+        where: {
+          userId: authentication.user.id,
+        },
+      });
 
-    return memberships.map((membership) => membership.teamId);
-  }
-});
+      return memberships.map((membership) => membership.teamId);
+    }
+  },
+);

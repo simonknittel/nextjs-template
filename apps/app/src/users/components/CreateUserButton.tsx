@@ -21,7 +21,7 @@ export const CreateUserButton = ({ className }: Props) => {
       <PopoverTrigger asChild>
         <Button className={className}>
           <CirclePlus />
-          Create user
+          Create
         </Button>
       </PopoverTrigger>
 
