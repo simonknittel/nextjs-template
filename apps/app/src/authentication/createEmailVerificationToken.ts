@@ -16,25 +16,17 @@ export const createEmailVerificationToken = async (userId: User["id"]) => {
     expiresAt.getTime() + env.EMAIL_VERIFICATION_TOKEN_EXPIRATION * 1000,
   );
 
-  await prisma.$transaction([
-    prisma.emailVerificationToken.deleteMany({
-      where: {
-        userId: userId,
-      },
-    }),
-
-    prisma.emailVerificationToken.create({
-      data: {
-        user: {
-          connect: {
-            id: userId,
-          },
+  await prisma.emailVerificationToken.create({
+    data: {
+      user: {
+        connect: {
+          id: userId,
         },
-        hash: tokenHash,
-        expiresAt,
       },
-    }),
-  ]);
+      hash: tokenHash,
+      expiresAt,
+    },
+  });
 
   return tokenId;
 };
