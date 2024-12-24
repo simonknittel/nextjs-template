@@ -1,5 +1,5 @@
 import { getMessage, MESSAGES } from "@/authentication/messages";
-import { validateEmailVerificationToken } from "@/authentication/validateEmailVerificationToken";
+import { verifyEmail } from "@/authentication/validateEmailVerificationToken";
 import { Card, CardHeader, CardTitle } from "@/common/components/Card";
 import { Logo } from "@/common/components/Logo";
 import { Note } from "@/common/components/Note";
@@ -7,7 +7,6 @@ import {
   type NextjsSearchParams,
   searchParamsNextjsToURLSearchParams,
 } from "@/common/utils/searchParamsNextjsToUrlSearchParams";
-import { prisma } from "@nextjs-template/database";
 import { Logger } from "@nextjs-template/logging";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
@@ -53,14 +52,9 @@ export default async function Page({ searchParams }: Props) {
     /**
      * Validate the token
      */
-    tokenVerificationResult = await validateEmailVerificationToken(token);
+    tokenVerificationResult = await verifyEmail(token);
 
     if (tokenVerificationResult) {
-      await prisma.user.update({
-        // @ts-expect-error I don't know why the if statement converts the false from the union to true
-        where: { id: tokenVerificationResult.userId }, // eslint-disable-line @typescript-eslint/no-unsafe-assignment
-        data: { emailVerifiedAt: new Date() },
-      });
       redirect(`/login?success=${MESSAGES.login.verified.query}`);
     }
 

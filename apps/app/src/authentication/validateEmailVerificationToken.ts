@@ -2,7 +2,7 @@ import { prisma } from "@nextjs-template/database";
 import { sha256 } from "@oslojs/crypto/sha2";
 import { encodeHexLowerCase } from "@oslojs/encoding";
 
-export const validateEmailVerificationToken = async (tokenId: string) => {
+export const verifyEmail = async (tokenId: string) => {
   const tokenHash = encodeHexLowerCase(
     sha256(new TextEncoder().encode(tokenId)),
   );
@@ -15,14 +15,20 @@ export const validateEmailVerificationToken = async (tokenId: string) => {
       },
     },
   });
-
   if (!token) return false;
 
-  await prisma.emailVerificationToken.deleteMany({
-    where: {
-      userId: token.userId,
-    },
-  });
+  await prisma.$transaction([
+    prisma.user.update({
+      where: { id: token.userId }, // eslint-disable-line @typescript-eslint/no-unsafe-assignment
+      data: { emailVerifiedAt: new Date() },
+    }),
 
-  return token;
+    prisma.emailVerificationToken.deleteMany({
+      where: {
+        userId: token.userId,
+      },
+    }),
+  ]);
+
+  return true;
 };
