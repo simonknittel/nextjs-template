@@ -8,7 +8,7 @@ export function middleware(request: NextRequest) {
 
   // Early return. Make sure to use `authenticatePage()` on individual pages in order to fully authenticate the user.
   if (pathname.startsWith("/admin") && !sessionCookie) {
-    Logger.info("Unauthenticated request to middleware", {
+    Logger.info("Unauthorized request to middleware", {
       requestUrl: request.url,
     });
     const requestUrl = new URL(request.url);

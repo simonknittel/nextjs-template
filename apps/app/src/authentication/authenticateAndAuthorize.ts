@@ -45,7 +45,7 @@ export async function authenticatePage(requestPath?: string) {
   const authentication = await authenticate();
 
   if (!authentication) {
-    Logger.info("Unauthenticated request to page", {
+    Logger.info("Unauthorized request to page", {
       requestPath,
       reason: "No session",
     });
@@ -67,13 +67,13 @@ export async function authenticatePage(requestPath?: string) {
       );
 
       if (!result) {
-        Logger.info("Unauthorized request to page", {
+        Logger.info("Forbidden request to page", {
           requestPath,
           userId: authentication.user.id,
           reason: "Insufficient permissions",
         });
 
-        redirect("/admin/unauthorized");
+        redirect("/admin/forbidden");
       }
 
       return result;
@@ -88,13 +88,13 @@ export async function authenticateApi(
   const authentication = await authenticate();
 
   if (!authentication) {
-    Logger.info("Unauthenticated request to API", {
+    Logger.info("Unauthorized request to API", {
       requestPath,
       requestMethod,
       reason: "No session",
     });
 
-    throw new Error("Unauthenticated");
+    throw new Error("Unauthorized");
   }
 
   return {
@@ -111,14 +111,14 @@ export async function authenticateApi(
       );
 
       if (!result) {
-        Logger.info("Unauthorized request to API", {
+        Logger.info("Forbidden request to API", {
           requestPath,
           requestMethod,
           userId: authentication.user.id,
           reason: "Insufficient permissions",
         });
 
-        throw new Error("Unauthorized");
+        throw new Error("Forbidden");
       }
 
       return result;
@@ -130,12 +130,12 @@ export async function authenticateAction(actionName?: string) {
   const authentication = await authenticate();
 
   if (!authentication) {
-    Logger.info("Unauthenticated request to action", {
+    Logger.info("Unauthorized request to action", {
       actionName,
       reason: "No session",
     });
 
-    throw new Error("Unauthenticated");
+    throw new Error("Unauthorized");
   }
 
   return {
@@ -152,13 +152,13 @@ export async function authenticateAction(actionName?: string) {
       );
 
       if (!result) {
-        Logger.info("Unauthorized request to action", {
+        Logger.info("Forbidden request to action", {
           actionName,
           userId: authentication.user.id,
           reason: "Insufficient permissions",
         });
 
-        throw new Error("Unauthorized");
+        throw new Error("Forbidden");
       }
 
       return result;
@@ -170,7 +170,7 @@ export const requireAuthentication = cache(async () => {
   const authentication = await authenticate();
 
   if (!authentication) {
-    throw new Error("Unauthenticated");
+    throw new Error("Unauthorized");
   }
 
   return authentication;

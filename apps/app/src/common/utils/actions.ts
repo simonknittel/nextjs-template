@@ -47,8 +47,8 @@ export const serverActionErrorHandler = (
         "Bad Request. Please check your inputs.",
       error: JSON.stringify(error),
     };
-  } else if (error instanceof Error && error.message === "Unauthenticated") {
-    Logger.warn("Unauthenticated", {
+  } else if (error instanceof Error && error.message === "Unauthorized") {
+    Logger.warn("Unauthorized", {
       error: serializeError(error),
     });
     return {
@@ -56,8 +56,8 @@ export const serverActionErrorHandler = (
       errorMessage:
         options?.errorMessages?.[401] ?? "You have to be signed in to do this.",
     };
-  } else if (error instanceof Error && error.message === "Unauthorized") {
-    Logger.warn("Unauthorized", {
+  } else if (error instanceof Error && error.message === "Forbidden") {
+    Logger.warn("Forbidden", {
       error: serializeError(error),
     });
     return {

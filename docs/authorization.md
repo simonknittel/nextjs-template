@@ -15,7 +15,7 @@ const authentication = await authenticate();
 if (
   !authentication.authorize("myResource", "read", [{ key: "id", value: "1" }])
 )
-  throw new Error("Unauthorized");
+  throw new Error("Forbidden");
 
 // Do something
 ```

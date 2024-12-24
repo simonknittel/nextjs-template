@@ -2,11 +2,11 @@ import { authenticatePage } from "@/authentication/authenticateAndAuthorize";
 import { type Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Unauthorized | Next.js Template",
+  title: "Forbidden | Next.js Template",
 };
 
 export default async function NotFound() {
-  await authenticatePage("/admin/unauthorized");
+  await authenticatePage("/admin/forbidden");
 
   return (
     <main
