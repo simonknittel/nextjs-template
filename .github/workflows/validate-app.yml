@@ -92,7 +92,7 @@ jobs:
           --health-retries 5
           --health-start-period 10s
       maildev:
-        image: maildev/maildev:2.1.0
+        image: maildev/maildev:2.2.1
         env:
           MAILDEV_WEB_PORT: 1080
           MAILDEV_SMTP_PORT: 1025
@@ -156,7 +156,7 @@ jobs:
           SIGNUP_ENABLED: true
           MAILDEV_BASE_URL: http://maildev:1080
 
-      - uses: actions/upload-artifact@v4.4.3
+      - uses: actions/upload-artifact@v4.5.0
         if: always()
         with:
           name: playwright-report
