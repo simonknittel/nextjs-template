@@ -1,5 +1,4 @@
 import { type NextConfig } from "next";
-import "./src/env";
 import { env } from "./src/env";
 
 const nextConfig: NextConfig = {

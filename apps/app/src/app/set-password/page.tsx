@@ -28,9 +28,8 @@ type Props = Readonly<{
 }>;
 
 export default async function Page({ searchParams }: Props) {
-  const urlSearchParams = searchParamsNextjsToURLSearchParams(
-    await searchParams,
-  );
+  const urlSearchParams =
+    await searchParamsNextjsToURLSearchParams(searchParams);
 
   const token = urlSearchParams.get("token") || "";
 

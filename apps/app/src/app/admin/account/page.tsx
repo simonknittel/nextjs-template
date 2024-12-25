@@ -29,9 +29,8 @@ export default async function Page({ searchParams }: Props) {
     },
   });
 
-  const urlSearchParams = searchParamsNextjsToURLSearchParams(
-    await searchParams,
-  );
+  const urlSearchParams =
+    await searchParamsNextjsToURLSearchParams(searchParams);
 
   return (
     <main id="main" className="p-4 pb-20 lg:p-8">

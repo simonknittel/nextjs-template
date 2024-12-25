@@ -35,9 +35,8 @@ export default async function Page({ searchParams }: Props) {
   const authentication = await authenticate();
   if (authentication) redirect("/admin");
 
-  const urlSearchParams = searchParamsNextjsToURLSearchParams(
-    await searchParams,
-  );
+  const urlSearchParams =
+    await searchParamsNextjsToURLSearchParams(searchParams);
 
   return (
     <main className="p-4 pb-20 lg:p-8 min-h-dvh flex flex-col gap-4 items-center justify-center">

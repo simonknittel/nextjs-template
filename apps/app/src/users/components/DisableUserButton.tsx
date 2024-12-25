@@ -29,7 +29,7 @@ export const DisableUserButton = ({ className, user }: Props) => {
   const [isPending, startTransition] = useTransition();
   const id = useId();
 
-  const _action = (formData: FormData) => {
+  const formAction = (formData: FormData) => {
     startTransition(async () => {
       try {
         const response = await disableUserAction(formData);
@@ -49,7 +49,11 @@ export const DisableUserButton = ({ className, user }: Props) => {
   };
 
   return (
-    <form action={_action} id={id} className={clsx("inline-block", className)}>
+    <form
+      action={formAction}
+      id={id}
+      className={clsx("inline-block", className)}
+    >
       <input type="hidden" name="id" value={user.id} />
 
       <AlertDialog>
