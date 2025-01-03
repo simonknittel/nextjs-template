@@ -43,7 +43,7 @@ export const setPasswordAction = async (formData: FormData) => {
      */
     const tokenResult = tokenSchema.safeParse(formData.get("token"));
     if (!tokenResult.success) {
-      Logger.warn("Set password failed: invalid token");
+      Logger.warn("Set password failed: Bad Request");
       redirect(
         `/set-password?error=${MESSAGES.setPassword.invalidToken.query}`,
       );

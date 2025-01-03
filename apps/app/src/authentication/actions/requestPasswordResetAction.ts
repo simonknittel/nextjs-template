@@ -30,6 +30,7 @@ export const requestPasswordResetAction = async (
       email: formData.get("email"),
     });
     if (!result.success) {
+      Logger.warn("Request password reset failed: Bad Request");
       return {
         error: "Bad Request",
       };

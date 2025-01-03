@@ -16,25 +16,17 @@ export const createPasswordResetToken = async (userId: User["id"]) => {
     expiresAt.getTime() + env.PASSWORD_RESET_TOKEN_EXPIRATION * 1000,
   );
 
-  await prisma.$transaction([
-    prisma.passwordResetToken.deleteMany({
-      where: {
-        userId: userId,
-      },
-    }),
-
-    prisma.passwordResetToken.create({
-      data: {
-        user: {
-          connect: {
-            id: userId,
-          },
+  await prisma.passwordResetToken.create({
+    data: {
+      user: {
+        connect: {
+          id: userId,
         },
-        hash: tokenHash,
-        expiresAt,
       },
-    }),
-  ]);
+      hash: tokenHash,
+      expiresAt,
+    },
+  });
 
   return tokenId;
 };
