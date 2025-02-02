@@ -1,5 +1,5 @@
 import { Tile } from "@/common/components/Tile";
-import { UserRole, type User } from "@nextjs-template/database";
+import { UserRole, type User } from "@/db";
 import clsx from "clsx";
 import { UpdateUserRoleForm } from "./UpdateUserRoleForm";
 

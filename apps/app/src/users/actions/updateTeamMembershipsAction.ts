@@ -1,7 +1,7 @@
 "use server";
 
 import { authenticate } from "@/authentication/authenticateAndAuthorize";
-import { prisma } from "@nextjs-template/database";
+import { prisma } from "@/db";
 import { Logger } from "@nextjs-template/logging";
 import { revalidatePath } from "next/cache";
 import { unstable_rethrow } from "next/navigation";

@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/common/components/Card";
 import { TableTile } from "@/common/components/TableTile";
 import { Thead } from "@/common/components/Thead";
-import { UserRole, type User } from "@nextjs-template/database";
+import { UserRole, type User } from "@/db";
 import clsx from "clsx";
 import Link from "next/link";
 import { getUsers } from "../queries";

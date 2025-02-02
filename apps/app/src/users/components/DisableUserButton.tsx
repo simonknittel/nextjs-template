@@ -12,7 +12,7 @@ import {
   AlertDialogTrigger,
 } from "@/common/components/AlertDialog";
 import { Button } from "@/common/components/Button";
-import type { User } from "@nextjs-template/database";
+import type { User } from "@/db";
 import clsx from "clsx";
 import { Ban, Loader2 } from "lucide-react";
 import { unstable_rethrow } from "next/navigation";

@@ -1,4 +1,4 @@
-import type { Team } from "@nextjs-template/database";
+import type { Team } from "@/db";
 
 /**
  * *can* functions should be used to centrally define whether an action can be

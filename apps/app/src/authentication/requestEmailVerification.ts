@@ -1,6 +1,6 @@
+import type { User } from "@/db";
 import { sendEmail } from "@/emails/utils/sendEmail";
 import { env } from "@/env";
-import type { User } from "@nextjs-template/database";
 import VerifyEmail from "@nextjs-template/transactional/emails/VerifyEmail";
 import { render } from "@react-email/components";
 import { createEmailVerificationToken } from "./createEmailVerificationToken";

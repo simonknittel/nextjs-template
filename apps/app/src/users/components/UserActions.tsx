@@ -4,7 +4,7 @@ import { requestPasswordResetAction } from "@/authentication/actions/requestPass
 import { Alert } from "@/common/components/Alert";
 import { Button } from "@/common/components/Button";
 import { Tile } from "@/common/components/Tile";
-import type { User } from "@nextjs-template/database";
+import type { User } from "@/db";
 import clsx from "clsx";
 import { Loader2 } from "lucide-react";
 import { useActionState } from "react";

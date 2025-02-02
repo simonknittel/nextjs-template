@@ -5,7 +5,7 @@ import {
   type ServerAction,
   serverActionErrorHandler,
 } from "@/common/utils/actions";
-import { prisma } from "@nextjs-template/database";
+import { prisma } from "@/db";
 import { z } from "zod";
 
 const schema = z.object({

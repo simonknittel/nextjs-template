@@ -1,4 +1,4 @@
-import { prisma, UserRole, type User } from "@nextjs-template/database";
+import { prisma, UserRole, type User } from "@/db";
 import { cache } from "react";
 
 export const getGivenPermissionSets = cache(async (userId: User["id"]) => {

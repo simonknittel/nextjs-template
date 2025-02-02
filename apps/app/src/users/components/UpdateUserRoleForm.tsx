@@ -7,7 +7,7 @@ import {
   RadioGroup,
   RadioGroupItem,
 } from "@/common/components/form/RadioGroup";
-import { type User } from "@nextjs-template/database";
+import { type User } from "@/db";
 import clsx from "clsx";
 import { Loader2, Save } from "lucide-react";
 import { useActionState } from "react";

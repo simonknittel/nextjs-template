@@ -1,7 +1,7 @@
 "use client";
 
 import { Tile } from "@/common/components/Tile";
-import type { Team } from "@nextjs-template/database";
+import type { Team } from "@/db";
 import clsx from "clsx";
 import { canDisable } from "../can";
 import { DisableTeamButton } from "./DisableTeamButton";

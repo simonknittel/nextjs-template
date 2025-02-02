@@ -1,8 +1,8 @@
 import { authenticatePage } from "@/authentication/authenticateAndAuthorize";
 import { DisableTile } from "@/authentication/components/totp/DisableTile";
 import { PageHeading } from "@/common/components/PageHeading";
+import { prisma } from "@/db";
 import { env } from "@/env";
-import { prisma } from "@nextjs-template/database";
 import { Logger } from "@nextjs-template/logging";
 import { type Metadata } from "next";
 import { redirect } from "next/navigation";

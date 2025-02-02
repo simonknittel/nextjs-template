@@ -1,4 +1,4 @@
-import { UserSystemRole } from "@nextjs-template/database";
+import { UserSystemRole } from "@/db";
 import type { User } from "lucia";
 
 export const hasSystemRoleBypass = (authentication: { user: User }) => {

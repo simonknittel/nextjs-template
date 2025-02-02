@@ -1,6 +1,6 @@
+import type { User } from "@/db";
 import { sendEmail } from "@/emails/utils/sendEmail";
 import { env } from "@/env";
-import type { User } from "@nextjs-template/database";
 import SetPassword from "@nextjs-template/transactional/emails/SetPassword";
 import { render } from "@react-email/components";
 import { createPasswordResetToken } from "./createPasswordResetToken";

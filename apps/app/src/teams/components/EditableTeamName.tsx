@@ -1,8 +1,8 @@
 "use client";
 
 import { EditableText } from "@/common/components/EditableText";
+import type { Team } from "@/db";
 import { updateTeamAction } from "@/teams/actions/updateTeamAction";
-import type { Team } from "@nextjs-template/database";
 
 type Props = Readonly<{
   className?: string;

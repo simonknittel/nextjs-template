@@ -5,7 +5,7 @@ import {
   serverActionErrorHandler,
   type ServerAction,
 } from "@/common/utils/actions";
-import { prisma } from "@nextjs-template/database";
+import { prisma } from "@/db";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 

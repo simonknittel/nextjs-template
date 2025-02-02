@@ -1,4 +1,4 @@
-import type { User } from "@nextjs-template/database";
+import type { User } from "@/db";
 
 /**
  * *can* functions should be used to centrally define whether an action can be

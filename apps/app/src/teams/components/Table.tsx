@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/common/components/Card";
 import { TableTile } from "@/common/components/TableTile";
 import { Thead } from "@/common/components/Thead";
-import type { Team } from "@nextjs-template/database";
+import type { Team } from "@/db";
 import clsx from "clsx";
 import Link from "next/link";
 import { getTeams } from "../queries";

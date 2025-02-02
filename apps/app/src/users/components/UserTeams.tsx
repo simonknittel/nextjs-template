@@ -1,6 +1,6 @@
 import { Tile } from "@/common/components/Tile";
+import type { TeamMembership, User } from "@/db";
 import { getTeams } from "@/teams/queries";
-import type { TeamMembership, User } from "@nextjs-template/database";
 import clsx from "clsx";
 import { UpdateUserTeamsForm } from "./UpdateUserTeamsForm";
 

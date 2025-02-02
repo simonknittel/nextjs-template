@@ -1,7 +1,7 @@
 "use server";
 
 import { encrypt } from "@/common/utils/encryption";
-import { prisma } from "@nextjs-template/database";
+import { prisma } from "@/db";
 import { Logger } from "@nextjs-template/logging";
 import { decodeBase32 } from "@oslojs/encoding";
 import { verifyTOTP } from "@oslojs/otp";

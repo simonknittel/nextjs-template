@@ -1,6 +1,6 @@
 "use server";
 
-import { prisma } from "@nextjs-template/database";
+import { prisma } from "@/db";
 import { Logger } from "@nextjs-template/logging";
 import { redirect, unstable_rethrow } from "next/navigation";
 import { RateLimiterMemory } from "rate-limiter-flexible";

@@ -1,4 +1,4 @@
-import { prisma, type User } from "@nextjs-template/database";
+import { prisma, type User } from "@/db";
 import { cache } from "react";
 
 export const getUsers = async (includeDisabled = false) => {

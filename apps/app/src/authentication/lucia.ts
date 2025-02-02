@@ -1,9 +1,5 @@
+import { prisma, type UserRole, type UserSystemRole } from "@/db";
 import { PrismaAdapter } from "@lucia-auth/adapter-prisma";
-import {
-  prisma,
-  type UserRole,
-  type UserSystemRole,
-} from "@nextjs-template/database";
 import { Lucia } from "lucia";
 
 const adapter = new PrismaAdapter(prisma.session, prisma.user);

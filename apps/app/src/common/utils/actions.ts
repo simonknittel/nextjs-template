@@ -1,4 +1,4 @@
-import { PrismaClientKnownRequestError } from "@nextjs-template/database";
+import { PrismaClientKnownRequestError } from "@/db";
 import { Logger } from "@nextjs-template/logging";
 import { unstable_rethrow } from "next/navigation";
 import { serializeError } from "serialize-error";

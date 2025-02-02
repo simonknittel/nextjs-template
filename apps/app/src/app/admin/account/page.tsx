@@ -8,7 +8,7 @@ import {
   searchParamsNextjsToURLSearchParams,
   type NextjsSearchParams,
 } from "@/common/utils/searchParamsNextjsToUrlSearchParams";
-import { prisma } from "@nextjs-template/database";
+import { prisma } from "@/db";
 import { type Metadata } from "next";
 import Link from "next/link";
 

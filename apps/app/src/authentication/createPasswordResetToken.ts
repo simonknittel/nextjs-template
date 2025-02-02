@@ -1,5 +1,5 @@
+import { prisma, type User } from "@/db";
 import { env } from "@/env";
-import { prisma, type User } from "@nextjs-template/database";
 import { sha256 } from "@oslojs/crypto/sha2";
 import { encodeHexLowerCase } from "@oslojs/encoding";
 import { generateIdFromEntropySize } from "lucia";

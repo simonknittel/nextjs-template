@@ -1,8 +1,8 @@
 "use server";
 
+import { prisma } from "@/db";
 import { sendEmail } from "@/emails/utils/sendEmail";
 import { env } from "@/env";
-import { prisma } from "@nextjs-template/database";
 import { Logger } from "@nextjs-template/logging";
 import SetPasswordConfirmation from "@nextjs-template/transactional/emails/SetPasswordConfirmation";
 import { render } from "@react-email/components";

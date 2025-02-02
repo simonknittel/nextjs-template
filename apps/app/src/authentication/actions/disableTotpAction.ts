@@ -1,7 +1,7 @@
 "use server";
 
 import { decrypt } from "@/common/utils/encryption";
-import { prisma } from "@nextjs-template/database";
+import { prisma } from "@/db";
 import { Logger } from "@nextjs-template/logging";
 import { verifyTOTP } from "@oslojs/otp";
 import { redirect, unstable_rethrow } from "next/navigation";

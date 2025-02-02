@@ -1,5 +1,5 @@
 import { requireAuthentication } from "@/authentication/authenticateAndAuthorize";
-import { prisma, type Team } from "@nextjs-template/database";
+import { prisma, type Team } from "@/db";
 import { cache } from "react";
 
 export const getTeams = async (includeDisabled = false) => {

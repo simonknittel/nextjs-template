@@ -2,7 +2,7 @@ import { authenticatePage } from "@/authentication/authenticateAndAuthorize";
 import { StartTile } from "@/authentication/components/totp/StartTile";
 import { createTotpKey } from "@/authentication/createTotpKey";
 import { PageHeading } from "@/common/components/PageHeading";
-import { prisma } from "@nextjs-template/database";
+import { prisma } from "@/db";
 import { Logger } from "@nextjs-template/logging";
 import { type Metadata } from "next";
 import { redirect } from "next/navigation";

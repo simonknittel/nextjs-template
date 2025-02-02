@@ -6,9 +6,9 @@ import {
   type ServerAction,
   serverActionErrorHandler,
 } from "@/common/utils/actions";
+import { prisma, UserRole } from "@/db";
 import { sendEmail } from "@/emails/utils/sendEmail";
 import { env } from "@/env";
-import { prisma, UserRole } from "@nextjs-template/database";
 import UserInvite from "@nextjs-template/transactional/emails/UserInvite";
 import { render } from "@react-email/components";
 import { redirect } from "next/navigation";

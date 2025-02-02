@@ -3,7 +3,7 @@
 import { Alert } from "@/common/components/Alert";
 import { Button } from "@/common/components/Button";
 import { Checkbox } from "@/common/components/form/Checkbox";
-import type { Team, TeamMembership, User } from "@nextjs-template/database";
+import type { Team, TeamMembership, User } from "@/db";
 import clsx from "clsx";
 import { Loader2, Save } from "lucide-react";
 import { useActionState } from "react";
