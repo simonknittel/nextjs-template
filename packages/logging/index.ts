@@ -1,6 +1,6 @@
 import { env } from "./env";
 import { logToConsole } from "./console";
-import { type Json, type LogEntry } from "./types";
+import type { Json, LogEntry } from "./types";
 
 export class Logger {
   static info(message: string, args: Json = {}) {
