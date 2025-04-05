@@ -5,13 +5,13 @@
     "dev": "email dev --port=3001"
   },
   "dependencies": {
-    "@react-email/components": "0.0.31",
-    "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "@react-email/components": "0.0.34",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "@types/react": "19.0.3",
-    "@types/react-dom": "19.0.2",
-    "react-email": "3.0.4"
+    "@types/react": "19.0.12",
+    "@types/react-dom": "19.0.4",
+    "react-email": "3.0.7"
   }
 }
