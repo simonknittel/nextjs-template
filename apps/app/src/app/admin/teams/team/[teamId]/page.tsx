@@ -1,9 +1,10 @@
 import { authenticatePage } from "@/authentication/authenticateAndAuthorize";
 import { Alert, AlertDescription, AlertTitle } from "@/common/components/Alert";
+import { EditableInput } from "@/common/components/form/EditableInput";
 import { MetadataTile } from "@/common/components/MetadataTile/MetadataTile";
 import { MetadataTileEntry } from "@/common/components/MetadataTile/MetadataTileEntry";
+import { updateTeamName } from "@/teams/actions/updateTeamName";
 import { canUpdate } from "@/teams/can";
-import { EditableTeamName } from "@/teams/components/EditableTeamName";
 import { TeamActions } from "@/teams/components/TeamActions";
 import { getTeamByIdDeduped } from "@/teams/queries";
 import { Logger } from "@nextjs-template/logging";
@@ -87,7 +88,17 @@ export default async function Page({ params }: Props) {
 
           <MetadataTile>
             <MetadataTileEntry title="Name">
-              {canUpdate(team) ? <EditableTeamName team={team} /> : team.name}
+              {canUpdate(team) ? (
+                <EditableInput
+                  type="text"
+                  rowId={team.id}
+                  columnName="name"
+                  initialValue={team.name}
+                  action={updateTeamName}
+                />
+              ) : (
+                team.name
+              )}
             </MetadataTileEntry>
 
             <MetadataTileEntry title="ID">{team.id}</MetadataTileEntry>
