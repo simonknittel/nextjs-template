@@ -9,10 +9,10 @@ import {
   Text,
 } from "@react-email/components";
 
-type Props = Readonly<{
-  tokenId: string;
-  baseUrl: string;
-}>;
+interface Props {
+  readonly tokenId: string;
+  readonly baseUrl: string;
+}
 
 export default function Email({
   tokenId = "1234567890",

@@ -6,10 +6,11 @@ import clsx from "clsx";
 import { canDisable } from "../can";
 import { DisableTeamButton } from "./DisableTeamButton";
 
-type Props = Readonly<{
-  className?: string;
-  team: Pick<Team, "id" | "name" | "disabledAt">;
-}>;
+interface Props
+  extends Readonly<{
+    className?: string;
+    team: Pick<Team, "id" | "name" | "disabledAt">;
+  }> {}
 
 export const TeamActions = ({ className, team }: Props) => {
   return (

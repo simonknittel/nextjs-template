@@ -27,9 +27,9 @@ export const metadata: Metadata = {
   title: "Login | Next.js Template",
 };
 
-type Props = Readonly<{
-  searchParams: NextjsSearchParams;
-}>;
+interface Props {
+  readonly searchParams: NextjsSearchParams;
+}
 
 export default async function Page({ searchParams }: Props) {
   const authentication = await authenticate();

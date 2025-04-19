@@ -2,10 +2,9 @@ import { Input } from "@/common/components/form/Input";
 import clsx from "clsx";
 import { type ComponentProps } from "react";
 
-type Props = Readonly<{
-  className?: string;
-}> &
-  ComponentProps<"input">;
+interface Props extends ComponentProps<"input"> {
+  readonly className?: string;
+}
 
 export const TextInput = (props: Props) => {
   const { className, ...other } = props;

@@ -8,14 +8,14 @@ import {
 import clsx from "clsx";
 import { type ReactNode } from "react";
 
-type Props = Readonly<{
-  className?: string;
-  heading: ReactNode;
-  badge?: ReactNode;
-  badgeVariant?: "error";
-  description?: ReactNode;
-  children?: ReactNode;
-}>;
+interface Props {
+  readonly className?: string;
+  readonly heading: ReactNode;
+  readonly badge?: ReactNode;
+  readonly badgeVariant?: "error";
+  readonly description?: ReactNode;
+  readonly children?: ReactNode;
+}
 
 export const Tile = ({
   className,

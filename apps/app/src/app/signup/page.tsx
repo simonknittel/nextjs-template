@@ -26,9 +26,10 @@ import { notFound, redirect } from "next/navigation";
 export const metadata: Metadata = {
   title: "Signup | Next.js Template",
 };
-type Props = Readonly<{
-  searchParams: NextjsSearchParams;
-}>;
+
+interface Props {
+  readonly searchParams: NextjsSearchParams;
+}
 
 export default async function Page({ searchParams }: Props) {
   if (env.SIGNUP_ENABLED !== true) notFound();

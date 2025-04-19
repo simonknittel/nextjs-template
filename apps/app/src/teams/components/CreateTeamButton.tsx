@@ -14,9 +14,9 @@ import { useId, useTransition } from "react";
 import toast from "react-hot-toast";
 import { createTeamAction } from "../actions/createTeamAction";
 
-type Props = Readonly<{
-  className?: string;
-}>;
+interface Props {
+  readonly className?: string;
+}
 
 export const CreateTeamButton = ({ className }: Props) => {
   return (

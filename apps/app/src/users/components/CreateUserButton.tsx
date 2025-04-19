@@ -11,9 +11,9 @@ import { useId, useTransition } from "react";
 import toast from "react-hot-toast";
 import { createUserAction } from "../actions/createUserAction";
 
-type Props = Readonly<{
-  className?: string;
-}>;
+interface Props {
+  readonly className?: string;
+}
 
 export const CreateUserButton = ({ className }: Props) => {
   return (

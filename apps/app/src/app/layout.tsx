@@ -9,9 +9,9 @@ export const metadata: Metadata = {
   title: "Next.js Template",
 };
 
-type Props = Readonly<{
-  children: ReactNode;
-}>;
+interface Props {
+  readonly children: ReactNode;
+}
 
 export default function RootLayout({ children }: Props) {
   return (

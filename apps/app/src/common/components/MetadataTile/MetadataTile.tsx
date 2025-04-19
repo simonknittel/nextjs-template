@@ -2,10 +2,10 @@ import clsx from "clsx";
 import { type ReactNode } from "react";
 import { Tile } from "../Tile";
 
-type Props = Readonly<{
-  className?: string;
-  children: ReactNode;
-}>;
+interface Props {
+  readonly className?: string;
+  readonly children: ReactNode;
+}
 
 export const MetadataTile = ({ className, children }: Props) => {
   return (

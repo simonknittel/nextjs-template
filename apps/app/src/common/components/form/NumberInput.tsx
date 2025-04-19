@@ -1,10 +1,10 @@
 import clsx from "clsx";
 import { useId, type ComponentProps } from "react";
 
-type Props = ComponentProps<"input"> & {
-  label: string;
-  hint?: string;
-};
+interface Props extends ComponentProps<"input"> {
+  readonly label: string;
+  readonly hint?: string;
+}
 
 export const NumberInput = (props: Props) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

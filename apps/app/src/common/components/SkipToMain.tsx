@@ -1,9 +1,9 @@
 import clsx from "clsx";
 import { Button } from "./Button";
 
-type Props = Readonly<{
-  className?: string;
-}>;
+interface Props {
+  readonly className?: string;
+}
 
 export const SkipToMain = ({ className }: Props) => {
   return (

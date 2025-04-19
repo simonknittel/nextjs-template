@@ -11,11 +11,11 @@ import clsx from "clsx";
 import { Loader2 } from "lucide-react";
 import { useActionState } from "react";
 
-type Props = Readonly<{
-  className?: string;
-  MIN_PASSWORD_LENGTH: number;
-  MAX_PASSWORD_LENGTH: number;
-}>;
+interface Props {
+  readonly className?: string;
+  readonly MIN_PASSWORD_LENGTH: number;
+  readonly MAX_PASSWORD_LENGTH: number;
+}
 
 export const DisableTile = ({
   className,

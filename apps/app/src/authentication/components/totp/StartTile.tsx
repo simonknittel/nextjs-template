@@ -9,11 +9,11 @@ import clsx from "clsx";
 import { Loader2 } from "lucide-react";
 import { useActionState } from "react";
 
-type Props = Readonly<{
-  className?: string;
-  base32EncodedKey: string;
-  qrCode: string;
-}>;
+interface Props {
+  readonly className?: string;
+  readonly base32EncodedKey: string;
+  readonly qrCode: string;
+}
 
 export const StartTile = ({ className, base32EncodedKey, qrCode }: Props) => {
   const [state, formAction, isPending] = useActionState(

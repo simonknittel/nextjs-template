@@ -6,10 +6,10 @@ import clsx from "clsx";
 import Link from "next/link";
 import { getUsers } from "../queries";
 
-type Props = Readonly<{
-  className?: string;
-  showDisabled?: boolean;
-}>;
+interface Props {
+  readonly className?: string;
+  readonly showDisabled?: boolean;
+}
 
 export const Table = async ({ className, showDisabled }: Props) => {
   const users = await getUsers(showDisabled);
@@ -41,9 +41,9 @@ export const Table = async ({ className, showDisabled }: Props) => {
   );
 };
 
-type RowProps = Readonly<{
-  user: Pick<User, "id" | "email" | "role">;
-}>;
+interface RowProps {
+  readonly user: Pick<User, "id" | "email" | "role">;
+}
 
 const Row = ({ user }: RowProps) => {
   return (

@@ -1,13 +1,13 @@
 import clsx from "clsx";
 import type { ReactNode } from "react";
 
-type EntryProps = Readonly<{
-  className?: string;
-  children: ReactNode;
-  childrenClassName?: string;
-  title: ReactNode;
-  tooltip?: ReactNode;
-}>;
+interface EntryProps {
+  readonly className?: string;
+  readonly children: ReactNode;
+  readonly childrenClassName?: string;
+  readonly title: ReactNode;
+  readonly tooltip?: ReactNode;
+}
 
 export const MetadataTileEntry = ({
   className,

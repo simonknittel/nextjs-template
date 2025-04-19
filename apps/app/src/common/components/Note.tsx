@@ -6,11 +6,11 @@ import {
   MdOutlineReportGmailerrorred,
 } from "react-icons/md";
 
-type Props = Readonly<{
-  className?: string;
-  children?: ReactNode;
-  type: "info" | "success" | "error";
-}>;
+interface Props {
+  readonly className?: string;
+  readonly children?: ReactNode;
+  readonly type: "info" | "success" | "error";
+}
 
 export const Note = ({ className, children, type }: Props) => {
   return (

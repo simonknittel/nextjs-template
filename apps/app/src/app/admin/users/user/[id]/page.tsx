@@ -48,9 +48,9 @@ export async function generateMetadata({
   }
 }
 
-type Props = Readonly<{
-  params: Params;
-}>;
+interface Props {
+  readonly params: Params;
+}
 
 export default async function Page({ params }: Props) {
   const authentication = await authenticatePage("/admin/users/user/[id]");

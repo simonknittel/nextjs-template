@@ -1,9 +1,9 @@
 import clsx from "clsx";
 import { Logo } from "../Logo";
 
-type Props = Readonly<{
-  className?: string;
-}>;
+interface Props {
+  readonly className?: string;
+}
 
 export const SidebarHeader = ({ className }: Props) => {
   return (

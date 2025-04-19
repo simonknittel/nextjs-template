@@ -12,10 +12,13 @@ import { canDisable, canDisableTotp, canRequestResetPassword } from "../can";
 import { DisableTotpButton } from "./DisableTotpButton";
 import { DisableUserButton } from "./DisableUserButton";
 
-type Props = Readonly<{
-  className?: string;
-  user: Pick<User, "id" | "email" | "disabledAt" | "totpKeyVerifiedAt">;
-}>;
+interface Props {
+  readonly className?: string;
+  readonly user: Pick<
+    User,
+    "id" | "email" | "disabledAt" | "totpKeyVerifiedAt"
+  >;
+}
 
 export const UserActions = ({ className, user }: Props) => {
   const [state, formAction, isPending] = useActionState(

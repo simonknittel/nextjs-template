@@ -3,9 +3,9 @@ import { hasSystemRoleBypass } from "../hasSystemRoleBypass";
 import { isSystemRoleBypassEnabled } from "../isSystemRoleBypassEnabled";
 import { SystemRoleBypassEnablerClient } from "./SystemRoleBypassEnablerClient";
 
-type Props = Readonly<{
-  className?: string;
-}>;
+interface Props {
+  readonly className?: string;
+}
 
 export const SystemRoleBypassEnablerServer = async ({ className }: Props) => {
   const authentication = await authenticate();

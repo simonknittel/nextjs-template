@@ -6,10 +6,10 @@ import clsx from "clsx";
 import Link from "next/link";
 import { getTeams } from "../queries";
 
-type Props = Readonly<{
-  className?: string;
-  showDisabled?: boolean;
-}>;
+interface Props {
+  readonly className?: string;
+  readonly showDisabled?: boolean;
+}
 
 export const Table = async ({ className, showDisabled }: Props) => {
   const teams = await getTeams(showDisabled);
@@ -40,9 +40,9 @@ export const Table = async ({ className, showDisabled }: Props) => {
   );
 };
 
-type Row = Readonly<{
-  team: Team;
-}>;
+interface Row {
+  readonly team: Team;
+}
 
 const Row = ({ team }: Row) => {
   return (

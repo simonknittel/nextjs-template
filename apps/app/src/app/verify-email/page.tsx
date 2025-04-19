@@ -22,9 +22,9 @@ export const metadata: Metadata = {
   title: "Confirm your email address | Next.js Template",
 };
 
-type Props = Readonly<{
-  searchParams: NextjsSearchParams;
-}>;
+interface Props {
+  readonly searchParams: NextjsSearchParams;
+}
 
 export default async function Page({ searchParams }: Props) {
   const urlSearchParams =

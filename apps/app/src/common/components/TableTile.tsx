@@ -5,13 +5,13 @@ import clsx from "clsx";
 import { useState, type ReactNode } from "react";
 import { IoChevronDownCircleOutline } from "react-icons/io5";
 
-type Props = Readonly<{
-  className?: string;
-  heading: ReactNode;
-  headingSrOnly?: boolean;
-  collapsed?: boolean;
-  children: ReactNode;
-}>;
+interface Props {
+  readonly className?: string;
+  readonly heading: ReactNode;
+  readonly headingSrOnly?: boolean;
+  readonly collapsed?: boolean;
+  readonly children: ReactNode;
+}
 
 export const TableTile = ({
   className,

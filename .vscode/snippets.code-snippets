@@ -5,9 +5,9 @@
     "body": [
       "import clsx from \"clsx\";",
       "",
-      "type Props = Readonly<{",
-      "\tclassName?: string;",
-      "}>",
+      "interface Props {",
+      "\treadonly className?: string;",
+      "}",
       "",
       "export const $TM_FILENAME_BASE = ({ className }: Props) => {",
       "\treturn (",
@@ -16,9 +16,9 @@
       "\t\t</div>",
       "\t);",
       "};",
-      ""
+      "",
     ],
     "description": "Boilerplate of a React component",
-    "isFileTemplate": true
-  }
+    "isFileTemplate": true,
+  },
 }

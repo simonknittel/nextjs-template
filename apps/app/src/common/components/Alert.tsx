@@ -21,10 +21,11 @@ const alertVariants = cva(
   },
 );
 
-type AlertProps = HTMLAttributes<HTMLDivElement> &
-  VariantProps<typeof alertVariants> & {
-    disableDefaultTitle?: boolean;
-  };
+interface AlertProps
+  extends HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof alertVariants> {
+  disableDefaultTitle?: boolean;
+}
 
 export const Alert = ({
   className,

@@ -8,9 +8,9 @@ import {
   Text,
 } from "@react-email/components";
 
-type Props = Readonly<{
-  baseUrl: string;
-}>;
+interface Props {
+  readonly baseUrl: string;
+}
 
 export default function Email({ baseUrl = "http://localhost:3000" }: Props) {
   return (

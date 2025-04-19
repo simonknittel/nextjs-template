@@ -20,10 +20,10 @@ import { useId, useTransition } from "react";
 import toast from "react-hot-toast";
 import { disableTeamAction } from "../actions/disableTeamAction";
 
-type Props = Readonly<{
-  className?: string;
-  team: Pick<Team, "id">;
-}>;
+interface Props {
+  readonly className?: string;
+  readonly team: Pick<Team, "id">;
+}
 
 export const DisableTeamButton = ({ className, team }: Props) => {
   const [isPending, startTransition] = useTransition();

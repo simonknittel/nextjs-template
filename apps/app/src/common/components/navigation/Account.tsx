@@ -13,9 +13,9 @@ import {
   DropdownMenuTrigger,
 } from "../DropdownMenu";
 
-type Props = Readonly<{
-  className?: string;
-}>;
+interface Props {
+  readonly className?: string;
+}
 
 export const Account = async ({ className }: Props) => {
   const authentication = await authenticate();

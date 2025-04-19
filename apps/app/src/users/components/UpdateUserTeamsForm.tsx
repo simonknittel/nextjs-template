@@ -10,11 +10,13 @@ import { useActionState } from "react";
 import { updateTeamMembershipsAction } from "../actions/updateTeamMembershipsAction";
 import { canUpdateUserTeams } from "../can";
 
-type Props = Readonly<{
-  className?: string;
-  user: Pick<User, "id" | "disabledAt"> & { teamMemberships: TeamMembership[] };
-  teams: Team[];
-}>;
+interface Props {
+  readonly className?: string;
+  readonly user: Pick<User, "id" | "disabledAt"> & {
+    teamMemberships: TeamMembership[];
+  };
+  readonly teams: Team[];
+}
 
 export const UpdateUserTeamsForm = ({ className, user, teams }: Props) => {
   const [state, formAction, isPending] = useActionState(

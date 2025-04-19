@@ -20,10 +20,10 @@ import { useId, useTransition } from "react";
 import toast from "react-hot-toast";
 import { disableUserAction } from "../actions/disableUserAction";
 
-type Props = Readonly<{
-  className?: string;
-  user: Pick<User, "id">;
-}>;
+interface Props {
+  readonly className?: string;
+  readonly user: Pick<User, "id">;
+}
 
 export const DisableUserButton = ({ className, user }: Props) => {
   const [isPending, startTransition] = useTransition();

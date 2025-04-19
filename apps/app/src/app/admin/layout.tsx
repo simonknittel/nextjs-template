@@ -5,9 +5,9 @@ import { ToasterWrapper } from "@/common/components/ToasterWrapper";
 import { Navigation } from "@/common/components/navigation";
 import { type ReactNode } from "react";
 
-type Props = Readonly<{
-  children?: ReactNode;
-}>;
+interface Props {
+  readonly children?: ReactNode;
+}
 
 export default async function Layout({ children }: Props) {
   await authenticatePage("/admin");

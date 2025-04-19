@@ -2,10 +2,10 @@ import logo from "@/assets/logo_rounded.png";
 import clsx from "clsx";
 import Image from "next/image";
 
-type Props = Readonly<{
-  className?: string;
-  size?: "default" | "compact";
-}>;
+interface Props {
+  readonly className?: string;
+  readonly size?: "default" | "compact";
+}
 
 export const Logo = ({ className, size = "default" }: Props) => {
   return (

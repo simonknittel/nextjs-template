@@ -39,9 +39,9 @@ function getQueryClient() {
   }
 }
 
-type Props = Readonly<{
-  children: ReactNode;
-}>;
+interface Props {
+  readonly children: ReactNode;
+}
 
 export default function ReactQueryProvider({ children }: Props) {
   // NOTE: Avoid useState when initializing the query client if you don't

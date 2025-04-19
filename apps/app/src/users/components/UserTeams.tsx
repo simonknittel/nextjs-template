@@ -4,10 +4,12 @@ import { getTeams } from "@/teams/queries";
 import clsx from "clsx";
 import { UpdateUserTeamsForm } from "./UpdateUserTeamsForm";
 
-type Props = Readonly<{
-  className?: string;
-  user: Pick<User, "id" | "disabledAt"> & { teamMemberships: TeamMembership[] };
-}>;
+interface Props {
+  readonly className?: string;
+  readonly user: Pick<User, "id" | "disabledAt"> & {
+    teamMemberships: TeamMembership[];
+  };
+}
 
 export const UserTeams = async ({ className, user }: Props) => {
   const teams = await getTeams();

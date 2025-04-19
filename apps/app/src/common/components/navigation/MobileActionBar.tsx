@@ -8,9 +8,9 @@ import { MobileSidebar } from "./MobileSidebar";
 import { SidebarHeader } from "./SidebarHeader";
 import { SidebarHighlight } from "./SidebarHighlight";
 
-type Props = Readonly<{
-  className?: string;
-}>;
+interface Props {
+  readonly className?: string;
+}
 
 export const MobileActionBar = async ({ className }: Props) => {
   const authentication = await requireAuthentication();

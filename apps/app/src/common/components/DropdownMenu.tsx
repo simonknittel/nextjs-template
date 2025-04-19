@@ -17,12 +17,10 @@ export const DropdownMenuSub = DropdownMenuPrimitive.Sub;
 
 export const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
 
-type DropdownMenuSubTriggerProps = ComponentProps<
-  typeof DropdownMenuPrimitive.SubTrigger
-> &
-  Readonly<{
-    inset?: boolean;
-  }>;
+interface DropdownMenuSubTriggerProps
+  extends ComponentProps<typeof DropdownMenuPrimitive.SubTrigger> {
+  readonly inset?: boolean;
+}
 
 export const DropdownMenuSubTrigger = ({
   className,
@@ -82,10 +80,10 @@ export const DropdownMenuContent = ({
   </DropdownMenuPrimitive.Portal>
 );
 
-type DropdownMenuItemProps = ComponentProps<typeof DropdownMenuPrimitive.Item> &
-  Readonly<{
-    inset?: boolean;
-  }>;
+interface DropdownMenuItemProps
+  extends ComponentProps<typeof DropdownMenuPrimitive.Item> {
+  readonly inset?: boolean;
+}
 
 export const DropdownMenuItem = ({
   className,
@@ -154,12 +152,10 @@ export const DropdownMenuRadioItem = ({
   </DropdownMenuPrimitive.RadioItem>
 );
 
-type DropdownMenuLabelProps = ComponentProps<
-  typeof DropdownMenuPrimitive.Label
-> &
-  Readonly<{
-    inset?: boolean;
-  }>;
+interface DropdownMenuLabelProps
+  extends ComponentProps<typeof DropdownMenuPrimitive.Label> {
+  readonly inset?: boolean;
+}
 
 export const DropdownMenuLabel = ({
   className,

@@ -14,11 +14,11 @@ import { useActionState } from "react";
 import { updateUserRoleAction } from "../actions/updateUserRoleAction";
 import { canUpdateUserRole } from "../can";
 
-type Props = Readonly<{
-  className?: string;
-  user: Pick<User, "id" | "disabledAt" | "role">;
-  roles: string[];
-}>;
+interface Props {
+  readonly className?: string;
+  readonly user: Pick<User, "id" | "disabledAt" | "role">;
+  readonly roles: string[];
+}
 
 export const UpdateUserRoleForm = ({ className, user, roles }: Props) => {
   const [state, formAction, isPending] = useActionState(

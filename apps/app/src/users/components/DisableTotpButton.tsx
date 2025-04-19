@@ -19,10 +19,10 @@ import clsx from "clsx";
 import { Loader2 } from "lucide-react";
 import { useActionState, useId } from "react";
 
-type Props = Readonly<{
-  className?: string;
-  user: Pick<User, "id">;
-}>;
+interface Props {
+  readonly className?: string;
+  readonly user: Pick<User, "id">;
+}
 
 export const DisableTotpButton = ({ className, user }: Props) => {
   const [state, formAction, isPending] = useActionState(

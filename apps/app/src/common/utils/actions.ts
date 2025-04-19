@@ -4,11 +4,11 @@ import { unstable_rethrow } from "next/navigation";
 import { serializeError } from "serialize-error";
 import { ZodError } from "zod";
 
-export type ServerActionResponse = Readonly<{
-  status: number;
-  error?: unknown;
-  errorMessage?: string;
-}>;
+export interface ServerActionResponse {
+  readonly status: number;
+  readonly error?: unknown;
+  readonly errorMessage?: string;
+}
 
 export type ServerAction = (
   formData: FormData,
