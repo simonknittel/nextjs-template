@@ -127,7 +127,7 @@ export const EditableInput = ({
           className="flex gap-2 items-center group text-left"
           title="Click to edit"
         >
-          {value}
+          {value || "-"}
           <FaPen className="flex-none text-sinister-red-500 group-hover:text-sinister-red-300 text-sm" />
         </button>
       )}
