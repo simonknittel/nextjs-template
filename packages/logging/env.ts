@@ -14,4 +14,7 @@ const schema = z.object({
   NODE_ENV: z.enum(["development", "production"]).default("development"),
 });
 
-export const env = schema.parse(process.env);
+export const env =
+  process.env.SKIP_VALIDATION === "1"
+    ? ({ ...process.env } as unknown as z.infer<typeof schema>)
+    : schema.parse(process.env);
