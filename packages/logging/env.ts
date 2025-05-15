@@ -3,11 +3,10 @@ import { z } from "zod";
 const schema = z.object({
   COMMIT_SHA: z.string().optional(),
   HOST: z.preprocess((str) => {
-    if (str) {
-      return str;
-    } else if (process.env.BASE_URL) {
+    if (str) return str;
+
+    if (process.env.BASE_URL)
       return process.env.BASE_URL.replace(/https?:\/\//, "");
-    }
 
     return "localhost:3000";
   }, z.string()),
