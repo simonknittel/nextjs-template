@@ -19,7 +19,7 @@ jobs:
       ENCRYPTION_KEY: ld91x9FB31jEae0nSjd/YqaJU9ZQS/QzLLJVcAITYBo= # No real key (openssl rand --base64 32)
 
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v5.0.1
         with:
           lfs: true
 
@@ -111,7 +111,7 @@ jobs:
           apt-get install git-lfs
           git lfs install
 
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v5.0.1
         with:
           lfs: true
 
