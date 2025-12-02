@@ -7,6 +7,6 @@
     "dotenv": "16.4.7"
   },
   "devDependencies": {
-    "@playwright/test": "1.49.0"
+    "@playwright/test": "1.57.0"
   }
 }
